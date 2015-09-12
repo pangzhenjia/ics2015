@@ -118,7 +118,7 @@ static int cmd_x(char *args){
     int i = 0;
     for( ; i<num; i++){
         result = swaddr_read(value,4);
-        printf("0x%8x\n", result);
+        printf("0x%-8x\n", result);
         value += 4;
     }
     return 0;
