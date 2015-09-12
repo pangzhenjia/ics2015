@@ -38,6 +38,7 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 static int cmd_si(char *args);
+static int cmd_info(char *args);
 
 static struct {
 	char *name;
@@ -48,7 +49,8 @@ static struct {
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
     { "si", "exec cmd one by one", cmd_si},
-        
+    { "info", "print out the info of register or watchpoints", cmd_info},    
+
 	/* TODO: Add more commands */
 
 };
@@ -91,7 +93,13 @@ static int cmd_si(char *args){
     return 0;
 }
 
-    
+ static int cmd_info(char *args){
+     char *subcmd = strtok(NULL, " ");
+     if (strcmp(subcmd, "r") == 0){
+         printf("\teax:0x%8x\n\tebx:0x%8x\n\tecx:0x%8x\n\tedx:0x%8x\n\tebp:0x%8x\n\tesp:0x%8x\n\tedi:0x%8x\n\tesi:0x%8x\n\t", cpu.eax, cpu.ebx, cpu.ecx, cpu.edx, cpu.ebp, cpu.esp, cpu.edi, cpu.esi );
+     }
+     return 0;
+ }
 
 void ui_mainloop() {
 	while(1) {
