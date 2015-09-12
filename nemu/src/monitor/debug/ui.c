@@ -39,6 +39,8 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 static int cmd_si(char *args);
 static int cmd_info(char *args);
+static int cmd_p(char *args);
+static int cmd_x(char *args);
 
 static struct {
 	char *name;
@@ -50,6 +52,8 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
     { "si", "exec cmd one by one", cmd_si},
     { "info", "print out the info of register or watchpoints", cmd_info},    
+    { "p", "get the value of EXPR", cmd_p},
+    { "x", "print out the near memory", cmd_x},
 
 	/* TODO: Add more commands */
 
@@ -101,6 +105,14 @@ static int cmd_si(char *args){
      return 0;
  }
 
+static int cmd_p(char *args){
+    return 0;
+}
+
+static int cmd_x(char *args){
+    return 0;
+}
+
 void ui_mainloop() {
 	while(1) {
 		char *str = rl_gets();
@@ -114,6 +126,7 @@ void ui_mainloop() {
 		 * which may need further parsing
 		 */
 		char *args = cmd + strlen(cmd) + 1;
+        printf("/t args is %s", args);
 		if(args >= str_end) {
 			args = NULL;
 		}
