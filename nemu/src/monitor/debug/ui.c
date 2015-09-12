@@ -39,7 +39,7 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 static int cmd_si(char *args);
 static int cmd_info(char *args);
-static int cmd_p(char *args);
+int cmd_p(char *args);
 static int cmd_x(char *args);
 
 static struct {
@@ -105,11 +105,20 @@ static int cmd_si(char *args){
      return 0;
  }
 
-static int cmd_p(char *args){
-    return 0;
+int cmd_p(char *args){
+    int result =0;
+    sscanf(args, "%x", &result);
+    printf("result is %x\t", result);
+    return result;
 }
 
 static int cmd_x(char *args){
+    char *numchar = strtok(NULL, " ");
+    int num = atoi(numchar);
+    char *expr = strtok(NULL, " ");
+    int value_expr = cmd_p(expr);
+    cpu.eip = value_expr;
+    printf("num is %d\t", num);
     return 0;
 }
 
