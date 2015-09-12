@@ -107,7 +107,6 @@ static int cmd_si(char *args){
 
 int cmd_p(char *args){
     uint32_t result =strtol(args,NULL,16);
-    printf("result is %d", result);
     return result;
 }
 
@@ -119,7 +118,7 @@ static int cmd_x(char *args){
     uint32_t *star = &value;
     int i = 0;
     for( ; i<num; i++){
-        printf("0x%x\t", *star);
+        printf("0x%x\n", *star);
         star++;
     }
     return 0;
@@ -138,7 +137,6 @@ void ui_mainloop() {
 		 * which may need further parsing
 		 */
 		char *args = cmd + strlen(cmd) + 1;
-        printf("args is %s\t", args);
 		if(args >= str_end) {
 			args = NULL;
 		}
