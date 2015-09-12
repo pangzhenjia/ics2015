@@ -114,12 +114,12 @@ static int cmd_x(char *args){
     char *numchar = strtok(NULL, " ");
     int num = atoi(numchar);
     char *expr = strtok(NULL, " ");
-    uint32_t value = cmd_p(expr);
-    uint32_t *star = &value;
+    //uint32_t value = cmd_p(expr);
+    //uint32_t *star = &value;
+    cpu.eip = cmd_p(expr);
     int i = 0;
     for( ; i<num; i++){
-        printf("0x%x\n", *star);
-        star++;
+        printf("0x%x\n", cpu.eip);
     }
     return 0;
 }
