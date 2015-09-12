@@ -37,6 +37,7 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_help(char *args);
+static int cmd_si(char *args);
 
 static struct {
 	char *name;
@@ -46,7 +47,8 @@ static struct {
 	{ "help", "Display informations about all supported commands", cmd_help },
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
-
+    { "si", "exec cmd one by one", cmd_si},
+        
 	/* TODO: Add more commands */
 
 };
@@ -75,6 +77,21 @@ static int cmd_help(char *args) {
 	}
 	return 0;
 }
+
+static int cmd_si(char *args){
+    char *numchar = strtok(NULL, " "); //get the exec number
+    int num = 1;
+    if (numchar != NULL){
+        num = atoi(numchar);
+    }
+    int i = 0;
+    for( ; i<num; i++){ 
+        cpu_exec(1);
+    }
+    return 0;
+}
+
+    
 
 void ui_mainloop() {
 	while(1) {
