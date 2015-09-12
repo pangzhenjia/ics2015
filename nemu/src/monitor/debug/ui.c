@@ -114,12 +114,12 @@ static int cmd_x(char *args){
     char *numchar = strtok(NULL, " ");
     int num = atoi(numchar);
     char *expr = strtok(NULL, " ");
-    uint32_t value = cmd_p(expr);
-    uint32_t result = swaddr_read(value,4);
+    uint32_t value = cmd_p(expr), result = 0;
     int i = 0;
     for( ; i<num; i++){
+        result = swaddr_read(value,4);
         printf("0x%x\n", result);
-        result += 4;
+        value += 4;
     }
     return 0;
 }
