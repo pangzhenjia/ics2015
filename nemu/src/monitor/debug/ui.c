@@ -106,7 +106,9 @@ static int cmd_si(char *args){
  }
 
 int cmd_p(char *args){
-    uint32_t result =strtol(args,NULL,16);
+    //uint32_t result =strtol(args,NULL,16);
+    uint32_t result = 0;
+    sscanf(args, "%x", &result);
     return result;
 }
 
