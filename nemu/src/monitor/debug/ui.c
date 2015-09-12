@@ -114,13 +114,12 @@ static int cmd_x(char *args){
     char *numchar = strtok(NULL, " ");
     int num = atoi(numchar);
     char *expr = strtok(NULL, " ");
-    //uint32_t value = cmd_p(expr);
-    //uint32_t *star = &value;
-    cpu.eip = cmd_p(expr);
+    uint32_t value = cmd_p(expr);
+    uint32_t result = swaddr_read(value,4);
     int i = 0;
     for( ; i<num; i++){
-        printf("0x%x\n", cpu.eip);
-        cpu.eip +=4 ;
+        printf("0x%x\n", result);
+
     }
     return 0;
 }
