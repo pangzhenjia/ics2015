@@ -120,7 +120,7 @@ static int cmd_x(char *args){
     int i = 0;
     for( ; i<num; i++){
         printf("0x%x\n", cpu.eip);
-        cpu.eip ++;
+        cpu.eip +=4 ;
     }
     return 0;
 }
