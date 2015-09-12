@@ -115,11 +115,11 @@ static int cmd_x(char *args){
     int num = atoi(numchar);
     char *expr = strtok(NULL, " ");
     uint32_t value = cmd_p(expr);
-    uint32_t result = swaddr_read(value,4);
+    uint32_t result = swaddr_read(value,32);
     int i = 0;
     for( ; i<num; i++){
         printf("0x%x\n", result);
-
+        result += 32;
     }
     return 0;
 }
