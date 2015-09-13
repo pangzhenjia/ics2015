@@ -332,10 +332,37 @@ uint32_t get_reg(uint32_t p){
 }
 
 uint32_t find_logic_op(uint32_t p, uint32_t q){
+    uint32_t logic_op, i, num;
+    int logic[4] = { EQ, NQ, AND, OR};
+    for(i=0; i<4; i++){
+        num = 0;
+        for(logic_op = p; logic_op < q+1; logic_op++){
+            if(logic_op == par_position[num]){
+                if(par_position[num+1] == q){
+                    break;
+                }
+                else{
+                    logic_op = par_position[num+1]+1;
+                    num += 2;
+                }
+            }
+            if(tokens[logic_op].type == logic[i]){
+                return logic_op;
+            }
+        }
+    }        
     return 0;
 }
 
 uint32_t get_logic_result(uint32_t p, uint32_t q, uint32_t logic_op){
+    uint32_t val1 = eval(p, logic_op-1);
+    uint32_t val2 = eval(logic_op+1, q);
+    switch(tokens[logic_op].type){
+        case EQ : return val1 == val2; 
+        case NQ : return val1 != val2;
+        case AND: return val1 && val2;
+        case OR : return val1 || val2; 
+    }
     return 0;
 }
 
