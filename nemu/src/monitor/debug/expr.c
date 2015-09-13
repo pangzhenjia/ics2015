@@ -203,8 +203,10 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
     printf("brackets: p is %d, q is %d\n", p, q);
     for(i= p; i<q+1; i++){
         if(tokens[i].type == '(' ){       // find '('
+            printf("have '('!\n");
             for(j = q; j > p-1; j--){
                 if(tokens[j].type == ')' ){   // find ')'
+                    printf("have ')'!\n" );
                     if ( i >= j){            // bad ') ('
                         printf("wrong parenthesis!\n");
                         assert(0);
