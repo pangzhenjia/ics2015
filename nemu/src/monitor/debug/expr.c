@@ -271,7 +271,6 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
                     par--;
                 }                  
                 if(par == 0){          //find the match ')'
-                    printf("i is %d, j is %d!\n", i, j);
                     if ( i == p && j == q){
                         check_parenthesis(i+1, j-1); //check error
                         return true;
