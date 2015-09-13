@@ -124,7 +124,7 @@ int expr(char *e, bool *success) {
 }
 
 int eval(uint32_t p, uint32_t q) {
-    if ( p < q){
+    if ( p > q){
         printf("bad eval!\n");
         assert(0);
     }
