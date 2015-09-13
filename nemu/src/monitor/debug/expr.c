@@ -156,6 +156,7 @@ int eval(uint32_t p, uint32_t q) {
     else if ( check_parenthesis(p, q) ){
         return eval(p+1, q-1);
     }
+
     else {
         uint32_t op = 0;
         int val1, val2;
@@ -166,10 +167,6 @@ int eval(uint32_t p, uint32_t q) {
         }
 
         op = find_op(p, q);
-        if (op == 0){
-            printf("wrong expresstion in finding op!\n");
-            assert(0);
-        }  
         val1 = eval(p, op-1);
         val2 = eval(op+1, q);
 
@@ -185,15 +182,30 @@ int eval(uint32_t p, uint32_t q) {
 
 //find the position of the dominant operator;
 uint32_t find_op(uint32_t p, uint32_t q){
-    int i, op;
-    char *operate = "+-*/";     
+    int i, op, par_l=p, par_r=q;  // par_l and par_r is the two ends of brackets
+    char *operate = "+-*/";   
+    for( ; par_l<q; par_l++){
+        if (tokens[par_l].type == '('){
+            break;
+        }
+    }
+    for( ; par_r>par_l; par_r--){
+        if (tokens[par_r].type == ')'){
+            break;
+        }
+    }
     for(i = 0; i < 4; i++){
-        for(op = p; op < q; op++){
+        for(op = p; op < par_l+1 || op > par_r; op++){
+            if(op == par_l){
+                op = par_r+1;
+            }
             if ( (char)(tokens[op].type) == operate[i]){
                 return op;
             }
         }
     }
+    printf("wrong operator!\n");
+    assert(0);
     return 0;
 }
 
