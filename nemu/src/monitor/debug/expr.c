@@ -183,25 +183,29 @@ int eval(uint32_t p, uint32_t q) {
 //find the position of the dominant operator;
 uint32_t find_op(uint32_t p, uint32_t q){
     int i, op, par_l=p, par_r=q;  // par_l and par_r is the two ends of brackets
-    char *operate = "+-*/";   
+    char *operate = "+-/*";   
     for( ; par_l<q; par_l++){
         if (tokens[par_l].type == '('){
             break;
         }
-    }
+    }  //find the position of bracket
     for( ; par_r>par_l; par_r--){
         if (tokens[par_r].type == ')'){
             break;
         }
     }
-    printf("par_l is %d, par_r is %d!\n", par_l, par_r);
     for(i = 0; i < 4; i++){
-        for(op = p; op < par_l+1 || (op > par_r && op<q); op++){
+        for(op = p+1; op < par_l+1 || (op > par_r && op<q); op++){
             if(op == par_l && par_r != q){
                 op = par_r+1;
-            }
+            }  
             if ( (char)(tokens[op].type) == operate[i]){
-                return op;
+                if (tokens[op].type == '-' && (tokens[op-1].type == '-' || tokens[op-1].type == '*' || tokens[op-1].type == '/')){
+                    return op-1;  // find "--", "*-", "/-"
+                }
+                else{
+                    return op;
+                }
             }
         }
     }
