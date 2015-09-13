@@ -68,7 +68,6 @@ static bool make_token(char *e) {
 	int i;
 	regmatch_t pmatch;
 	nr_token = 0;
-    printf("expr is %s\n", e);
 
 	while(e[position] != '\0') {
 		/* Try all rules one by one. */
@@ -99,7 +98,7 @@ static bool make_token(char *e) {
 				break;
 			}
 		}
-
+        printf("The number of regex is %d\n", NR_REGEX);
 		if(i == NR_REGEX) {
 			printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
