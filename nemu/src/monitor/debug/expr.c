@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ
+	NOTYPE = 256, EQ = 1000, X = 1016, Num = 1111 
 
 	/* TODO: Add more token types */
 
@@ -23,8 +23,14 @@ static struct rule {
 	 */
 
 	{" +",	NOTYPE},				// spaces
+    {"\\(", '('},                   // left_parenthesis
+    {"\\)", ')'},                   // right_parenthesis
 	{"\\+", '+'},					// plus
-	{"==", EQ}						// equal
+    {"\\-", '-'},                   // substract
+    {"\\*", '*'},                   // multiply
+    {"\\/", '/'},                   // divide
+    {"d+", Num},                    // number
+	{"==", EQ}					    // equal
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -47,6 +53,7 @@ void init_regex() {
 		}
 	}
 }
+
 
 typedef struct token {
 	int type;
@@ -75,11 +82,17 @@ static bool make_token(char *e) {
 
 				/* TODO: Now a new token is recognized with rules[i]. Add codes
 				 * to record the token in the array ``tokens''. For certain 
-				 * types of tokens, some extra actions should be performed.
-				 */
+				 * types of tokens, some extra actions should be performed.*/
+				 
 
 				switch(rules[i].token_type) {
-					default: panic("please implement me");
+                    case NOTYPE: break;
+                    case '+': tokens[nr_token].type ='+';nr_token++;break;
+                    case '-': tokens[nr_token].type ='-';nr_token++;break;
+                    case '*': tokens[nr_token].type ='*';nr_token++;break;
+                    case '/': tokens[nr_token].type ='/';nr_token++;break;
+                    case Num: strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++; break;
+                    case '(': tokens[nr_token].type ='(';nr_token++; break;
 				}
 
 				break;
@@ -95,14 +108,82 @@ static bool make_token(char *e) {
 	return true; 
 }
 
-uint32_t expr(char *e, bool *success) {
+int eval(uint32_t p, uint32_t q);
+uint32_t find_op(uint32_t p, uint32_t q, char *operate, uint32_t num);
+static bool check_parenthesis(uint32_t p, uint32_t q);
+
+int expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
 	}
-
-	/* TODO: Insert codes to evaluate the expression. */
-	panic("please implement me");
-	return 0;
+    else{
+        int val = eval(0, nr_token);
+        *success = true;
+        return val;
+    }
 }
+
+int eval(uint32_t p, uint32_t q) {
+    if ( p < q){
+        printf("bad eval!\n");
+        assert(0);
+    }
+    else if ( p == q ){
+        if ( tokens[p].type == Num ){
+            uint32_t val = 0;
+            sscanf( tokens[p].str,"%d", &val);
+            return val;
+        }
+        else {
+            printf ("wrong expression!\n");
+            assert(0);
+        }
+    }
+    else if ( check_parenthesis(p, q) ){
+        return eval(p+1, q-1);
+    }
+    else {
+        uint32_t op = 0;
+        int val1, val2;
+        op = find_op(p, q, "+-", 2);
+        if (op == 0){
+            op = find_op(p, q, "*/", 2);
+        }
+        if (op == 0){
+            printf("wrong expresstion in finding op!\n");
+            assert(0);
+        }  
+        val1 = eval(p, op-1);
+        val2 = eval(op+1, q);
+
+        switch(tokens[op].type){
+            case '+': return val1 + val2;
+            case '-': return val1 - val2;
+            case '*': return val1 * val2;
+            case '/': return val1 / val2;
+            default: assert(0);
+        }
+    }
+}
+
+//find the position of the dominant operator;
+uint32_t find_op(uint32_t p, uint32_t q, char *operate, uint32_t num){
+    int i, op;
+    for(i = 0; i < num; i++){
+        for(op = p; op < q; op++){
+            if ( (char)(tokens[op].type) == operate[i]){
+                return op;
+            }
+        }
+    }
+    return 0;
+}
+
+
+static bool check_parenthesis(uint32_t p, uint32_t q){
+    return true;
+}
+
+
 

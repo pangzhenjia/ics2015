@@ -105,10 +105,21 @@ static int cmd_si(char *args){
      return 0;
  }
 
-int cmd_p(char *args){
     //uint32_t result =strtol(args,NULL,16);
+    /*
     uint32_t result = 0;
     sscanf(args, "%x", &result);
+    return result;
+    */
+
+int cmd_p(char *args){   
+
+    bool *success = false;
+    int result = 0;
+    result = expr(args, success);
+    if ( *success == true){
+        printf("the result is %d!\n", result);
+    }
     return result;
 }
 
