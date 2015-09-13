@@ -204,7 +204,7 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
     for(i= p; i<q+1; i++){
         if(tokens[i].type == '(' ){       // find '('
             printf("have '('!\n");
-            for(j = q; j > p-1; j--){
+            for(j = q; j>p-1; j--){
                 printf("j is %d!\n", j);
                 if(tokens[j].type == ')' ){   // find ')'
                     printf("have ')'!\n" );
