@@ -196,8 +196,8 @@ uint32_t find_op(uint32_t p, uint32_t q){
     }
     printf("par_l is %d, par_r is %d!\n", par_l, par_r);
     for(i = 0; i < 4; i++){
-        for(op = p; op < par_l+1 || op > par_r; op++){
-            if(op == par_l){
+        for(op = p; op < par_l+1 || (op > par_r && op<q); op++){
+            if(op == par_l && par_r != q){
                 op = par_r+1;
             }
             if ( (char)(tokens[op].type) == operate[i]){
