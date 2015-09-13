@@ -113,8 +113,9 @@ static int cmd_si(char *args){
     */
 
 int cmd_p(char *args){   
-
-    bool *success = false;
+    bool a;
+    bool *success = &a;
+    *success = false;
     int result = 0;
     result = expr(args, success);
     if ( *success == true){
