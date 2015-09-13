@@ -110,10 +110,12 @@ static bool make_token(char *e) {
 	return true; 
 }
 
+//statement
 int eval(uint32_t p, uint32_t q);
 uint32_t find_op(uint32_t p, uint32_t q, char *operate, uint32_t num);
 static bool check_parenthesis(uint32_t p, uint32_t q);
 
+//the main evaluation
 int expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
@@ -126,8 +128,9 @@ int expr(char *e, bool *success) {
     }
 }
 
-
+//recurssion to evaluate the expr
 int eval(uint32_t p, uint32_t q) {
+    printf("p is %d, q is %d!\n", p, q);
     if ( p > q){
         printf("bad eval!\n");
         assert(0);
