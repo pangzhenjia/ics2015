@@ -91,7 +91,7 @@ static bool make_token(char *e) {
                     case '-': tokens[nr_token].type ='-';nr_token++;break;
                     case '*': tokens[nr_token].type ='*';nr_token++;break;
                     case '/': tokens[nr_token].type ='/';nr_token++;break;
-                    case Num: strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++; break;
+                    case Num: tokens[nr_token].type =Num; strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++; break;
                     case '(': tokens[nr_token].type ='(';nr_token++; break;
 				}
 
