@@ -29,6 +29,7 @@ static struct rule {
     {"\\-", '-'},                   // substract
     {"\\*", '*'},                   // multiply
     {"\\/", '/'},                   // divide
+    {"\\b0[xX][0-9]+\\b", X},      // 0x...
     {"\\b[0-9]+\\b", Num},                    // number
 	{"==", EQ}					    // equal
 };
@@ -93,6 +94,8 @@ static bool make_token(char *e) {
                     case '/': tokens[nr_token].type ='/';nr_token++;break;
                     case Num: tokens[nr_token].type =Num; strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++; break;
                     case '(': tokens[nr_token].type ='(';nr_token++; break;
+                    case ')': tokens[nr_token].type =')';nr_token++;break;
+                    case X  : tokens[nr_token].type =X;   strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++;  break;
 				}
 
 				break;
@@ -133,6 +136,11 @@ int eval(uint32_t p, uint32_t q) {
         if ( tokens[p].type == Num ){
             uint32_t val = 0;
             sscanf( tokens[p].str,"%d", &val);
+            return val;
+        }
+        else if( tokens[p].type == X ){
+            uint32_t val =0;
+            sscanf( tokens[p].str, "%d", &val);
             return val;
         }
         else {
