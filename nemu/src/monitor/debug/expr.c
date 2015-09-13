@@ -67,8 +67,8 @@ static bool make_token(char *e) {
 	int position = 0;
 	int i;
 	regmatch_t pmatch;
-	
 	nr_token = 0;
+    printf("expr is %s\n", e);
 
 	while(e[position] != '\0') {
 		/* Try all rules one by one. */
