@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ = 1000, X = 1016, Num = 1111 
+	NOTYPE = 256, EQ = 5000, NQ = 5001, AND = 5002, OR = 5003, NO=5004,  X = 1016, Num = 1111,  
 
 	/* TODO: Add more token types */
 
@@ -25,13 +25,18 @@ static struct rule {
 	{" +",	NOTYPE},				// spaces
     {"\\(", '('},                   // left_parenthesis
     {"\\)", ')'},                   // right_parenthesis
+    {"\\$", '$'},                   // $register
 	{"\\+", '+'},					// plus
     {"\\-", '-'},                   // substract
     {"\\*", '*'},                   // multiply
     {"\\/", '/'},                   // divide
     {"\\b0[xX][0-9]+\\b", X},       // 0x...
     {"\\b[0-9]+\\b", Num},          // number
-	{"==", EQ}					    // equal
+	{"\\=\\=", EQ},					     // equal
+    {"\\!\\=", NQ},                     // not equal
+    {"\\&\\&", AND},                    // and
+    {"\\|\\|", OR},                     // or
+    {"\\!", NO}                         // no
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -96,7 +101,13 @@ static bool make_token(char *e) {
                     case '(': tokens[nr_token].type ='(';nr_token++; break;
                     case ')': tokens[nr_token].type =')';nr_token++;break;
                     case X  : tokens[nr_token].type =X;   strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++;  break;
-				}
+				    case '$': tokens[nr_token].type ='$'; strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++; break;
+                    case EQ : tokens[nr_token].type =EQ; nr_token++; break;
+                    case NQ : tokens[nr_token].type =NQ; nr_token++; break;
+                    case AND: tokens[nr_token].type =AND; nr_token++; break;
+                    case OR : tokens[nr_token].type =OR;  nr_token++; break;
+                    case NO : tokens[nr_token].type =NO;  nr_token++; break;
+                }
 
 				break;
 			}
@@ -146,6 +157,8 @@ uint32_t eval(uint32_t p, uint32_t q) {
             uint32_t val =0;
             sscanf( tokens[p].str, "%x", &val);
             return val;
+        }
+        else if (tokens[p].type == '$'){
         }
         else {
             printf ("wrong expression!\n");
