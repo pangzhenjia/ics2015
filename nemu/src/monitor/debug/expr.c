@@ -199,7 +199,7 @@ uint32_t find_op(uint32_t p, uint32_t q){
 
 
 static bool check_parenthesis(uint32_t p, uint32_t q){
-    uint32_t i, j;
+    uint32_t i=1000, j=1000;
     printf("brackets: p is %d, q is %d\n", p, q);
     for(i= p; i<q+1; i++){
         if(tokens[i].type == '(' ){       // find '('
