@@ -204,7 +204,7 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
     for(i= p; i<q+1; i++){
         if(tokens[i].type == '(' ){       // find '('
             printf("have '('!\n");
-            while( j>p-1 ){
+            while( j>p ){
                 if(tokens[j].type == ')' ){   // find ')'
                     printf("have ')'!\n" );
                     if ( i >= j){            // bad ') ('
@@ -232,7 +232,7 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
     // now there is no '('
     printf("i is %d, j is %d!\n", i, j);
     if(i == q){
-        for(j=q; j>p-1; j--){
+        for(j=q; j>p; j--){
             if (tokens[j].type == ')' ){   // no '(', but have ')'
                 printf("wrong parenthesis!\n");
                 assert(0);
