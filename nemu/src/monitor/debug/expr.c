@@ -123,8 +123,10 @@ int expr(char *e, bool *success) {
     }
 }
 
+
 int eval(uint32_t p, uint32_t q) {
     printf("p is %d, q is %d!\n", p, q);
+    printf("Num token type is %d!\n", tokens[0].type);
     if ( p > q){
         printf("bad eval!\n");
         assert(0);
