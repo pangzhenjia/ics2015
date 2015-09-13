@@ -125,6 +125,7 @@ static bool make_token(char *e) {
 uint32_t eval(uint32_t p, uint32_t q);
 uint32_t find_op(uint32_t p, uint32_t q);
 static bool check_parenthesis(uint32_t p, uint32_t q);
+uint32_t get_reg(uint32_t p);
 
 //the main evaluation
 uint32_t expr(char *e, bool *success) {
@@ -159,6 +160,7 @@ uint32_t eval(uint32_t p, uint32_t q) {
             return val;
         }
         else if (tokens[p].type == '$'){
+            return get_reg(p);
         }
         else {
             printf ("wrong expression!\n");
@@ -273,4 +275,34 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
     return false;
 }
 
+uint32_t get_reg(uint32_t p){
+    if(strcmp(tokens[p].str, "$eax") == 0){
+        return cpu.eax;
+    }
+    else if(strcmp(tokens[p].str, "$ecx") == 0){
+        return cpu.ecx;
+    }
+    else if(strcmp(tokens[p].str, "$edx") == 0){
+        return cpu.edx;
+    }
+    else if(strcmp(tokens[p].str, "$ebx") == 0){
+        return cpu.ebx;
+    }
+    else if(strcmp(tokens[p].str, "$esp") == 0){
+        return cpu.esp;
+    }
+    else if(strcmp(tokens[p].str, "$ebp") == 0){
+        return cpu.ebp;
+    }
+    else if(strcmp(tokens[p].str, "$esi") == 0){
+        return cpu.esi;
+    }
+    else if(strcmp(tokens[p].str, "$edi") == 0){
+        return cpu.edi;
+    }
+    else{
+        printf("wrong register!\n");
+        assert(0);
+    }
+}
 
