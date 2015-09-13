@@ -126,6 +126,8 @@ uint32_t eval(uint32_t p, uint32_t q);
 uint32_t find_op(uint32_t p, uint32_t q);
 static bool check_parenthesis(uint32_t p, uint32_t q);
 uint32_t get_reg(uint32_t p);
+uint32_t find_logic_op(uint32_t p, uint32_t q);
+uint32_t get_logic_result(uint32_t p, uint32_t q, uint32_t logic_op);
 
 //the main evaluation
 uint32_t expr(char *e, bool *success) {
@@ -142,9 +144,6 @@ uint32_t expr(char *e, bool *success) {
 
 //recurssion to evaluate the expr
 uint32_t eval(uint32_t p, uint32_t q) {
-    uint32_t k=0;
-    k--;
-    printf("k is %d!\n", k);
     if ( p > q){
         printf("bad eval!\n");
         assert(0);
@@ -175,18 +174,26 @@ uint32_t eval(uint32_t p, uint32_t q) {
     }
 
     else {
-        uint32_t op = 0;
+        uint32_t op = 0, logic_op = 0;
         uint32_t val1, val2;
+        
+        logic_op = find_logic_op(p, q); // only four forms ==, !=, &&, ||
+        if(logic_op != 0){
+            return get_logic_result(p, q, logic_op);
+        }
 
-        // reconigize the negative number or the value of a pointer
-        if (tokens[p].type == '-' || tokens[p].type == '*' ){
+        // reconigize the negative number or the value of a pointer or the !num
+        if (tokens[p].type == '-' || tokens[p].type == '*' || tokens[p].type == NO){
             if( (tokens[p+1].type == '('&& tokens[q].type == ')') || (p+1 == q) ){
                 //only two type, -1, -(3+5) 
                 if(tokens[p].type == '-'){
                     return -eval(p+1,q);
                 }
-                else{
+                else if(tokens[p].type == '*'){
                     return swaddr_read(eval(p+1, q), 4);
+                }
+                else{
+                    return !eval(p+1,q);
                 }
             }
         }
@@ -306,5 +313,13 @@ uint32_t get_reg(uint32_t p){
         printf("wrong register!\n");
         assert(0);
     }
+}
+
+uint32_t find_logic_op(uint32_t p, uint32_t q){
+    return 0;
+}
+
+uint32_t get_logic_result(uint32_t p, uint32_t q, uint32_t logic_op){
+    return 0;
 }
 
