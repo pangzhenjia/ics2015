@@ -130,6 +130,7 @@ int expr(char *e, bool *success) {
 
 //recurssion to evaluate the expr
 int eval(uint32_t p, uint32_t q) {
+    printf("p is %d, q is %d\n", p ,q);
     if ( p > q){
         printf("wrong operator!\n");
         assert(0);
