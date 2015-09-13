@@ -230,6 +230,10 @@ uint32_t find_op(uint32_t p, uint32_t q){
                 num += 2;
             }
             else if(op == par_position[num] ){ 
+                if( par_position[num] >= q){
+                    break;  
+                    //not only more quickly, but also avoid out of range
+                }
                 op = par_position[num+1] + 1;
                 num += 2;
             }
