@@ -1,4 +1,4 @@
-#include "nemu.h"
+#include "nemu.h"   
 
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
@@ -111,28 +111,28 @@ static bool make_token(char *e) {
 }
 
 //statement
-int eval(uint32_t p, uint32_t q);
+uint32_t eval(uint32_t p, uint32_t q);
 uint32_t find_op(uint32_t p, uint32_t q);
 static bool check_parenthesis(uint32_t p, uint32_t q);
 
 //the main evaluation
-int expr(char *e, bool *success) {
+uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
 	}
     else{
         *success = true;
-        int val = eval(0, nr_token-1);
+        uint32_t val = eval(0, nr_token-1);
         return val;
     }
 }
 
 //recurssion to evaluate the expr
-int eval(uint32_t p, uint32_t q) {
+uint32_t eval(uint32_t p, uint32_t q) {
     printf("eval: p is %d, q is %d\n", p ,q);
     if ( p > q){
-        printf("wrong operator!\n");
+        printf("bad eval!\n");
         assert(0);
     }
     
@@ -159,11 +159,19 @@ int eval(uint32_t p, uint32_t q) {
 
     else {
         uint32_t op = 0;
-        int val1, val2;
+        uint32_t val1, val2;
 
-        // reconigize the negative number
-        if (tokens[p].type == '-'){
-            return -eval(p+1, q);
+        // reconigize the negative number or the value of a pointer
+        if (tokens[p].type == '-' || tokens[p].type == '*' ){
+            if( (tokens[p+1].type == '('&& tokens[q].type == ')') || (p+1 == q) ){
+                //only two type, -1, -(3+5) 
+                if(tokens[p].type == '-'){
+                    return -eval(p+1,q);
+                }
+                else{
+                    return swaddr_read(eval(p+1, q), 4);
+                }
+            }
         }
 
         op = find_op(p, q);
@@ -182,7 +190,7 @@ int eval(uint32_t p, uint32_t q) {
 
 //find the position of the dominant operator;
 uint32_t find_op(uint32_t p, uint32_t q){
-    int i, op, par_l=p, par_r=q;  // par_l and par_r is the two ends of brackets
+    uint32_t i, op, par_l=p, par_r=q;  // par_l and par_r is the two ends of brackets
     char *operate = "+-/*";   
     for( ; par_l<q; par_l++){
         if (tokens[par_l].type == '('){
