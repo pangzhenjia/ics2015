@@ -199,13 +199,12 @@ uint32_t find_op(uint32_t p, uint32_t q){
 
 
 static bool check_parenthesis(uint32_t p, uint32_t q){
-    uint32_t i=1000, j=1000;
+    uint32_t i=p, j=q;
     printf("brackets: p is %d, q is %d\n", p, q);
     for(i= p; i<q+1; i++){
         if(tokens[i].type == '(' ){       // find '('
             printf("have '('!\n");
-            for(j = q; j>p-1; j--){
-                printf("j is %d!\n", j);
+            while( j>p-1 ){
                 if(tokens[j].type == ')' ){   // find ')'
                     printf("have ')'!\n" );
                     if ( i >= j){            // bad ') ('
@@ -221,9 +220,8 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
                         return false;
                     }
                 }
-                else{
-                    ;
-                }
+                j--;
+                printf("j is %d!\n", j);
             } 
             if(j == p){
                 printf("wrong parenthesis!\n");  // have '(', but no ')'
