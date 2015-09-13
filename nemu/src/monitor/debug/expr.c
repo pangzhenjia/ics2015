@@ -222,8 +222,10 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
                     }
                 }
             } 
-            printf("wrong parenthesis!\n");  // have '(', but no ')'
-            assert(0);
+            if(j == p){
+                printf("wrong parenthesis!\n");  // have '(', but no ')'
+                assert(0);
+            }
         }
     }
     // now there is no '('
