@@ -130,7 +130,7 @@ int expr(char *e, bool *success) {
 
 //recurssion to evaluate the expr
 int eval(uint32_t p, uint32_t q) {
-    printf("p is %d, q is %d\n", p ,q);
+    printf("eval: p is %d, q is %d\n", p ,q);
     if ( p > q){
         printf("wrong operator!\n");
         assert(0);
@@ -200,6 +200,7 @@ uint32_t find_op(uint32_t p, uint32_t q){
 
 static bool check_parenthesis(uint32_t p, uint32_t q){
     uint32_t i, j;
+    printf("brackets: p is %d, q is %d\n", p, q);
     for(i= p; i<q+1; i++){
         if(tokens[i].type == '(' ){       // find '('
             for(j = q; j > p-1; j--){
