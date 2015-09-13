@@ -238,7 +238,13 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
         }
     }
     //now no '(', no ')', good!
-    return false;
+    if (j == q){
+        return false;
+    }
+    else{
+        printf("wrong parenthesis!\n"); 
+        assert(0);
+    }
 }
 
 
