@@ -29,7 +29,7 @@ static struct rule {
     {"\\-", '-'},                   // substract
     {"\\*", '*'},                   // multiply
     {"\\/", '/'},                   // divide
-    {"^[0-9]+$", Num},                    // number
+    {"\\b[0-9]+\\b", Num},                    // number
 	{"==", EQ}					    // equal
 };
 
