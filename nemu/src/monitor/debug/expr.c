@@ -132,7 +132,7 @@ int expr(char *e, bool *success) {
 int eval(uint32_t p, uint32_t q) {
     printf("p is %d, q is %d!\n", p, q);
     if ( p > q){
-        printf("bad eval!\n");
+        printf("wrong operator!\n");
         assert(0);
     }
     else if ( p == q ){
