@@ -128,6 +128,7 @@ static bool check_parenthesis(uint32_t p, uint32_t q);
 uint32_t get_reg(uint32_t p);
 uint32_t find_logic_op(uint32_t p, uint32_t q);
 uint32_t get_logic_result(uint32_t p, uint32_t q, uint32_t logic_op);
+void get_par_position(uint32_t p, uint32_t q);
 
 //the main evaluation
 uint32_t expr(char *e, bool *success) {
@@ -141,6 +142,9 @@ uint32_t expr(char *e, bool *success) {
         return val;
     }
 }
+
+//to evaluate all the brackets in the tokens, we have to identify all the position of the both sides brackets.
+uint32_t par_position[32], iterator;
 
 //recurssion to evaluate the expr
 uint32_t eval(uint32_t p, uint32_t q) {
@@ -176,7 +180,7 @@ uint32_t eval(uint32_t p, uint32_t q) {
     else {
         uint32_t op = 0, logic_op = 0;
         uint32_t val1, val2;
-        
+        get_par_position(p, q);
         logic_op = find_logic_op(p, q); // only four forms ==, !=, &&, ||
         if(logic_op != 0){
             return get_logic_result(p, q, logic_op);
@@ -331,3 +335,34 @@ uint32_t get_logic_result(uint32_t p, uint32_t q, uint32_t logic_op){
     return 0;
 }
 
+void get_par_position(uint32_t p, uint32_t q){
+    uint32_t num, i = p, j, par=0;
+    for(num=0; num<32; num++){
+        par_position[num] = 1000;
+    }   // initiate the par_position
+    num = 0;
+    while( i<q ){
+        if (tokens[i].type == '(' ){
+            par_position[num] = i;
+            num++;
+            par++;
+            for(j=i+1; j<q+1; j++){
+                if(tokens[j].type == '(' ){
+                    par++;
+                }
+                else if(tokens[j].type == ')' ){
+                    par--;
+                }
+                if(par == 0){
+                    par_position[num] = j;
+                    num++;
+                    i = j+1;
+                    break;
+                }
+            }
+        }
+        else{
+            i++;
+        }
+    }
+}
