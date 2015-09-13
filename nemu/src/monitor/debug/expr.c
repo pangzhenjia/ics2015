@@ -233,7 +233,7 @@ uint32_t find_op(uint32_t p, uint32_t q){
                 num += 2;
             }
             // get op not in the brackets, so if op bump in the par, op has to go to the next par
-            
+            printf("op is %d!\n", op); 
             if ( (char)(tokens[op].type) == operate[i]){
                 if (tokens[op].type == '-' && (tokens[op-1].type == '-' || tokens[op-1].type == '*' || tokens[op-1].type == '/')){
                     return op-1;  // find "--", "*-", "/-"
@@ -253,7 +253,7 @@ uint32_t find_op(uint32_t p, uint32_t q){
 static bool check_parenthesis(uint32_t p, uint32_t q){
     uint32_t i=1000, j=1000, par=0;
     if(p>=q){
-        printf("wrong bracket!\n");
+        printf("wrong parenthesis!\n");
         assert(0);
     }
     for(i= p; i<q+1; i++){
