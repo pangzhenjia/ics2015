@@ -229,6 +229,7 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
         }
     }
     // now there is no '('
+    printf("i is %d, j is %d!\n", i, j);
     if(i == q){
         for(j=q; j>p-1; j--){
             if (tokens[j].type == ')' ){   // no '(', but have ')'
