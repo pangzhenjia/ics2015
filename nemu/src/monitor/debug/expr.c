@@ -160,10 +160,10 @@ int eval(uint32_t p, uint32_t q) {
         val2 = eval(op+1, q);
 
         switch(tokens[op].type){
-            case '+': return val1 + val2;
-            case '-': return val1 - val2;
-            case '*': return val1 * val2;
-            case '/': return val1 / val2;
+            case '+': return val1 + val2;break;
+            case '-': return val1 - val2;break;
+            case '*': return val1 * val2;break;
+            case '/': return val1 / val2;break;
         }
     }
     return 0;
