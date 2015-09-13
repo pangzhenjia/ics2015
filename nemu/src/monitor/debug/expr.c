@@ -29,8 +29,8 @@ static struct rule {
     {"\\-", '-'},                   // substract
     {"\\*", '*'},                   // multiply
     {"\\/", '/'},                   // divide
-    {"\\b0[xX][0-9]+\\b", X},      // 0x...
-    {"\\b[0-9]+\\b", Num},                    // number
+    {"\\b0[xX][0-9]+\\b", X},       // 0x...
+    {"\\b[0-9]+\\b", Num},          // number
 	{"==", EQ}					    // equal
 };
 
@@ -112,7 +112,7 @@ static bool make_token(char *e) {
 
 //statement
 int eval(uint32_t p, uint32_t q);
-uint32_t find_op(uint32_t p, uint32_t q, char *operate, uint32_t num);
+uint32_t find_op(uint32_t p, uint32_t q);
 static bool check_parenthesis(uint32_t p, uint32_t q);
 
 //the main evaluation
@@ -130,11 +130,11 @@ int expr(char *e, bool *success) {
 
 //recurssion to evaluate the expr
 int eval(uint32_t p, uint32_t q) {
-    printf("p is %d, q is %d!\n", p, q);
     if ( p > q){
         printf("wrong operator!\n");
         assert(0);
     }
+    
     else if ( p == q ){
         if ( tokens[p].type == Num ){
             uint32_t val = 0;
@@ -151,16 +151,20 @@ int eval(uint32_t p, uint32_t q) {
             assert(0);
         }
     }
+
     else if ( check_parenthesis(p, q) ){
         return eval(p+1, q-1);
     }
     else {
         uint32_t op = 0;
         int val1, val2;
-        op = find_op(p, q, "+-", 2);
-        if (op == 0){
-            op = find_op(p, q, "*/", 2);
+
+        // reconigize the negative number
+        if (tokens[p].type == '-'){
+            return -eval(p+1, q);
         }
+
+        op = find_op(p, q);
         if (op == 0){
             printf("wrong expresstion in finding op!\n");
             assert(0);
@@ -179,9 +183,10 @@ int eval(uint32_t p, uint32_t q) {
 }
 
 //find the position of the dominant operator;
-uint32_t find_op(uint32_t p, uint32_t q, char *operate, uint32_t num){
+uint32_t find_op(uint32_t p, uint32_t q){
     int i, op;
-    for(i = 0; i < num; i++){
+    char *operate = "+-*/";     
+    for(i = 0; i < 4; i++){
         for(op = p; op < q; op++){
             if ( (char)(tokens[op].type) == operate[i]){
                 return op;
