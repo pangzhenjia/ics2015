@@ -117,8 +117,8 @@ int expr(char *e, bool *success) {
 		return 0;
 	}
     else{
+        *success = true;
         int val = eval(0, nr_token-1);
-        //*success = true;
         printf("val is %d!\n", val);
         return val;
     }
