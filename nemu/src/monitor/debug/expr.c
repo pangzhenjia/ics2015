@@ -231,24 +231,14 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
     }
     // now there is no '('
     printf("i is %d, j is %d!\n", i, j);
-    if(i == q){
-        for(j=q; j>p; j--){
-            if (tokens[j].type == ')' ){   // no '(', but have ')'
-                printf("wrong parenthesis!\n");
-                assert(0);
-            }
+    for(j=q; j>p; j--){
+        if (tokens[j].type == ')' ){   // no '(', but have ')'
+            printf("wrong parenthesis!\n");
+            assert(0);
         }
     }
     //now no '(', no ')', good!
-    if (j == p){
-        printf(" whatever!, j is %d\n", j);
-        return false;
-    }
-    else{
-        printf("wrong parenthesis!\n"); 
-        assert(0);
-    }
+    return false;
 }
-
 
 
