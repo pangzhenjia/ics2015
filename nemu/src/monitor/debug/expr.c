@@ -29,7 +29,7 @@ static struct rule {
     {"\\-", '-'},                   // substract
     {"\\*", '*'},                   // multiply
     {"\\/", '/'},                   // divide
-    {"\\d+", Num},                    // number
+    {"\\w+", Num},                    // number
 	{"==", EQ}					    // equal
 };
 
@@ -98,7 +98,6 @@ static bool make_token(char *e) {
 				break;
 			}
 		}
-        printf("The number of regex is %d\n", NR_REGEX);
 		if(i == NR_REGEX) {
 			printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
