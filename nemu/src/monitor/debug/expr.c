@@ -143,7 +143,8 @@ uint32_t expr(char *e, bool *success) {
 //recurssion to evaluate the expr
 uint32_t eval(uint32_t p, uint32_t q) {
     uint32_t k=0;
-    printf("k is %d!\n", k-1);
+    k--;
+    printf("k is %d!\n", k);
     if ( p > q){
         printf("bad eval!\n");
         assert(0);
