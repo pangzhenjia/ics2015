@@ -230,7 +230,7 @@ uint32_t find_op(uint32_t p, uint32_t q){
                 num += 2;
             }
             else if(op == par_position[num] ){ 
-                if( par_position[num+1] >= q){
+                if( par_position[num+1] == q){
                     break;  
                     //not only more quickly, but also avoid out of range
                 }
@@ -238,7 +238,6 @@ uint32_t find_op(uint32_t p, uint32_t q){
                 num += 2;
             }
             // get op not in the brackets, so if op bump in the par, op has to go to the next par
-            printf("op is %d!\n", op); 
             if ( (char)(tokens[op].type) == operate[i]){
                 if (tokens[op].type == '-' && (tokens[op-1].type == '-' || tokens[op-1].type == '*' || tokens[op-1].type == '/')){
                     return op-1;  // find "--", "*-", "/-"
