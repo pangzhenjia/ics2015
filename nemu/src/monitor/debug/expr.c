@@ -25,12 +25,12 @@ static struct rule {
 	{" +",	NOTYPE},				// spaces
     {"\\(", '('},                   // left_parenthesis
     {"\\)", ')'},                   // right_parenthesis
-    {"\\$", '$'},                   // $register
+    {"\\$[A-Za-z]+", '$'},                   // $register
 	{"\\+", '+'},					// plus
     {"\\-", '-'},                   // substract
     {"\\*", '*'},                   // multiply
     {"\\/", '/'},                   // divide
-    {"\\b0[xX][0-9]+\\b", X},       // 0x...
+    {"\\b0[xX][a-fA-F0-9]+\\b", X},       // 0x...
     {"\\b[0-9]+\\b", Num},          // number
 	{"\\=\\=", EQ},					     // equal
     {"\\!\\=", NQ},                     // not equal
