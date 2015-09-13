@@ -181,7 +181,7 @@ uint32_t find_op(uint32_t p, uint32_t q, char *operate, uint32_t num){
 
 
 static bool check_parenthesis(uint32_t p, uint32_t q){
-    return true;
+    return false;
 }
 
 
