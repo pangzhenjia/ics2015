@@ -256,7 +256,7 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
     for(i= p; i<q+1; i++){
         if(tokens[i].type == '(' ){       // find '('
             par++;
-            for( j=i+2; j<q; j++){
+            for( j=i+2; j<q+1; j++){
                 if(tokens[j].type == '('){
                     par++;
                 }
