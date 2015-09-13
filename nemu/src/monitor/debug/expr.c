@@ -218,9 +218,10 @@ uint32_t eval(uint32_t p, uint32_t q) {
 
 //find the position of the dominant operator;
 uint32_t find_op(uint32_t p, uint32_t q){
-    uint32_t i, num = 0, op;
+    uint32_t i, num, op;
     char *operate = "+-/*";   
     for(i = 0; i < 4; i++){
+        num = 0;  // this is definitely important!
         for(op = p+1; op < q; op++){ 
             // op=p+1 is very important, because it can rule out the case like that negative number -1 or poiter *12
              
