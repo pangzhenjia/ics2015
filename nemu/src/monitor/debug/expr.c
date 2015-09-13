@@ -117,7 +117,7 @@ int expr(char *e, bool *success) {
 		return 0;
 	}
     else{
-        int val = eval(0, nr_token);
+        int val = eval(0, nr_token-1);
         *success = true;
         return val;
     }
@@ -126,7 +126,6 @@ int expr(char *e, bool *success) {
 
 int eval(uint32_t p, uint32_t q) {
     printf("p is %d, q is %d!\n", p, q);
-    printf("Num token str is %s!\n", tokens[0].str);
     if ( p > q){
         printf("bad eval!\n");
         assert(0);
