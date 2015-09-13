@@ -29,7 +29,7 @@ static struct rule {
     {"\\-", '-'},                   // substract
     {"\\*", '*'},                   // multiply
     {"\\/", '/'},                   // divide
-    {"\\w+", Num},                    // number
+    {"\\d+", Num},                    // number
 	{"==", EQ}					    // equal
 };
 
@@ -119,14 +119,12 @@ int expr(char *e, bool *success) {
     else{
         *success = true;
         int val = eval(0, nr_token-1);
-        printf("val is %d!\n", val);
         return val;
     }
 }
 
 
 int eval(uint32_t p, uint32_t q) {
-    printf("p is %d, q is %d!\n", p, q);
     if ( p > q){
         printf("bad eval!\n");
         assert(0);
@@ -158,8 +156,6 @@ int eval(uint32_t p, uint32_t q) {
         }  
         val1 = eval(p, op-1);
         val2 = eval(op+1, q);
-        printf("val1 is %d, val2 is %d\n", val1, val2);
-        printf("type is %d\n", tokens[op].type);
 
         switch(tokens[op].type){
             case '+': return val1 + val2;break;
