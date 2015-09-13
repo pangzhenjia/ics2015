@@ -140,7 +140,7 @@ int eval(uint32_t p, uint32_t q) {
         }
         else if( tokens[p].type == X ){
             uint32_t val =0;
-            sscanf( tokens[p].str, "%d", &val);
+            sscanf( tokens[p].str, "%x", &val);
             return val;
         }
         else {
