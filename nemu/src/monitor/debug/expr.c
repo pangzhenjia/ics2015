@@ -332,6 +332,8 @@ uint32_t get_reg(uint32_t p){
 }
 
 uint32_t find_logic_op(uint32_t p, uint32_t q){
+    /* extended power, maybe we do not need it now
+
     uint32_t logic_op, i, num;
     int logic[4] = { EQ, NQ, AND, OR};
     for(i=0; i<4; i++){
@@ -350,7 +352,19 @@ uint32_t find_logic_op(uint32_t p, uint32_t q){
                 return logic_op;
             }
         }
-    }        
+    } 
+    */
+
+    uint32_t logic_op, i;
+    int logic[4] = { EQ, NQ, AND, OR};
+    for(i=0; i<4; i++){
+        for(logic_op = p+1; logic_op <q; logic_op++){
+            if (tokens[logic_op].type == logic[i]){
+                return logic_op;
+            }
+        }
+    }
+
     return 0;
 }
 
