@@ -218,23 +218,22 @@ uint32_t eval(uint32_t p, uint32_t q) {
 
 //find the position of the dominant operator;
 uint32_t find_op(uint32_t p, uint32_t q){
-    uint32_t i, op, par_l=p, par_r=q;  // par_l and par_r is the two ends of brackets
+    uint32_t i, num = 0, op;
     char *operate = "+-/*";   
-    for( ; par_l<q; par_l++){
-        if (tokens[par_l].type == '('){
-            break;
-        }
-    }  //find the position of bracket
-    for( ; par_r>par_l; par_r--){
-        if (tokens[par_r].type == ')'){
-            break;
-        }
-    }
     for(i = 0; i < 4; i++){
-        for(op = p+1; op < par_l+1 || (op > par_r && op<q); op++){
-            if(op == par_l && par_r != q){
-                op = par_r+1;
-            }  
+        for(op = p+1; op < q; op++){ 
+            // op=p+1 is very important, because it can rule out the case like that negative number -1 or poiter *12
+             
+            if( op==p+1 && par_position[0] == 0){
+                op = par_position[1]+1;
+                num += 2;
+            }
+            else if(op == par_position[num] ){ 
+                op = par_position[num+1] + 1;
+                num += 2;
+            }
+            // get op not in the brackets, so if op bump in the par, op has to go to the next par
+            
             if ( (char)(tokens[op].type) == operate[i]){
                 if (tokens[op].type == '-' && (tokens[op-1].type == '-' || tokens[op-1].type == '*' || tokens[op-1].type == '/')){
                     return op-1;  // find "--", "*-", "/-"
@@ -334,6 +333,7 @@ uint32_t find_logic_op(uint32_t p, uint32_t q){
 uint32_t get_logic_result(uint32_t p, uint32_t q, uint32_t logic_op){
     return 0;
 }
+
 
 void get_par_position(uint32_t p, uint32_t q){
     uint32_t num, i = p, j, par=0;
