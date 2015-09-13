@@ -119,8 +119,9 @@ int cmd_p(char *args){
     result = expr(args, success);
     if ( *success == true){
         printf("the result is %d!\n", result);
+        return result;
     }
-    return result;
+    assert(0);
 }
 
 static int cmd_x(char *args){
