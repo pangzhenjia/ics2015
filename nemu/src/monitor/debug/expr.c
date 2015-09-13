@@ -194,6 +194,7 @@ uint32_t find_op(uint32_t p, uint32_t q){
             break;
         }
     }
+    printf("par_l is %d, par_r is %d!\n", par_l, par_r);
     for(i = 0; i < 4; i++){
         for(op = p; op < par_l+1 || op > par_r; op++){
             if(op == par_l){
