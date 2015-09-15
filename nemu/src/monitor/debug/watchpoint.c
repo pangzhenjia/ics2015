@@ -43,6 +43,9 @@ void free_wp( WP* wp){
     // have to delete from head
     WP* p;
     for(p=head; p!=NULL; p =p -> next){
+        if( wp == head) {
+            head = head -> next;
+        }
         if((p -> next) == wp){
             p -> next = wp -> next;
         }
