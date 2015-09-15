@@ -18,6 +18,10 @@ void init_wp_list() {
 	free_ = wp_list;
 }
 
+WP* get_head(){
+    return head;
+}
+
 WP* new_wp(){
     WP* re = free_;
     if ( re != NULL ){
@@ -47,7 +51,6 @@ WP* set_wp(char *args){
     unsigned result = expr( args, success);
     if ( *success == true){
         watch -> expr = args;
-        printf("I do expr\n");
         watch -> p_val = result;
         return watch;
     }
