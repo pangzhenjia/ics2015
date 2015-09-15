@@ -33,6 +33,9 @@ WP* new_wp(){
             re -> next = NULL;
         }
         head = re;       // make the using wp in head 
+        if ( head -> next == NULL){
+            printf("head only have one!");
+        }
         return re;
     }
     else{
