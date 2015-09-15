@@ -52,7 +52,8 @@ void free_wp( WP* wp){
         if((p -> next) == wp){
             p -> next = wp -> next;
         }
-    }
+    } 
+    // go into free again.
     wp -> next = free_;
     free_ = wp;
  
@@ -83,10 +84,9 @@ int watch_wp(){
     unsigned result;
     int i = 0;
     WP *p;
-
+    // watch every watchpoint, printf out all the changed value, finally set stop.
     for( p = head; ; p = p -> next){
         if (p == NULL){break;}
-        printf("%d expr is %s\n", p->NO, p -> expr);
         result = expr(p -> expr, success);
         if(*success == false){
             printf(" expr bug! sorry for watchpoint\n");
