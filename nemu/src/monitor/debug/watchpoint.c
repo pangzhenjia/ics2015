@@ -66,7 +66,7 @@ WP* set_wp(char *args){
     WP* watch = new_wp();
     unsigned result = expr( args, success);
     if ( *success == true){
-        watch -> expr = args;
+        strcpy(watch -> expr, args);
         watch -> p_val = result;
         return watch;
     }

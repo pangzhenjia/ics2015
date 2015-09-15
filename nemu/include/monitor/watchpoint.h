@@ -4,7 +4,7 @@
 #include "common.h"
 
 typedef struct watchpoint {
-    char *expr;
+    char expr[32];
     unsigned p_val;
     unsigned n_val;
 	int NO;
