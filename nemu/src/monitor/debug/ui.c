@@ -98,7 +98,6 @@ static int cmd_x(char *args){
 }
 
 static int cmd_w(char *args){
-    init_wp_list();
     WP* watch = set_wp(args);
     printf("Hardware watchpoint %d: %s\n", watch -> NO, args);
     cpu_exec(10);
