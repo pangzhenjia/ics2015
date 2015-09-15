@@ -36,11 +36,63 @@ static int cmd_q(char *args) {
 	return -1;
 }
 
-static int cmd_help(char *args);
-static int cmd_si(char *args);
-static int cmd_info(char *args);
-int cmd_p(char *args);
-static int cmd_x(char *args);
+static int cmd_si(char *args){
+    char *numchar = strtok(NULL, " "); //get the exec number
+    int num = 1;
+    if (numchar != NULL){
+        num = atoi(numchar);
+    }
+    int i = 0;
+    for( ; i<num; i++){ 
+        cpu_exec(1);
+    }
+    return 0;
+}
+
+ static int cmd_info(char *args){
+     char *subcmd = strtok(NULL, " ");
+     if (strcmp(subcmd, "r") == 0){
+         printf("\teax:0x%8x\n\tebx:0x%8x\n\tecx:0x%8x\n\tedx:0x%8x\n\tebp:0x%8x\n\tesp:0x%8x\n\tedi:0x%8x\n\tesi:0x%8x\n\t", cpu.eax, cpu.ebx, cpu.ecx, cpu.edx, cpu.ebp, cpu.esp, cpu.edi, cpu.esi );
+     }
+     return 0;
+ }
+
+
+int cmd_p(char *args){   
+    bool a;
+    bool *success = &a;
+    *success = false;
+    int result = 0;
+    result = expr(args, success);
+    if ( *success == true){
+        return result;
+    }
+    assert(0);
+}
+
+static int cmd_x(char *args){
+    char *numchar = strtok(NULL, " ");
+    int num = atoi(numchar);
+    char *expr = strtok(NULL, " ");
+    uint32_t value = cmd_p(expr), result = 0;
+    int i = 0;
+    for( ; i<num; i++){
+        result = swaddr_read(value,4);
+        printf("0x%08x\n", result);
+        value += 4;
+    }
+    return 0;
+}
+
+static int cmd_w(char *args){
+    init_wp_list();
+    WP* watch = set_wp(args);
+    printf("Hardware watchpoint %d : %s .\n", watch -> NO, args);
+    cpu_exec(10);
+    return 0;
+}
+
+static int cmd_help(char *args);    
 
 static struct {
 	char *name;
@@ -54,6 +106,7 @@ static struct {
     { "info", "print out the info of register or watchpoints", cmd_info},    
     { "p", "get the value of EXPR", cmd_p},
     { "x", "print out the near memory", cmd_x},
+    { "w", "set watch point", cmd_w}
 
 	/* TODO: Add more commands */
 
@@ -84,60 +137,6 @@ static int cmd_help(char *args) {
 	return 0;
 }
 
-static int cmd_si(char *args){
-    char *numchar = strtok(NULL, " "); //get the exec number
-    int num = 1;
-    if (numchar != NULL){
-        num = atoi(numchar);
-    }
-    int i = 0;
-    for( ; i<num; i++){ 
-        cpu_exec(1);
-    }
-    return 0;
-}
-
- static int cmd_info(char *args){
-     char *subcmd = strtok(NULL, " ");
-     if (strcmp(subcmd, "r") == 0){
-         printf("\teax:0x%8x\n\tebx:0x%8x\n\tecx:0x%8x\n\tedx:0x%8x\n\tebp:0x%8x\n\tesp:0x%8x\n\tedi:0x%8x\n\tesi:0x%8x\n\t", cpu.eax, cpu.ebx, cpu.ecx, cpu.edx, cpu.ebp, cpu.esp, cpu.edi, cpu.esi );
-     }
-     return 0;
- }
-
-    //uint32_t result =strtol(args,NULL,16);
-    /*
-    uint32_t result = 0;
-    sscanf(args, "%x", &result);
-    return result;
-    */
-
-int cmd_p(char *args){   
-    bool a;
-    bool *success = &a;
-    *success = false;
-    int result = 0;
-    result = expr(args, success);
-    if ( *success == true){
-        printf("the result is %d!\n", result);
-        return result;
-    }
-    assert(0);
-}
-
-static int cmd_x(char *args){
-    char *numchar = strtok(NULL, " ");
-    int num = atoi(numchar);
-    char *expr = strtok(NULL, " ");
-    uint32_t value = cmd_p(expr), result = 0;
-    int i = 0;
-    for( ; i<num; i++){
-        result = swaddr_read(value,4);
-        printf("0x%08x\n", result);
-        value += 4;
-    }
-    return 0;
-}
 
 void ui_mainloop() {
 	while(1) {
