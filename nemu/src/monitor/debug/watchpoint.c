@@ -26,13 +26,7 @@ WP* new_wp(){
     WP* re = free_;
     if ( re != NULL ){
         free_ = free_ -> next; // get wp from free;
-        if ( head != NULL){
-            re -> next = head -> next;
-        }
-        else{
-            printf("head is NULL!\n");
-            re -> next = NULL;
-        }
+        re -> next = head;
         head = re;       // make the using wp in head 
         return re;
     }
