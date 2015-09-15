@@ -58,7 +58,7 @@ static int cmd_si(char *args){
          WP *head = get_head();
          printf("Num    Type    Enb     What\n");
          for(; head != NULL; head = head -> next){
-         printf("%-4d   hw wp    y       %s\n", head -> NO, head -> expr);
+         printf("%-4d   hw wp    y      %s\n", head -> NO, head -> expr);
          }
      }
      return 0;
@@ -94,8 +94,22 @@ static int cmd_x(char *args){
 static int cmd_w(char *args){
     init_wp_list();
     WP* watch = set_wp(args);
-    printf("Hardware watchpoint %d : %s .\n", watch -> NO, args);
+    printf("Hardware watchpoint %d: %s\n", watch -> NO, args);
     cpu_exec(10);
+    return 0;
+}
+
+int cmd_d(char *args){
+    WP* head = get_head();
+    int num = atoi(args);
+    for(; head != NULL; head = head -> next){
+        if( num == head -> NO){
+            free_wp(head);
+            printf("Free watchpoint %d\n",num);
+            return 0;
+        }
+    }
+    printf("No such watch point\n");
     return 0;
 }
 
@@ -113,7 +127,8 @@ static struct {
     { "info", "print out the info of register or watchpoints", cmd_info},    
     { "p", "get the value of EXPR", cmd_p},
     { "x", "print out the near memory", cmd_x},
-    { "w", "set watch point", cmd_w}
+    { "w", "set watch point", cmd_w},
+    { "d", "delete the related wp", cmd_d}
 
 	/* TODO: Add more commands */
 
