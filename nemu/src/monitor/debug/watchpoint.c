@@ -30,6 +30,7 @@ WP* new_wp(){
             re -> next = head -> next;
         }
         else{
+            printf("head is NULL!\n");
             re -> next = NULL;
         }
         head = re;       // make the using wp in head 
