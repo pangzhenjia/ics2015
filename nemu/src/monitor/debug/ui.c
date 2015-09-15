@@ -56,7 +56,7 @@ static int cmd_si(char *args){
      }
      else if(strcmp(subcmd, "w") == 0){
          WP *head = get_head();
-         printf("Num\tType\t\tEnb\tWhat\n");
+         printf("Num    Type        Enb     What\n");
          for(; head != NULL; head = head -> next){
          printf("%-4d hw wp      y   %s\n", head -> NO, head -> expr);
          }
