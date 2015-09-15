@@ -55,17 +55,7 @@ static int cmd_si(char *args){
          printf("\teax:0x%8x\n\tebx:0x%8x\n\tecx:0x%8x\n\tedx:0x%8x\n\tebp:0x%8x\n\tesp:0x%8x\n\tedi:0x%8x\n\tesi:0x%8x\n\t", cpu.eax, cpu.ebx, cpu.ecx, cpu.edx, cpu.ebp, cpu.esp, cpu.edi, cpu.esi );
      }
      else if(strcmp(subcmd, "w") == 0){
-         WP *head = get_head();
-         if ( head == NULL){
-            printf("No watchpoint!\n");
-            return 0;
-         }
-         else{
-            printf("Num    Type    Enb     What\n");
-         }
-         for(; head != NULL; head = head -> next){
-         printf("%-4d   hw wp    y      %s\n", head -> NO, head -> expr);
-         }
+         info_wp();
      }
      return 0;
  }
@@ -105,16 +95,7 @@ static int cmd_w(char *args){
 }
 
 int cmd_d(char *args){
-    WP* head = get_head();
-    int num = atoi(args);
-    for(; head != NULL; head = head -> next){
-        if( num == head -> NO){
-            free_wp(head);
-            printf("Free watchpoint %d\n",num);
-            return 0;
-        }
-    }
-    printf("No such watch point\n");
+    del_wp(args);
     return 0;
 }
 

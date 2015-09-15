@@ -1,5 +1,6 @@
 #include "monitor/watchpoint.h"
 #include "monitor/expr.h"
+#include <stdlib.h>
 
 #define NR_WP 32
 
@@ -101,4 +102,30 @@ int watch_wp(){
 }
     
 
+void info_wp(){
+    WP *p = head;
+    if ( p == NULL){
+        printf("No watchpoint!\n");
+        return;
+    }
+    else{
+        printf("Num    Type    Enb     What\n");
+    }
+    for(; p != NULL; p = p -> next){
+        printf("%-4d   hw wp    y      %s\n", p -> NO, p -> expr);
+    }
+}
 
+void del_wp(char *args){
+    int num = atoi(args);
+    WP *p = head;
+    for(; p != NULL; p = p -> next){
+        if( num == p -> NO){
+            free_wp(p);
+            printf("Free watchpoint %d\n", num);
+            return;
+        }
+    }
+    printf("No such watch point\n");
+    return;
+}
