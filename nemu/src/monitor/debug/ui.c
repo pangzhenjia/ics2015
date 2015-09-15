@@ -54,6 +54,8 @@ static int cmd_si(char *args){
      if (strcmp(subcmd, "r") == 0){
          printf("\teax:0x%8x\n\tebx:0x%8x\n\tecx:0x%8x\n\tedx:0x%8x\n\tebp:0x%8x\n\tesp:0x%8x\n\tedi:0x%8x\n\tesi:0x%8x\n\t", cpu.eax, cpu.ebx, cpu.ecx, cpu.edx, cpu.ebp, cpu.esp, cpu.edi, cpu.esi );
      }
+     else if(strcmp(subcmd, "w") == 0){
+     }
      return 0;
  }
 

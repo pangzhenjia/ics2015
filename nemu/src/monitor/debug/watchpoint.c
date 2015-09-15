@@ -66,7 +66,7 @@ int watch_wp(){
 
     for( p = head; ; p = p -> next){
         if (p == NULL){break;}
-        printf("expr is %s\n", p -> expr);
+        printf("%d expr is %s\n", p->NO, p -> expr);
         result = expr(p -> expr, success);
         if(*success == false){
             printf(" expr bug! sorry for watchpoint\n");
