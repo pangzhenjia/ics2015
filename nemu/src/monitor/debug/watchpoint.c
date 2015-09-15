@@ -66,6 +66,7 @@ int watch_wp(){
 
     for( p = head; ; p = p -> next){
         if (p == NULL){break;}
+        printf("expr is %s\n", p -> expr);
         result = expr(p -> expr, success);
         if(*success == false){
             printf(" expr bug! sorry for watchpoint\n");
@@ -74,9 +75,10 @@ int watch_wp(){
         if ( p -> p_val != result) {
             i++;
             p -> n_val = result;
-            printf("watch point %d: %s\n", p -> NO, p -> expr);
-            printf("old value: %d\n", p -> p_val);
-            printf("new value: %d\n", p -> n_val);
+            printf("Hardware watchpoint %d: %s\n", p -> NO, p -> expr);
+            printf("Old value: %d\n", p -> p_val);
+            printf("New value: %d\n", p -> n_val);
+            p -> p_val = p -> n_val;
         }
     }
     if ( i == 0){return 0;}
