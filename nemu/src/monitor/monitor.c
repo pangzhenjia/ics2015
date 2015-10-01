@@ -23,8 +23,14 @@ static void welcome() {
 			exec_file);
 }
 
+void init_cpu_eflags(){
+    cpu.eflags = 0x00000002;
+}
+
 void init_monitor(int argc, char *argv[]) {
 	/* Perform some global initialization */
+
+    init_cpu_eflags();
 
 	/* Open the log file. */
 	init_log();
