@@ -24,12 +24,7 @@ typedef struct {
 
 	/* Do NOT change the order of the GPRs' definitions. */
 
-        //struct{
-          // uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
-        //};
         //uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
-        //uint16_t ax, cx, dx, bx, sp, bp, si, di;
-        //uint8_t al, dl, cl, bl, ah, dh, ch, bh;
         struct{
             union{uint32_t eax; uint16_t ax;  uint8_t al, ah;};
             union{uint32_t ecx; uint16_t cx;  uint8_t cl, ch;};
@@ -42,6 +37,22 @@ typedef struct {
         };
     };
 	swaddr_t eip;
+    union{
+        uint32_t eflags;
+        struct{
+            unsigned cf:1;
+            unsigned   :1;
+            unsigned pf:1;
+            unsigned   :1;
+            unsigned af:1;
+            unsigned   :1;
+            unsigned zf:1;
+            unsigned tf:1;
+            unsigned If:1;
+            unsigned df:1;
+            unsigned of:1;
+        };
+    };
 
 } CPU_state;
 
