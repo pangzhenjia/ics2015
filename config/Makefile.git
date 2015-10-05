@@ -12,5 +12,5 @@ define git_commit
 endef
 
 define git_count
-	-@git diff -shortstat v0.0
+	-@git diff --shortstat v0.0
 endef
