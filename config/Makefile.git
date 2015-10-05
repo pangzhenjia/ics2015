@@ -11,3 +11,6 @@ define git_commit
 	-@(echo "> $(1)" && echo $(STU_ID) && id -un && uname -a && uptime && (head -c 20 /dev/urandom | hexdump -v -e '"%02x"') && echo) | git commit -F - $(GITFLAGS)
 endef
 
+define git_count
+	-@git diff -shortstat v0.0
+endef

@@ -61,6 +61,7 @@ entry: $(ENTRY)
 
 run: $(nemu_BIN) $(USERPROG) entry
 	$(call git_commit, "run")
+	$(call git_count, "run")
 	$(nemu_BIN) $(USERPROG)
 
 gdb: $(nemu_BIN) $(USERPROG) entry
