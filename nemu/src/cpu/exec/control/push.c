@@ -19,7 +19,7 @@ int push_i2rm_l(swaddr_t eip){
 
 static int decode_i_r(swaddr_t eip){
    decode_r_l(eip); 
-   return 1;
+   return 0;
 }
 
 static void do_push_l_r(){
