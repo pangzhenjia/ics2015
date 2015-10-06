@@ -39,5 +39,6 @@ static void do_sub_l(){
     int val2 = val4 ^ (val4 >> 2);
     int val1 = val2 ^ (val2 >> 1);
     cpu.pf = !val1;
+    printf("eax is 0x%x",cpu.eax);
 }
 
