@@ -47,6 +47,7 @@ typedef struct {
             unsigned af:1;
             unsigned   :1;
             unsigned zf:1;
+            unsigned sf:1;
             unsigned tf:1;
             unsigned If:1;
             unsigned df:1;
