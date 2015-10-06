@@ -5,6 +5,7 @@
 
 typedef int (*helper_fun)(swaddr_t);
 static make_helper(_2byte_esc);
+make_helper(call_i_v);
 
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
 	static helper_fun concat(opcode_table_, name) [8] = { \
@@ -90,7 +91,6 @@ make_group(group7,
 	inv, inv, inv, inv, 
 	inv, inv, inv, inv)
 
-
 /* TODO: Add more instructions!!! */
 
 helper_fun opcode_table [256] = {
@@ -152,7 +152,7 @@ helper_fun opcode_table [256] = {
 /* 0xdc */	inv, inv, inv, inv,
 /* 0xe0 */	inv, inv, inv, inv,
 /* 0xe4 */	inv, inv, inv, inv,
-/* 0xe8 */	inv, inv, inv, inv,
+/* 0xe8 */	call_i_v, inv, inv, inv,
 /* 0xec */	inv, inv, inv, inv,
 /* 0xf0 */	inv, inv, inv, inv,
 /* 0xf4 */	inv, inv, group3_b, group3_v,

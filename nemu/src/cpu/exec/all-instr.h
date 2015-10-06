@@ -22,6 +22,7 @@
 #include "logic/shrd.h"
 
 #include "control/push.h"
+#include "control/call.h"
 
 #include "string/rep.h"
 
