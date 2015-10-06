@@ -6,20 +6,28 @@ int sub_i2rm_l(swaddr_t eip);
 int sub_i2rm_b(swaddr_t eip);
 
 make_helper_v(sub_i2rm)
-static void do_sub_b();
+static int decode_i2rm_bi_lr(swaddr_t eip);
+static void do_sub_l();
 
 int sub_i2rm_w(swaddr_t eip){
     return 1;
 }
-int sub_i2rm_l(swaddr_t eip){
+int sub_i2rm_b(swaddr_t eip){
     return 1;
 }
 
-int sub_i2rm_b(swaddr_t eip){
-    return idex(eip, decode_i2rm_b, do_sub_b);
+int sub_i2rm_l(swaddr_t eip){
+    return idex(eip, decode_i2rm_bi_lr, do_sub_l);
 }
 
-static void do_sub_b(){
+static int decode_i2rm_bi_lr(swaddr_t eip){
+    int len = decode_i2rm_l(eip);
+    printf("len is %d!\n", len);
+    return len;
+}
+
+
+static void do_sub_l(){
     int sub = op_src -> val;
     int be_sub = op_dest -> val;
     int result = be_sub - sub;
