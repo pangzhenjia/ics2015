@@ -39,6 +39,9 @@ static void do_sub_l(){
     int val2 = val4 ^ (val4 >> 2);
     int val1 = val2 ^ (val2 >> 1);
     cpu.pf = !val1;
-    printf("eax is 0x%x",cpu.eax);
+    printf("be_sub is 0x%x!\n", be_sub);
+    printf("sub is 0x%x!\n", sub);
+    printf("result is 0x%x!\n", result);
+    printf("eax is 0x%x!\n", cpu.eax);
 }
 
