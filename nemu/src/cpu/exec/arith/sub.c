@@ -22,7 +22,7 @@ int sub_i2rm_l(swaddr_t eip){
 
 static int decode_i2rm_bi_lr(swaddr_t eip){
     decode_i2rm_l(eip);
-    decode_i_b(eip+2);
+    decode_i_b(eip+1);
     return 3;
 }
 
