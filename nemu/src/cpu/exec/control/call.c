@@ -15,9 +15,10 @@ int call_i_w(swaddr_t eip){
 
 int call_i_l(swaddr_t eip){
     do_push_l_eip(eip + 5);
-    decode_i_l(eip + 1);
-    eip += op_src -> val;
-    return 5;
+    int len = decode_i_l(eip + 1);
+    len += 1; // opcode
+    int val = op_src -> val;
+    return len + val;
 }
 
 
