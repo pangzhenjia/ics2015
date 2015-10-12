@@ -4,6 +4,7 @@
 
 int je_i2r_b(swaddr_t eip){
     int len = decode_i_b(eip + 1);
+    len += 1;  //opcode
     printf("len is %d!\n", len);
     if (cpu.zf == 1){
         int val = op_src -> val;
@@ -11,6 +12,6 @@ int je_i2r_b(swaddr_t eip){
         eip += val;
         printf("je: the next eip is 0x%x!\n", eip);
     }
-    return len+1;
+    return len;
 }
 
