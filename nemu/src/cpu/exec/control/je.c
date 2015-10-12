@@ -11,6 +11,6 @@ int je_i2r_b(swaddr_t eip){
         eip += val;
         printf("je: the next eip is 0x%x!\n", eip);
     }
-    return len + 1;
+    return len+1;
 }
 
