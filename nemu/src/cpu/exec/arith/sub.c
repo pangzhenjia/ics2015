@@ -9,7 +9,7 @@ void eflags_zspf(int result);
 void eflags_ocf_sub(int be_sub, int sub);
 
 make_helper_v(sub_i2rm)
-static int decode_i2rm_bi_lr(swaddr_t eip);
+int decode_i2rm_bi_lr(swaddr_t eip);
 static void do_sub_l();
 
 int sub_i2rm_w(swaddr_t eip){
@@ -23,7 +23,7 @@ int sub_i2rm_l(swaddr_t eip){
     return idex(eip, decode_i2rm_bi_lr, do_sub_l);
 }
 
-static int decode_i2rm_bi_lr(swaddr_t eip){
+int decode_i2rm_bi_lr(swaddr_t eip){
     decode_i2rm_l(eip);
     decode_i_b(eip+1);
     return 2;

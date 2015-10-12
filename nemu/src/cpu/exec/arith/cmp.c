@@ -1,12 +1,14 @@
 #include "cpu/exec/helper.h"
 #include "cpu/helper.h"
 #include "cpu/decode/decode.h"
+#include "sub.h"
 
 int cmp_i2rm_w(swaddr_t eip);
 int cmp_i2rm_l(swaddr_t eip);
 void eflags_zspf(int result);
 void eflags_ocf_sub(int be_sub, int sub);
 void do_cmp_l();
+int decode_i2rm_bi_lr(swaddr_t eip);
 
 make_helper_v(cmp_i2rm);
 
@@ -15,7 +17,7 @@ int cmp_i2rm_w(swaddr_t eip){
 }
 
 int cmp_i2rm_l(swaddr_t eip){
-    int len = idex(eip, decode_i2rm_l, do_cmp_l);
+    int len = idex(eip, decode_i2rm_bi_lr, do_cmp_l);
     printf("len is %d!\n", len);
     return len;
 }
