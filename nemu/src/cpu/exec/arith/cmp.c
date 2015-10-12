@@ -17,16 +17,13 @@ int cmp_i2rm_w(swaddr_t eip){
 }
 
 int cmp_i2rm_l(swaddr_t eip){
-    int len = idex(eip, decode_i2rm_bi_lr, do_cmp_l);
-    printf("len is %d!\n", len);
-    return len;
+    return idex(eip, decode_i2rm_bi_lr, do_cmp_l);
 }
 
 void do_cmp_l(){
     int val1 = op_src -> val;
     int val2 = op_dest -> val;
     int result = val1 - val2;
-    printf("val1 is %d! val2 is %d!\nresult is %d!\n", val1, val2, result);
     //for flags setting
     //zf, sf, pf
     eflags_zspf(result);
