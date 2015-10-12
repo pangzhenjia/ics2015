@@ -6,6 +6,7 @@ int sub_i2rm_w(swaddr_t eip);
 int sub_i2rm_l(swaddr_t eip);
 int sub_i2rm_b(swaddr_t eip);
 void eflags_zspf(int result);
+void eflags_ocf_sub(int be_sub, int sub);
 
 make_helper_v(sub_i2rm)
 static int decode_i2rm_bi_lr(swaddr_t eip);
@@ -35,15 +36,10 @@ static void do_sub_l(){
     int result = be_sub - sub;
     write_operand_l(op_dest, result);
     //for eflags setting
+    //zf, sf, pf
     eflags_zspf(result);
-    //OF
-    int sign1 = !((result >> 31) ^ ( be_sub >> 31));
-    int sign2 = !((result >> 31) ^ ( sub >> 31));
-    cpu.of = sign1 & sign2;
-    //CF
-    unsigned sub1 = sub;
-    unsigned be_sub1 = be_sub;
-    cpu.cf = be_sub1 < sub1;
+    //of, cf
+    eflags_ocf_sub(be_sub, sub);
     //printf("be_sub is 0x%x!\n", be_sub);
     //printf("sub is 0x%x!\n", sub);
     //printf("result is 0x%x!\n", result);
