@@ -23,6 +23,8 @@
 
 #include "control/push.h"
 #include "control/call.h"
+#include "control/test.h"
+#include "control/eflags.h"
 
 #include "string/rep.h"
 
