@@ -19,7 +19,6 @@ int push_i2rm_l(swaddr_t eip){
 
 static void do_push_l_r(){
     int val = op_src -> val;
-    printf("push val is 0x%x!\n", val);
     cpu.esp -= 4;
     swaddr_write(cpu.esp, 4, val);
 }
