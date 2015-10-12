@@ -24,4 +24,5 @@ static void do_test_l(){
     cpu.cf = 0;
     cpu.of = 0;
     eflags_zspf(result);
+    printf("ZF is %d!\n", cpu.zf);
 }
