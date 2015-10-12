@@ -16,6 +16,7 @@ int cmp_i2rm_w(swaddr_t eip){
 
 int cmp_i2rm_l(swaddr_t eip){
     int len = idex(eip, decode_i2rm_l, do_cmp_l);
+    printf("len is %d!\n", len);
     return len;
 }
 
