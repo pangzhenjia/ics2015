@@ -11,8 +11,10 @@ static void do_execute(){
     eflags_zspf(val);
     printf("val is 0x%x! add_sub_op \n", val);
     concat(eflags_ocf_, add_sub_flags)(val1, val2);
+#if instr == sub
     printf("write: instr !\n ");
     OPERAND_W(op_dest, val);
+#endif
 }
 
 make_instr_helper(i2a)
