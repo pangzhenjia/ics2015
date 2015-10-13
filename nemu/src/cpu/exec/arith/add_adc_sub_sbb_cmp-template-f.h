@@ -35,7 +35,7 @@ static void do_execute(){
     DATA_TYPE val2 = op_src -> val;
     DATA_TYPE val = val1 add_sub_op (val2 + CF);
     eflags_zspf(val);
-    printf("val is 0x%x!\n", val);
+    printf("val is 0x%x! add_sub_op \n", val);
     concat(eflags_ocf_, add_sub_flags)(val1, val2);
     #if instr != cmp
     printf("write: instr !\n ");
