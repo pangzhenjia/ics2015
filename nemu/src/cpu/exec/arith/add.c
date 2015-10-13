@@ -1,5 +1,7 @@
 #include "cpu/exec/helper.h"
 
+#define instr add
+
 #define DATA_BYTE 1
 #include "add-template.h"
 #undef DATA_BYTE
@@ -11,6 +13,8 @@
 #define DATA_BYTE 4
 #include "add-template.h"
 #undef DATA_BYTE
+
+#undef instr
 
 make_helper_v(add_i2a)
 make_helper_v(add_i2rm)

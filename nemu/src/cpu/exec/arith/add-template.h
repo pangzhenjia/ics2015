@@ -1,6 +1,5 @@
 #include "cpu/exec/template-start.h"
 
-#define instr add
 void eflags_zspf(int result);
 void eflags_ocf_add(int val1, int val2);
 
