@@ -3,5 +3,6 @@
 
 void eflags_zspf(int reslut);
 void eflags_ocf_sub(int be_sub, int sub);
+void eflags_ocf_add(int val1, int val2);
 
 #endif

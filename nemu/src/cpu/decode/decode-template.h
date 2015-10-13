@@ -25,7 +25,9 @@ make_helper(concat(decode_i_, SUFFIX)) {
 /* sign immediate */
 make_helper(concat(decode_si_, SUFFIX)) {
 	op_src->type = OP_TYPE_IMM;
-    op_src->simm = instr_fetch(eip, DATA_BYTE);
+    DATA_TYPE_S val0 = instr_fetch(eip, DATA_BYTE);
+    int val = val0;
+    op_src->simm = val;
 	op_src->val = op_src->simm;
 
 #ifdef DEBUG
