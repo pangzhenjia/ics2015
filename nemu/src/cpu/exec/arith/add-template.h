@@ -1,12 +1,18 @@
 #include "cpu/exec/template-start.h"
 
+#if instr == adc
+#define CF cpu.cf
+#else
+#define CF 0
+#endif
+
 void eflags_zspf(int result);
 void eflags_ocf_add(int val1, int val2);
 
 static void do_execute(){
     DATA_TYPE val1 = op_src -> val;
     DATA_TYPE val2 = op_dest -> val;
-    DATA_TYPE val = val1 + val2;
+    DATA_TYPE val = val1 + val2 + CF;
     eflags_zspf(val);
     eflags_ocf_add(val1, val2);
     OPERAND_W(op_dest, val);
