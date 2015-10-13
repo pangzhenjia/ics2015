@@ -1,3 +1,5 @@
+#include "cpu/exec/helper.h"
+
 #if instr == adc
 
 #define CF cpu.cf
