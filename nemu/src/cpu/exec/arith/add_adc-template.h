@@ -2,19 +2,35 @@
 
 #if instr == adc
 #define CF cpu.cf
-#else
+#define add_sub_op +
+#define add_sub_flags add
+
+#elif instr == add
 #define CF 0
+#define add_sub_op +
+#define add_sub_flags add
+
+#elif instr == sub
+#define CF 0
+#define add_sub_op -
+#define add_sub_flags sub
+
+#else 
+#define CF cpu.cf
+#define add_sub_op -
+#define add_sub_flags sub
+
 #endif
 
 void eflags_zspf(int result);
-void eflags_ocf_add(int val1, int val2);
+void concat(eflags_ocf_, add_sub_flags) (int val1, int val2);
 
 static void do_execute(){
     DATA_TYPE val1 = op_src -> val;
     DATA_TYPE val2 = op_dest -> val;
-    DATA_TYPE val = val1 + val2 + CF;
+    DATA_TYPE val = val1 add_sub_op (val2 + CF);
     eflags_zspf(val);
-    eflags_ocf_add(val1, val2);
+    concat(eflags_ocf_, add_sub_flags)(val1, val2);
     OPERAND_W(op_dest, val);
 }
 
