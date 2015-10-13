@@ -29,6 +29,6 @@
 #define add_sub_flags sub
 
 #else
-
 #error unknown instr
+
 #endif
