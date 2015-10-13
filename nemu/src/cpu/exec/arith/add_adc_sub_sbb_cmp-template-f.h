@@ -15,8 +15,13 @@
 #define add_sub_op -
 #define add_sub_flags sub
 
-#else 
+#elif instr == sbb 
 #define CF cpu.cf
+#define add_sub_op -
+#define add_sub_flags sub
+
+#elif instr == cmp
+#define CF 0
 #define add_sub_op -
 #define add_sub_flags sub
 
@@ -26,12 +31,15 @@ void eflags_zspf(int result);
 void concat(eflags_ocf_, add_sub_flags) (int val1, int val2);
 
 static void do_execute(){
-    DATA_TYPE val1 = op_src -> val;
-    DATA_TYPE val2 = op_dest -> val;
+    DATA_TYPE val1 = op_dest -> val;
+    DATA_TYPE val2 = op_src -> val;
     DATA_TYPE val = val1 add_sub_op (val2 + CF);
     eflags_zspf(val);
     concat(eflags_ocf_, add_sub_flags)(val1, val2);
+    #if instr != cmp
+    printf("write: instr !\n ");
     OPERAND_W(op_dest, val);
+    #endif
 }
 
 make_instr_helper(i2a)
