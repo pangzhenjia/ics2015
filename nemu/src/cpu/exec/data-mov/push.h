@@ -1,2 +1,11 @@
-make_helper(push_i2rm_v);
-void do_push_l_eip(swaddr_t eip);
+#ifndef __PUSH_H__
+#define __PUSH_H__
+
+make_helper(push_i_b);
+
+make_helper(push_i_v);
+make_helper(push_r_v);
+make_helper(push_rm_v);
+
+#endif
+
