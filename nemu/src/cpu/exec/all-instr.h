@@ -2,6 +2,7 @@
 
 #include "data-mov/mov.h"
 #include "data-mov/xchg.h"
+#include "data-mov/push.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"
@@ -22,7 +23,6 @@
 #include "logic/shr.h"
 #include "logic/shrd.h"
 
-#include "control/push.h"
 #include "control/call.h"
 #include "control/test.h"
 #include "control/eflags.h"

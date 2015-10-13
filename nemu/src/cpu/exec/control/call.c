@@ -1,8 +1,8 @@
 #include "cpu/exec/helper.h"
 #include "cpu/helper.h"
 #include "cpu/decode/decode.h"
-#include "push.h"
 
+void do_push_l_eip(swaddr_t eip);
 int call_i_w(swaddr_t eip);
 int call_i_l(swaddr_t eip);
 
