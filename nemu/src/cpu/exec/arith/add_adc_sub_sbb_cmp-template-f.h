@@ -20,7 +20,7 @@
 #define add_sub_op -
 #define add_sub_flags sub
 
-#elif instr == cmp
+#else
 #define CF 0
 #define add_sub_op -
 #define add_sub_flags sub
