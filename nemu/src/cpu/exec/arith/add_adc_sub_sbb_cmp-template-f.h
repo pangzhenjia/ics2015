@@ -11,7 +11,7 @@ static void do_execute(){
     eflags_zspf(val);
     printf("val is 0x%x! CF is %d \n", val, cpu.cf);
     concat(eflags_ocf_, add_sub_flags)(val1, val2);
-#if instr_num == 1 || instr_num == 2
+#if instr_num == 1 || instr_num == 2 || instr_num == 3 || instr_num == 4
     printf("write: instr !\n ");
     OPERAND_W(op_dest, val);
 #endif
