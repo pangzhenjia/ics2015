@@ -2,12 +2,16 @@
 
 #define instr and
 
+void eflags_zspf(int val);
+
 static void do_execute () {
 	DATA_TYPE result = op_dest->val & op_src->val;
 	OPERAND_W(op_dest, result);
 
 	/* TODO: Update EFLAGS. */
-	panic("please implement me");
+    eflags_zspf(result);
+    cpu.cf = 0;
+    cpu.of = 0;
 
 	print_asm_template2();
 }
