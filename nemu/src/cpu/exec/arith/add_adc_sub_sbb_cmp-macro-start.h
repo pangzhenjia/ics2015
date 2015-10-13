@@ -1,4 +1,3 @@
-
 #if instr == adc
 
 #define CF cpu.cf
