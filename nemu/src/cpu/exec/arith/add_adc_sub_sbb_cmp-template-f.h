@@ -1,31 +1,5 @@
 #include "cpu/exec/template-start.h"
-
-#if instr == adc
-#define CF cpu.cf
-#define add_sub_op +
-#define add_sub_flags add
-
-#elif instr == add
-#define CF 0
-#define add_sub_op +
-#define add_sub_flags add
-
-#elif instr == sub
-#define CF 0
-#define add_sub_op -
-#define add_sub_flags sub
-
-#elif instr == sbb 
-#define CF cpu.cf
-#define add_sub_op -
-#define add_sub_flags sub
-
-#else
-#define CF 0
-#define add_sub_op -
-#define add_sub_flags sub
-
-#endif
+#include "add_adc_sub_sbb_cmp-macro-start.h"
 
 void eflags_zspf(int result);
 void concat(eflags_ocf_, add_sub_flags) (int val1, int val2);
@@ -52,4 +26,5 @@ make_instr_helper(rm2r)
 make_instr_helper(si2rm)
 #endif
 
+#include "add_adc_sub_sbb_cmp-macro-end.h"
 #include "cpu/exec/template-end.h"
