@@ -3,15 +3,15 @@
 #define instr add
 
 #define DATA_BYTE 1
-#include "add-template.h"
+#include "add_adc-template.h"
 #undef DATA_BYTE
 
 #define DATA_BYTE 2
-#include "add-template.h"
+#include "add_adc-template.h"
 #undef DATA_BYTE
 
 #define DATA_BYTE 4
-#include "add-template.h"
+#include "add_adc-template.h"
 #undef DATA_BYTE
 
 #undef instr
