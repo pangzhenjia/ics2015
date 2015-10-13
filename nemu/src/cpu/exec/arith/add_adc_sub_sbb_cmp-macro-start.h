@@ -22,10 +22,13 @@
 #define add_sub_op -
 #define add_sub_flags sub
 
-#else
+#elif instr == cmp
 
 #define CF 0
 #define add_sub_op -
 #define add_sub_flags sub
 
+#else
+
+#error unknown instr
 #endif
