@@ -1,13 +1,13 @@
 #if instr == adc
 
 #define CF cpu.cf
-#define add_sub_op -
+#define add_sub_op +
 #define add_sub_flags add
 
 #elif instr == add
 
 #define CF 0
-#define add_sub_op +
+#define add_sub_op -
 #define add_sub_flags add
 
 #elif instr == sub
