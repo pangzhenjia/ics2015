@@ -33,6 +33,7 @@
 #include "control/eflags.h"
 #include "control/je.h"
 #include "control/jmp.h"
+#include "control/ret.h"
 
 #include "string/rep.h"
 
