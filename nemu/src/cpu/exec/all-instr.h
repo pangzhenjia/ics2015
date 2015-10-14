@@ -32,6 +32,7 @@
 #include "control/call.h"
 #include "control/eflags.h"
 #include "control/je.h"
+#include "control/jmp.h"
 
 #include "string/rep.h"
 
