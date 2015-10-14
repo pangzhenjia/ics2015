@@ -2,9 +2,10 @@
 
 #define instr jmp
 
-make_helper(concat(jmp_i_, SUFFIX)){
+make_helper(concat(jmp_si_, SUFFIX)){
     int len = concat(decode_i_, SUFFIX)(eip + 1);
-    int val = op_src->val;
+    DATA_TYPE_S val0 = op_src->val;
+    int val = val0;
     return len + val + 1;
 }
 
