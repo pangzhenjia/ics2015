@@ -10,10 +10,13 @@ int ret(swaddr_t eip){
 }
 
 int ret_i_w(swaddr_t eip){
+    decode_i_w(eip + 1);
+    short imm = op_src -> val;
     int val = MEM_R(reg_l(R_ESP));
     reg_l(R_ESP) += 4;
-    val = val & 0xffff;
-    return val - eip;
+    reg_l(R_ESP) += imm;
+    cpu.eip = val;
+    return 0;
 }
 
 #include "cpu/exec/template-end.h"
