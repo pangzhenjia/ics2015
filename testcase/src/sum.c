@@ -5,6 +5,7 @@ int main() {
 	while(i <= 100) {
 		sum += i;
 		i ++;
+        set_bp();
 	}
 
 	nemu_assert(sum == 5050);
