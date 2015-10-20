@@ -165,7 +165,6 @@ int concat(jnc_si_, SUFFIX)(swaddr_t eip){
 int concat(jne_si_, SUFFIX)(swaddr_t eip){
     int len = concat(decode_i_, SUFFIX)(eip + 1);
     len += 1;
-    printf("ZF is %d!\n", cpu.zf);
     if (cpu.zf == 0){
         DATA_TYPE_S val0 = op_src -> val;
         int val = val0;
