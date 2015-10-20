@@ -73,6 +73,7 @@ USERPROG := obj/testcase/sum
 USERPROG := obj/testcase/movsx
 USERPROG := obj/testcase/max
 USERPROG := obj/testcase/min3
+USERPROG := obj/testcase/if-else
 
 
 ENTRY := $(USERPROG)
