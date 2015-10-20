@@ -2,6 +2,7 @@
 
 make_helper(concat(movzx_b_rm2r_, SUFFIX)){
     int len = decode_rm2r_b(eip+1);
+    printf("here!\n");
     DATA_TYPE val = (DATA_TYPE)(op_src->val & 0xff);
     REG(op_dest->reg) = val;
     return len + 1;
