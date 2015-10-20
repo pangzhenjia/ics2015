@@ -11,10 +11,10 @@ make_helper(concat(call_i_, SUFFIX)){
 make_helper(concat(call_rm_, SUFFIX)){
     reg_l(R_ESP) -= DATA_BYTE;
     int len = concat(decode_rm_, SUFFIX)(eip + 1);
+    printf("Yes, here!");
     MEM_W(reg_l(R_ESP), eip + len + 1);
     DATA_TYPE val = (DATA_TYPE)op_src -> val;
-    printf("val is 0x%x", val);
-    return len + 1;
+    return val - eip;
 }
 
 
