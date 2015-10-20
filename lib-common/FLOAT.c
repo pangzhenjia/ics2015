@@ -6,9 +6,9 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-    int64_t A = a;
+    long long A = a;
     A = A << 16;
-    int64_t result = A/b;
+    long long result = A/b;
 	return (FLOAT)result;
 }
 
