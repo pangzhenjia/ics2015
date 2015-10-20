@@ -17,6 +17,7 @@ static void do_execute(){
 #if instr_num == 5
     eflags_ocf_sub(val2, val1);
 #endif
+    printf("val1 is %d, val2 is %d!\n", val1, val2);
 
 }
 
