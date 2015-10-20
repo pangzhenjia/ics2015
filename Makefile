@@ -78,6 +78,7 @@ USERPROG := obj/testcase/mul-longlong
 USERPROG := obj/testcase/prime
 USERPROG := obj/testcase/wanshu
 USERPROG := obj/testcase/shuixianhua
+USERPROG := obj/testcase/bit
 
 
 ENTRY := $(USERPROG)
