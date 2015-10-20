@@ -3,7 +3,8 @@
 #define instr push
 
 static void do_execute(){
-    DATA_TYPE val = op_src -> val;
+    DATA_TYPE val0 = op_src -> val;
+    unsigned val = val0;
     reg_l(R_ESP) -= DATA_BYTE;
     printf("val is 0x%x!\n", val); 
     MEM_W( reg_l(R_ESP), val);
