@@ -5,6 +5,7 @@ make_helper(concat(call_i_, SUFFIX)){
     int len = concat(decode_i_, SUFFIX)(eip + 1);
     MEM_W(reg_l(R_ESP), eip + len + 1);
     int val = op_src -> val;
+    printf("len is %d!\n", len);
     printf("val is %x!\n",val+0x10003a);
     return len + val + 1;
 }
