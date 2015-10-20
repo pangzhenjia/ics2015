@@ -5,6 +5,7 @@
 static void do_execute(){
     DATA_TYPE val = op_src -> val;
     reg_l(R_ESP) -= DATA_BYTE;
+    printf("addr is 0x%x!\n", reg_l(R_ESP)); 
     MEM_W( reg_l(R_ESP), val);
 }
 
