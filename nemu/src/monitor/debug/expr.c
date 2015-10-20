@@ -25,7 +25,7 @@ static struct rule {
 	{" +",	NOTYPE},				// spaces
     {"\\(", '('},                   // left_parenthesis
     {"\\)", ')'},                   // right_parenthesis
-    {"\\$[A-Za-z]+", '$'},                   // $register
+    {"\\$[A-Za-z]+\\b", '$'},          // $register
 	{"\\+", '+'},					// plus
     {"\\-", '-'},                   // substract
     {"\\*", '*'},                   // multiply
