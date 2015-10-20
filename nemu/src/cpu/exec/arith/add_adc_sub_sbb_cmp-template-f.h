@@ -8,6 +8,7 @@ static void do_execute(){
     DATA_TYPE val1 = op_dest -> val;
     DATA_TYPE val2 = op_src -> val;
     DATA_TYPE val = val1 add_sub_op (val2 + CF);
+    printf("val1 is %d, val2 is %d!\n", val1, val2);
     eflags_zspf(val);
     concat(eflags_ocf_, add_sub_flags)(val1, val2);
 #if instr_num == 1 || instr_num == 2 || instr_num == 3 || instr_num == 4
