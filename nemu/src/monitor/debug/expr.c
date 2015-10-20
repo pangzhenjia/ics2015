@@ -303,7 +303,7 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
 }
 
 uint32_t get_reg(uint32_t p){
-    if(strcmp(tokens[p].str, "$eax") == 0){
+    if(strncmp(tokens[p].str, "$eax", 4) == 0){
         return cpu.eax;
     }
     else if(strcmp(tokens[p].str, "$ecx") == 0){
