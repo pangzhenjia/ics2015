@@ -102,7 +102,6 @@ static bool make_token(char *e) {
                     case ')': tokens[nr_token].type =')';nr_token++;break;
                     case X  : tokens[nr_token].type =X;   strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++;  break;
 				    case '$': tokens[nr_token].type ='$'; strncpy(tokens[nr_token].str, substr_start, 4); nr_token++; 
-    printf("the reg is %s!\n", tokens[nr_token].str);
                             break;
                     case EQ : tokens[nr_token].type =EQ; nr_token++; break;
                     case NQ : tokens[nr_token].type =NQ; nr_token++; break;
@@ -134,7 +133,6 @@ void get_par_position(uint32_t p, uint32_t q);
 
 //the main evaluation
 uint32_t expr(char *e, bool *success) {
-    printf("the text is %s!\n", e);
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
