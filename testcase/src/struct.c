@@ -13,6 +13,7 @@ struct dummy fun(struct dummy a) {
 
 int main() {
 	int i;
+    set_bp();
 	for(i = 0; i < N; i ++) {
 		d.pad1[i] = i + 128;
 		d.pad2[i] = i;
