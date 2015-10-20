@@ -102,6 +102,7 @@ static bool make_token(char *e) {
                     case ')': tokens[nr_token].type =')';nr_token++;break;
                     case X  : tokens[nr_token].type =X;   strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++;  break;
 				    case '$': tokens[nr_token].type ='$'; strncpy(tokens[nr_token].str, substr_start, 4); nr_token++; 
+            tokens[nr_token].str[4] = 0;
                             break;
                     case EQ : tokens[nr_token].type =EQ; nr_token++; break;
                     case NQ : tokens[nr_token].type =NQ; nr_token++; break;
