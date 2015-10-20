@@ -19,7 +19,6 @@ int main() {
 	A[0] = (int)C[0];
 	nemu_assert(A[0] == 'a');
 	C[1] = 0x80;
-    set_bp();
 	A[0] = (int)C[1];
 	nemu_assert(A[1] == 1);
 	nemu_assert(A[2] == 2);
@@ -28,7 +27,6 @@ int main() {
 	nemu_assert(b == 3);
 	nemu_assert(A[5] == 3);
 	nemu_assert(C[1] == 0xffffff80);
-    set_bp();
 	nemu_assert(A[0] == 0xffffff80);
 
 	HIT_GOOD_TRAP;
