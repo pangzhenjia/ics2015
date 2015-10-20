@@ -5,6 +5,7 @@
 static void do_execute () {
 	DATA_TYPE src = op_src->val;
 	DATA_TYPE_S dest = op_dest->val;
+    printf("offset is %d!\n", dest);
 
 	uint8_t count = src & 0x1f;
 	dest >>= count;
