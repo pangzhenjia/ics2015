@@ -7,7 +7,7 @@ int ret(swaddr_t eip){
     reg_l(R_ESP) += 4;
     printf("here!\n");
     cpu.eip = val;
-    return 1;
+    return 0;
 }
 
 int ret_i_w(swaddr_t eip){
