@@ -74,7 +74,7 @@ USERPROG := obj/testcase/movsx
 USERPROG := obj/testcase/max
 USERPROG := obj/testcase/min3
 USERPROG := obj/testcase/if-else
-USERPROG := obj/testcase/bit
+USERPROG := obj/testcase/mul-longlong
 
 
 ENTRY := $(USERPROG)
