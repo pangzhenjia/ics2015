@@ -10,5 +10,5 @@ $(FLOAT): $(FLOAT_OBJ)
 vpath %.h lib-common
 vpath %.c lib-common
 
-obj/lib-common/FLOAT.o : FLOAT.h FLOAT.c
-	cc -c -m32 -fno-builtin FLOAT.h FLOAT.c
+FLOAT.o : FLOAT.h FLOAT.c
+	cc -c -m32 -fno-builtin FLOAT.h FLOAT.c 
