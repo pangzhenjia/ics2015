@@ -62,6 +62,7 @@ USERPROG := obj/testcase/fib
 USERPROG := obj/testcase/gotbaha
 USERPROG := obj/testcase/leap-year
 USERPROG := obj/testcase/matrix-mul
+USERPROG := obj/testcase/matrix-mul-small
 
 ENTRY := $(USERPROG)
 
