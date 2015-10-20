@@ -80,7 +80,7 @@ USERPROG := obj/testcase/wanshu
 USERPROG := obj/testcase/shuixianhua
 USERPROG := obj/testcase/bit
 USERPROG := obj/testcase/quick-sort
-USERPROG := obj/testcase/struct
+//USERPROG := obj/testcase/struct
 
 
 ENTRY := $(USERPROG)
