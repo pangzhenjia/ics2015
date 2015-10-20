@@ -14,7 +14,9 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT f2F(float a) {
-    unsigned uf = (int)a & (~0);
+    void *uff = &a;
+    unsigned *uffff = (unsigned *)uff;
+    unsigned uf = *uffff;
     unsigned exponent = uf << 1 >> 24;
     unsigned fraction = uf << 9 >> 9;
     unsigned sign = uf >> 31;
