@@ -68,6 +68,7 @@ USERPROG := obj/testcase/select-sort
 USERPROG := obj/testcase/sub-longlong
 USERPROG := obj/testcase/switch
 USERPROG := obj/testcase/to-lower-case
+USERPROG := obj/testcase/wanshu
 
 ENTRY := $(USERPROG)
 
