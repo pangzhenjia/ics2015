@@ -57,6 +57,7 @@ USERPROG := obj/testcase/mov-c
 USERPROG := obj/testcase/add
 USERPROG := obj/testcase/add-longlong
 USERPROG := obj/testcase/bubble-sort
+USERPROG := obj/testcase/fact
 
 ENTRY := $(USERPROG)
 
