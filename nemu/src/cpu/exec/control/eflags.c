@@ -17,9 +17,10 @@ void eflags_zspf(int result){
 void eflags_ocf_sub(int be_sub, int sub){
     //for OF
     int result = be_sub - sub;
-    int sign1 = !!((result >> 31) ^ ( be_sub >> 31));
-    int sign2 = !!((result >> 31) ^ ( sub >> 31));
-    cpu.of = sign1 & sign2;
+    int sign1 = !!( be_sub >> 31);
+    int sign2 = !!( sub >> 31);
+    int sign  = !!( result >> 31);
+    cpu.of = (sign1 ^ sign2) & (sign ^ sign1);
     //for CF
     unsigned sub1 = sub;
     unsigned be_sub1 = be_sub;
