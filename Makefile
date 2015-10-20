@@ -76,7 +76,7 @@ USERPROG := obj/testcase/min3
 USERPROG := obj/testcase/if-else
 USERPROG := obj/testcase/mul-longlong
 USERPROG := obj/testcase/prime
-USERPROG := obj/testcase/struct
+USERPROG := obj/testcase/wanshu
 
 
 ENTRY := $(USERPROG)
