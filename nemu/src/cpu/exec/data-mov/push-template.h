@@ -5,9 +5,14 @@
 static void do_execute(){
     DATA_TYPE val0 = op_src -> val;
     unsigned val = val0;
+#if DATA_BYTE == 2 || DATA_BYTE == 4
     reg_l(R_ESP) -= DATA_BYTE;
-    printf("val is 0x%x!\n", val); 
     MEM_W( reg_l(R_ESP), val);
+#else
+    reg_l(R_ESP) -= 4;
+    swaddr_write(reg_l(R_ESP), 4, val);
+#endif
+
 }
 
 make_instr_helper(i)
