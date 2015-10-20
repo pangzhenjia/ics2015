@@ -10,8 +10,8 @@ static void do_execute(){
     DATA_TYPE val = val1 add_sub_op (val2 + CF);
     printf("val1 is %d, val2 is %d!\n", val1, val2);
     eflags_zspf(val);
-    printf("SF is %d!\n", cpu.sf);
     concat(eflags_ocf_, add_sub_flags)(val1, val2);
+    printf("OF is %d!\n", cpu.of);
 #if instr_num == 1 || instr_num == 2 || instr_num == 3 || instr_num == 4
     OPERAND_W(op_dest, val);
 #endif
