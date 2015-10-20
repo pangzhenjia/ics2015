@@ -31,7 +31,6 @@ int main() {
 	nemu_assert(getbit(buf, 5) == 1);
 	nemu_assert(getbit(buf, 6) == 0);
     set_bp();
-
 	nemu_assert(getbit(buf, 7) == 1);
 
 	setbit(buf, 8, 1);
