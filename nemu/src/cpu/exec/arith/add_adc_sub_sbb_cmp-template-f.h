@@ -14,7 +14,6 @@ static void do_execute(){
     OPERAND_W(op_dest, val);
 #endif
 
-    printf("val1 is %d, val2 is %d!\n", val1, val2);
 
 }
 
