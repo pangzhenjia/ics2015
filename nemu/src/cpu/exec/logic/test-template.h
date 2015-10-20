@@ -5,7 +5,7 @@
 void eflags_zspf(int val);
 
 static void do_execute(){
-    int val = op_dest->val & op_src->val;
+    DATA_TYPE_S val = op_dest->val & op_src->val;
     eflags_zspf(val);
     cpu.cf = 0;
     cpu.of = 0;
