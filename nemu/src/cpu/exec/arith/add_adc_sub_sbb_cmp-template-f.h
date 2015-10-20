@@ -7,7 +7,7 @@ void concat(eflags_ocf_, add_sub_flags) (int val1, int val2);
 static void do_execute(){
     DATA_TYPE_S val1 = op_dest -> val;
     DATA_TYPE_S val2 = op_src -> val;
-    printf("val1 is 0x%x, val2 is %d!\n", val1, val2);
+    printf("val1 is 0x%x, val2 is 0x%x!\n", val1, val2);
     DATA_TYPE_S val = val1 add_sub_op (val2 + CF);
     eflags_zspf(val);
     concat(eflags_ocf_, add_sub_flags)(val1, val2);
