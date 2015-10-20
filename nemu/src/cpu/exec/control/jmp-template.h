@@ -14,7 +14,8 @@ make_helper(concat(jmp_si_, SUFFIX)){
 make_helper(concat(jmp_rm_, SUFFIX)){
     concat(decode_rm_, SUFFIX)(eip + 1);
     DATA_TYPE val = (DATA_TYPE)op_src->val;
-    return val - eip;
+    cpu.eip = val;
+    return 0;
 }
 
 #endif
