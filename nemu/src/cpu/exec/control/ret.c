@@ -5,7 +5,6 @@
 int ret(swaddr_t eip){
     int val = MEM_R(reg_l(R_ESP));
     reg_l(R_ESP) += 4;
-    printf("here!\n");
     cpu.eip = val;
     return 0;
 }
