@@ -132,6 +132,7 @@ void get_par_position(uint32_t p, uint32_t q);
 
 //the main evaluation
 uint32_t expr(char *e, bool *success) {
+    printf("the text is %s!\n", e);
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
