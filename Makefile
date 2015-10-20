@@ -64,7 +64,7 @@ USERPROG := obj/testcase/leap-year
 USERPROG := obj/testcase/matrix-mul
 USERPROG := obj/testcase/matrix-mul-small
 USERPROG := obj/testcase/pascal
-USERPROG := obj/testcase/quick-sort
+USERPROG := obj/testcase/select-sort
 
 ENTRY := $(USERPROG)
 
