@@ -166,6 +166,7 @@ uint32_t eval(uint32_t p, uint32_t q) {
             return val;
         }
         else if (tokens[p].type == '$'){
+            printf("the reg is %s!\n", tokens[p].str);
             return get_reg(p);
         }
         else {
@@ -301,7 +302,6 @@ static bool check_parenthesis(uint32_t p, uint32_t q){
 }
 
 uint32_t get_reg(uint32_t p){
-    printf("the reg is %s!\n", tokens[p].str);
     if(strcmp(tokens[p].str, "$eax") == 0){
         return cpu.eax;
     }
