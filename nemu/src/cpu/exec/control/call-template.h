@@ -14,7 +14,7 @@ make_helper(concat(call_rm_, SUFFIX)){
     MEM_W(reg_l(R_ESP), eip + len + 1);
     DATA_TYPE val = (DATA_TYPE)op_src -> val;
     printf("val is 0x%x", val);
-    return val - eip;
+    return len + 1;
 }
 
 
