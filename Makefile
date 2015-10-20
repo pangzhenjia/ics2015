@@ -9,7 +9,7 @@ CFLAGS := -MMD -Wall -Werror -c
 LIB_COMMON_DIR := lib-common
 NEWLIBC_DIR := $(LIB_COMMON_DIR)/newlib
 NEWLIBC := $(NEWLIBC_DIR)/libc.a
-#FLOAT := obj/$(LIB_COMMON_DIR)/FLOAT.a
+FLOAT := obj/$(LIB_COMMON_DIR)/FLOAT.a
 
 include config/Makefile.git
 include config/Makefile.build
@@ -52,34 +52,6 @@ clean: clean-cpp
 
 ##### some convinient rules #####
 
-#USERPROG := obj/testcase/mov
-USERPROG := obj/testcase/mov-c
-USERPROG := obj/testcase/add
-USERPROG := obj/testcase/add-longlong
-USERPROG := obj/testcase/bubble-sort
-USERPROG := obj/testcase/fact
-USERPROG := obj/testcase/fib
-USERPROG := obj/testcase/gotbaha
-USERPROG := obj/testcase/leap-year
-USERPROG := obj/testcase/matrix-mul
-USERPROG := obj/testcase/matrix-mul-small
-USERPROG := obj/testcase/pascal
-USERPROG := obj/testcase/select-sort
-USERPROG := obj/testcase/sub-longlong
-USERPROG := obj/testcase/switch
-USERPROG := obj/testcase/to-lower-case
-USERPROG := obj/testcase/string
-USERPROG := obj/testcase/sum
-USERPROG := obj/testcase/movsx
-USERPROG := obj/testcase/max
-USERPROG := obj/testcase/min3
-USERPROG := obj/testcase/if-else
-USERPROG := obj/testcase/mul-longlong
-//USERPROG := obj/testcase/prime
-//USERPROG := obj/testcase/wanshu
-//USERPROG := obj/testcase/shuixianhua
-//USERPROG := obj/testcase/bit
-//USERPROG := obj/testcase/quick-sort
 USERPROG := obj/testcase/struct
 
 
