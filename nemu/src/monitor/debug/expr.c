@@ -102,7 +102,6 @@ static bool make_token(char *e) {
                     case ')': tokens[nr_token].type =')';nr_token++;break;
                     case X  : tokens[nr_token].type =X;   strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++;  break;
 				    case '$': tokens[nr_token].type ='$'; strncpy(tokens[nr_token].str, substr_start, 4); nr_token++; 
-            tokens[nr_token].str[4] = 0;
                             break;
                     case EQ : tokens[nr_token].type =EQ; nr_token++; break;
                     case NQ : tokens[nr_token].type =NQ; nr_token++; break;
@@ -167,7 +166,6 @@ uint32_t eval(uint32_t p, uint32_t q) {
             return val;
         }
         else if (tokens[p].type == '$'){
-            printf("the reg is %s!\n", tokens[p].str);
             return get_reg(p);
         }
         else {
@@ -306,25 +304,25 @@ uint32_t get_reg(uint32_t p){
     if(strncmp(tokens[p].str, "$eax", 4) == 0){
         return cpu.eax;
     }
-    else if(strcmp(tokens[p].str, "$ecx") == 0){
+    else if(strncmp(tokens[p].str, "$ecx", 4) == 0){
         return cpu.ecx;
     }
-    else if(strcmp(tokens[p].str, "$edx") == 0){
+    else if(strncmp(tokens[p].str, "$edx", 4) == 0){
         return cpu.edx;
     }
-    else if(strcmp(tokens[p].str, "$ebx") == 0){
+    else if(strncmp(tokens[p].str, "$ebx", 4) == 0){
         return cpu.ebx;
     }
-    else if(strcmp(tokens[p].str, "$esp") == 0){
+    else if(strncmp(tokens[p].str, "$esp", 4) == 0){
         return cpu.esp;
     }
-    else if(strcmp(tokens[p].str, "$ebp") == 0){
+    else if(strncmp(tokens[p].str, "$ebp", 4) == 0){
         return cpu.ebp;
     }
-    else if(strcmp(tokens[p].str, "$esi") == 0){
+    else if(strncmp(tokens[p].str, "$esi", 4) == 0){
         return cpu.esi;
     }
-    else if(strcmp(tokens[p].str, "$edi") == 0){
+    else if(strncmp(tokens[p].str, "$edi", 4) == 0){
         return cpu.edi;
     }
     else{
