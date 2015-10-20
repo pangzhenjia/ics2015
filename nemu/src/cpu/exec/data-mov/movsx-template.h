@@ -2,7 +2,7 @@
 
 make_helper(concat(movsx_b_rm2r_, SUFFIX)) {
     int len = decode_rm2r_b(eip + 1);
-    DATA_TYPE_S val = (DATA_TYPE_S)op_src->val;
+    int val = (int)op_src->val;
     printf("val is 0x%x!", val);
     REG(op_dest->reg) = val;
     return len + 1;
