@@ -6,7 +6,7 @@ static void do_execute(){
     printf("tell me!\n");
     DATA_TYPE val = op_src -> val;
     reg_l(R_ESP) -= DATA_BYTE;
-    printf("addr is 0x%x!\n", reg_l(R_ESP)); 
+    //printf("addr is 0x%x!\n", reg_l(R_ESP)); 
     MEM_W( reg_l(R_ESP), val);
 }
 
