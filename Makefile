@@ -69,7 +69,7 @@ USERPROG := obj/testcase/sub-longlong
 USERPROG := obj/testcase/switch
 USERPROG := obj/testcase/to-lower-case
 USERPROG := obj/testcase/wanshu
-USERPROG := obj/testcase/if-else
+USERPROG := obj/testcase/string
 
 ENTRY := $(USERPROG)
 
