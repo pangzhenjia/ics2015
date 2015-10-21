@@ -19,6 +19,7 @@ FLOAT f2F(float a) {
     unsigned uf = *uffff;
     unsigned exponent = uf << 1 >> 24;
     unsigned fraction = uf << 9 >> 9;
+    fraction >>= 7;
     unsigned sign = uf >> 31;
     int new_exponent, val, shift;
     if ( exponent == 0xff ){
@@ -30,25 +31,26 @@ FLOAT f2F(float a) {
     else{
         exponent = exponent - 127;
         new_exponent = exponent;
-        if(new_exponent < 0){ // unsigned exp can not < 0
+        unsigned one_1 = 1 << (16 + new_exponent);
+        unsigned sign_1 = sign << (17 + new_exponent);
+        if(new_exponent < 0){
+            if ( new_exponent < -16){
+                return 0;
+            }
+            else if( new_exponent == -16){
+                return 1;
+            }
+            else{
+                unsigned fraction_1 = fraction >> (-new_exponent);
+                return (sign_1 | one_1 |fraction_1);
+            }
+        }
+        else if(new_exponent < 33){
+            unsigned fraction_2 = fraction << new_exponent;
+            return (sign_1 | one_1 | fraction_2);
+        }
+        else{
             return 0;
-        }
-        else if(exponent < 24){
-            shift = 23 - exponent;
-            fraction = fraction >> shift;
-            val = ( 1 << exponent) | fraction;
-            if ( sign ){ val = -val; }
-            return val;
-        }
-        else if(exponent < 31){
-            shift = exponent -23;
-            fraction = fraction << shift;
-            val = ( 1 << exponent) | fraction;
-            if ( sign ){ val = -val; }
-            return val;
-        }
-        else{  // overflow
-            return 0x80000000;
         }
     }
 }
