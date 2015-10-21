@@ -92,8 +92,8 @@ int watch_wp(){
             i++;
             p -> n_val = result;
             printf("Hardware watchpoint %d: %s\n", p -> NO, p -> expr);
-            printf("Old value: %d,  0x%08x\n", p -> p_val, p -> p_val);
-            printf("New value: %d, 0x%08x\n", p -> n_val, p -> n_val);
+            printf("Old value: %d  0x%08x\n", p -> p_val, p -> p_val);
+            printf("New value: %d  0x%08x\n", p -> n_val, p -> n_val);
             p -> p_val = p -> n_val;
         }
     }
