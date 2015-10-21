@@ -2,8 +2,8 @@
 #include <stdio.h>
 
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
-    FLOAT result = (a>>1) * (b>>1);
-    result >>= 14;
+    FLOAT result = (a>>2) * (b>>2);
+    result >>= 12;
 	return result;
 }
 
