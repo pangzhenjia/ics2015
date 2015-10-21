@@ -11,8 +11,8 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
     //long long A = a;
     //A = A << 16;
     //long long result = A/b;
-    FLOAT result = (a << 14) / (b >> 0);
-    result <<= 2;
+    FLOAT result = (a << 4) / (b >> 4);
+    result <<= 8;
 	return (FLOAT)result;
 }
 
