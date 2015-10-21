@@ -11,8 +11,7 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
     FLOAT val1 = a / b;
     val1 <<= 16;
     FLOAT val2 = (a<<16) / b;
-    val2 = val2 & 0xffff;
-	return (val1 | val2);
+	return (val1 + val2);
 }
 
 FLOAT f2F(float a) {
