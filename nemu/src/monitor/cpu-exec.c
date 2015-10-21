@@ -80,6 +80,7 @@ void cpu_exec(volatile uint32_t n) {
         int change = watch_wp();  // examine every watch point;
         if ( change == -1){
             nemu_state = STOP;
+            printf("STOP: eip = 0x%08x \n", cpu.eip);
         }
 
 		if(nemu_state != RUNNING) { return; }
