@@ -7,10 +7,10 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-    //long A = a;
+    //long long A = a;
     //A = A << 16;
-    //long result = A/b;
-    FLOAT result = (a << 8) / (b >> 8);
+    //long long result = A/b;
+    FLOAT result = (a << 14) / (b >> 2);
 	return (FLOAT)result;
 }
 
