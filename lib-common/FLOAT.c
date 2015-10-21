@@ -8,9 +8,8 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-    FLOAT val = a & 0xffff0000;
-    FLOAT val1 = (val / b) << 16;
-    val = a & 0xffff;
+    FLOAT val1 = (a / b) << 16;
+    FLOAT val = a & 0xffff;
     FLOAT val2 = (val << 15) / b;
     val2 = val2 << 1;
     //int sign = val2 >> 31;
