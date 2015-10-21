@@ -8,9 +8,9 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-    FLOAT val1 = (a>>16) / b;
+    FLOAT val1 = a / b;
     val1 <<= 16;
-    unsigned val2 = (a<<16) / b;
+    FLOAT val2 = (a<<16) / b;
 	return (val1 + val2);
 }
 
