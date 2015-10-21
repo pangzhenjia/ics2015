@@ -8,12 +8,9 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-    //long long A = a;
-    //A = A << 16;
-    //long long result = A/b;
     FLOAT val1 = a / b;
     val1 <<= 16;
-    FLOAT val2 = (a<<16) /(b<<16);
+    FLOAT val2 = (a<<16) / (b<<16);
     val2 = val2 & 0xffff;
 	return val1 | val2;
 }
