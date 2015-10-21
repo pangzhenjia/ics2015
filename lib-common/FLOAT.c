@@ -10,11 +10,11 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 FLOAT F_div_F(FLOAT a, FLOAT b) {
     FLOAT val1 = a & 0xffff0000;
     val1 = val1 / b;
-    val1 <<= 16;
+    val1 = val1 << 16;
     FLOAT val2 = a & 0xffff;
-    val2 <<= 15;
+    val2 = val2 << 15;
     val2 = val2 / b;
-    val2 <<= 1;
+    val2 = val2 << 1;
     //int sign = val2 >> 31;
     //val2 = (val2 ^ sign) + (sign & 1);
 	return (val1 + val2);
