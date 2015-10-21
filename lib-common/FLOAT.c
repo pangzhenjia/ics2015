@@ -11,9 +11,11 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
     //long long A = a;
     //A = A << 16;
     //long long result = A/b;
-    FLOAT result = (a << 4) / (b >> 4);
-    result <<= 8;
-	return (FLOAT)result;
+    FLOAT val1 = a / b;
+    val1 <<= 16;
+    FLOAT val2 = (a<<16) /(b<<16);
+    val2 = val2 & 0xffff;
+	return val1 | val2;
 }
 
 FLOAT f2F(float a) {
