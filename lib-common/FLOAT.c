@@ -1,4 +1,5 @@
 #include "FLOAT.h"
+#include <stdio.h>
 
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
     FLOAT result = (a>>8) * (b>>8);
@@ -6,11 +7,11 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-    //long long A = a;
-    //A = A << 16;
-    //long long result = A/b;
-    FLOAT result = (a << 8) / (b >> 8);
-	return result;
+    long A = a;
+    A = A << 16;
+    long result = A/b;
+    //FLOAT result = (a << 8) / (b >> 8);
+	return (FLOAT)result;
 }
 
 FLOAT f2F(float a) {
