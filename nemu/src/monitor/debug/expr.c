@@ -101,7 +101,7 @@ static bool make_token(char *e) {
                     case '(': tokens[nr_token].type ='(';nr_token++; break;
                     case ')': tokens[nr_token].type =')';nr_token++;break;
                     case X  : tokens[nr_token].type =X;   strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++;  break;
-				    case '$': tokens[nr_token].type ='$'; strncpy(tokens[nr_token].str, substr_start, 4); nr_token++; 
+				    case '$': tokens[nr_token].type ='$'; strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++; 
                     printf("$eip is %.*s!\n", 4, tokens[nr_token].str);
                             break;
                     case EQ : tokens[nr_token].type =EQ; nr_token++; break;
