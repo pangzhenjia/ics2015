@@ -68,7 +68,8 @@ int cmd_p(char *args){
     int result = 0;
     result = expr(args, success);
     if ( *success == true){
-        return result;
+        printf("%s is %d, is 0x%x!", args, result, result);
+        return 0;
     }
     assert(0);
 }
