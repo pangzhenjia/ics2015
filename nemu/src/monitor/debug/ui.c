@@ -65,10 +65,13 @@ int cmd_p(char *args){
     bool a;
     bool *success = &a;
     *success = false;
-    int result = 0;
-    result = expr(args, success);
+    union{
+        int int1;
+        float float1;
+    }val;
+    val.int1 = expr(args, success);
     if ( *success == true){
-        printf("%s is %d, is 0x%x!", args, result, result);
+        printf("%s -int is %d, -float is %f, -Ox is 0x%x!\n", args, val.int1, val.float1, val.int1);
         return 0;
     }
     assert(0);
