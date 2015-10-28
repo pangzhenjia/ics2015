@@ -2,9 +2,18 @@
 #include <stdio.h>
 
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
-    FLOAT result = (a>>2) * (b>>2);
-    result >>= 12;
-	return result;
+    if( a < 0) { a = -a; }
+    if( b < 0) { b = -b; }
+    int a_n = a >> 16;
+    int b_n = b >> 16;
+    int b_p = b & 0xffff;
+    int sign = (a >> 31) | ( b >> 31);
+    int val1 = a * b_n;
+    int val2 = a_n * b_p;
+    unsigned val3 = (a * b) >> 16;
+    int val = val1 + val2 + val3;
+    val = (val ^ sign) + (sign & 1);
+    return val;
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
