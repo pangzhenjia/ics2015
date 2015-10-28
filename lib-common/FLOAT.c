@@ -10,12 +10,11 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
     int a_n = a_abs >> 16;
     int b_n = b_abs >> 16;
     int b_p = b & 0xffff;
-    int sign = (a >> 31) | ( b >> 31);
     int val1 = a_abs * b_n;
     int val2 = a_n * b_p;
     unsigned val3 = (a * b) >> 16;
     int val = val1 + val2 + val3;
-    val = (val ^ sign) + (sign & 1);
+    if ( (a >> 16) * (b >> 16) < 0){ val = -val;}
     return val;
 }
 
