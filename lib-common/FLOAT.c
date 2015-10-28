@@ -53,7 +53,6 @@ FLOAT f2F(float a) {
     unsigned fraction = uf << 9 >> 9;
     fraction >>= 7;
     int sign = uf >> 31;
-    sign = (sign << 31) >> 31;
     int new_exponent, val, shift;
     if ( exponent == 0xff ){
         return 0x80000000u;
@@ -65,7 +64,6 @@ FLOAT f2F(float a) {
         exponent = exponent - 127;
         new_exponent = exponent;
         unsigned one_1 = 1 << (16 + new_exponent);
-        unsigned sign_1 = sign << (17 + new_exponent);
         if(new_exponent < 0){
             if ( new_exponent < -16){
                 return 0;
@@ -75,12 +73,12 @@ FLOAT f2F(float a) {
             }
             else{
                 unsigned fraction_1 = fraction >> (-new_exponent);
-                return (sign_1 | one_1 |fraction_1);
+                return (sign ^ (one_1 |fraction_1) + (sign&1));
             }
         }
         else if(new_exponent < 33){
             unsigned fraction_2 = fraction << new_exponent;
-            return (sign_1 | one_1 | fraction_2);
+            return (sign ^ (one_1 | fraction_2) + (sign&1));
         }
         else{
             return 0;
