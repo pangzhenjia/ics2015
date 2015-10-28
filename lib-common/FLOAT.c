@@ -19,13 +19,19 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-    int i;
-    int val = 0;
+    int i, j;
+    int val = 0, val0 = 0;
     int res = a;
     int div_val = 0;
     for(i = 0; i < 16; i++){
+        j = i;
         div_val = res/b;
-        val += (div_val << ( 16 - i));
+        val0 = div_val << 16;
+        while( j != 0){
+            val0 /= 10;
+            j --;
+        }
+        val += val0;
         res = res - b * div_val;
         res *= 10;
         if ( res == 0) { break; }
