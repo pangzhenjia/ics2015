@@ -28,7 +28,7 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
     int val = 0, val0 = 0;
     int res = a_abs;
     int div_val = 0;
-    for(i = 0; i < 16; i++){
+    for(i = 0; i < 20; i++){
         j = i;
         div_val = res/b_abs;
         val0 = div_val << 16;
