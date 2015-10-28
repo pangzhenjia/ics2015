@@ -26,8 +26,8 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
     for(i = 0; i < 16; i++){
         div_val = res/b;
         val += (div_val << ( 16 - i));
-        res = a - b * div_val;
-        res = res << 1;
+        res = res - b * div_val;
+        res <<= 1;
         if ( res == 0) { break; }
     }
 	return val;
