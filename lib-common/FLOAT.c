@@ -53,6 +53,7 @@ FLOAT f2F(float a) {
     unsigned fraction = uf << 9 >> 9;
     fraction >>= 7;
     int sign = uf >> 31;
+    sign = sign << 31 >> 31;
     int new_exponent, val, shift;
     if ( exponent == 0xff ){
         return 0x80000000u;
