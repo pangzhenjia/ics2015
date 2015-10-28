@@ -17,13 +17,18 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-    FLOAT val1 = (a / b) << 16;
-    FLOAT val = a & 0xffff;
-    FLOAT val2 = (val << 15) / b;
-    val2 = val2 << 1;
-    //int sign = val2 >> 31;
-    //val2 = (val2 ^ sign) + (sign & 1);
-	return (val1 + val2);
+    int i;
+    int val = 0;
+    int res = a;
+    int div_val = 0;
+    for(i = 0; i < 16; i++){
+        div_val = res/b;
+        val += div_val << ( 16 - i);
+        res = a - b * div_val;
+        res = res << 1;
+        if ( res == 0) { break; }
+    }
+	return val;
 }
 
 FLOAT f2F(float a) {
