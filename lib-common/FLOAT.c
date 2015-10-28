@@ -28,10 +28,10 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
     int val = 0;
     int res = a_abs;
     int div_val = 0;
-    for(i = 0; i < 20; i++){
+    for(i = 0; i < 16; i++){
         j = i;
         div_val = res/b_abs;
-        val += div_val << (16 - i);
+        val += (div_val << (16 - i));
         res = res - b_abs * div_val;
         res = res << 1;
         if ( res == 0) { break; }
