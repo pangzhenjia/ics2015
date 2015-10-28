@@ -34,7 +34,7 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
         val0 = div_val << (16 - i);
         val += val0;
         res = res - b_abs * div_val;
-        res <<= 1;
+        res = res << 1;
         if ( res == 0) { break; }
     }
     if((a>>16) * (b>>16) < 0){ val = -val; }
