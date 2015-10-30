@@ -123,6 +123,7 @@ char *get_str(swaddr_t eip){
 }
 
 void print_bt(int i){
+    printf("eip is 0x%08x\n", stack_frame.ret_addr);
     char *name = get_str(stack_frame.ret_addr);
     printf("name is %s\n", name);
     if(name == NULL){ return; }
