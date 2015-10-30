@@ -153,7 +153,7 @@ int reset_stack(){
     printf("ebp is 0x%08x\n", ebp);
     if(ebp == 0){ return 0; }
     stack_frame.prev_ebp = ebp;
-    stack_frame.ret_addr = swaddr_read(ebp + 4, 4);
+    stack_frame.ret_addr = swaddr_read(stack_frame.prev_ebp + 4, 4);
     if(swaddr_read(ebp, 4) == 0){ return 1; }
     int i;
     for(i = 0; i < 4; i++){
