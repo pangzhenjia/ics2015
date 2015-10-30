@@ -148,6 +148,7 @@ void init_stack(swaddr_t eip, uint32_t ebp){
 }
 
 int reset_stack(){
+    if(stack_frame.prev_ebp == 0){ return 0; }
     uint32_t ebp = swaddr_read(stack_frame.prev_ebp, 4);
     printf("ebp is 0x%08x\n", ebp);
     if(ebp == 0){ return 0; }
