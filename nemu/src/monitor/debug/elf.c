@@ -87,8 +87,7 @@ uint32_t data_addr(char *argv){
     int i;
     printf("nr_symtab_entry is %d\n", nr_symtab_entry);
     for (i = 0; i < nr_symtab_entry; i++){
-        printf("1!\n");
-        if(symtab[i].st_info == STT_OBJECT){
+        if((symtab[i].st_info & 0xffff) == STT_OBJECT){
             uint32_t name_val = symtab[i].st_name;
             printf("str is %s\n", strtab+name_val);
             if(strcmp(argv, strtab+name_val)){
