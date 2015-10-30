@@ -124,7 +124,12 @@ char *get_str(swaddr_t eip){
 
 void print_bt(int i){
     char *name = get_str(stack_frame.ret_addr);
-    printf("#%d   0x%08x in %s ( 0x%08x, 0x%08x, 0x%08x, 0x%08x)\n", i, stack_frame.ret_addr, name, stack_frame.args[0],  stack_frame.args[1], stack_frame.args[2], stack_frame.args[3]);
+    if(strcmp(name, "main") != 0){
+        printf("#%d   0x%08x in %s ( 0x%08x, 0x%08x, 0x%08x, 0x%08x)\n", i, stack_frame.ret_addr, name, stack_frame.args[0],  stack_frame.args[1], stack_frame.args[2], stack_frame.args[3]);
+    }
+    else{
+        printf("#%d   0x%08x in %s ( )\n", i, stack_frame.ret_addr, name);
+    }
 }
 
 void init_stack(swaddr_t eip, uint32_t ebp){
