@@ -57,7 +57,7 @@ USERPROG := obj/testcase/integral
 USERPROG := obj/testcase/add
 
 
-ENTRY := $(USERPROG)
+ENTRY := $(kernel_BIN)
 
 entry: $(ENTRY)
 	objcopy -S -O binary $(ENTRY) entry
