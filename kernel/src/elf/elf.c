@@ -36,15 +36,25 @@ uint32_t loader() {
 	nemu_assert(*p_magic == elf_magic);
 
 	/* Load each program segment */
-	panic("please implement me");
-	for(; true; ) {
+    ph = (Elf32_Phdr *)elf + elf->e_phoff;
+    int i;
+	for(i=0; i< elf->e_phnum; i++) {
 		/* Scan the program header table, load each segment into memory */
-		if(ph->p_type == PT_LOAD) {
+		if(ph[i].p_type == PT_LOAD) {
 
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-			 
+            memcpy((void *)ph[i].p_vaddr, (void *)ph[i].p_offset, ph[i].p_filesz);
+			if(ph[i].p_flags == PF_W){
+                int size = ph[i].p_memsz - ph[i].p_filesz;
+                char bss[size];
+                int j;
+                for(j=0; j<size; j++){
+                    bss[j] = 0;
+                }
+                memcpy((void *)(ph[i].p_vaddr + ph[i].p_filesz), bss, size);
+            }
 			 
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
@@ -54,7 +64,7 @@ uint32_t loader() {
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
 			extern uint32_t brk;
-			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
+			uint32_t new_brk = ph[i].p_vaddr + ph[i].p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
 #endif
 		}
