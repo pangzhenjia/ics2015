@@ -123,7 +123,6 @@ char *get_str(swaddr_t eip){
 }
 
 void print_bt(int i){
-    printf("eip is 0x%08x\n", stack_frame.ret_addr);
     char *name = get_str(stack_frame.ret_addr);
     printf("name is %s\n", name);
     if(name == NULL){ return; }
@@ -150,7 +149,6 @@ void init_stack(swaddr_t eip, uint32_t ebp){
 
 int reset_stack(){
     uint32_t ebp = swaddr_read(stack_frame.prev_ebp, 4);
-    printf("ebp is 0x%08x\n", ebp);
     if(ebp == 0){ return 0; }
     stack_frame.ret_addr = swaddr_read(stack_frame.prev_ebp + 4, 4);
     stack_frame.prev_ebp = ebp;
