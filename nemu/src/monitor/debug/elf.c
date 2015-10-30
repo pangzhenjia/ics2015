@@ -1,4 +1,5 @@
 #include "common.h"
+#include "nemu.h"
 #include <stdlib.h>
 #include <elf.h>
 
@@ -85,11 +86,9 @@ void load_elf_tables(int argc, char *argv[]) {
 
 uint32_t data_addr(char *argv){
     int i;
-    printf("nr_symtab_entry is %d\n", nr_symtab_entry);
     for (i = 0; i < nr_symtab_entry; i++){
         if((symtab[i].st_info & 0xf) == STT_OBJECT){
             uint32_t name_val = symtab[i].st_name;
-            printf("str is %s\n", strtab+name_val);
             if(strcmp(argv, strtab+name_val) == 0){
                 return symtab[i].st_value;
             }
@@ -98,4 +97,76 @@ uint32_t data_addr(char *argv){
     printf("Can not find the the value %s\n", argv);
     return 0;
 }
+
+typedef struct {
+    swaddr_t prev_ebp;
+    swaddr_t ret_addr;
+    uint32_t args[4];
+} PartOfStackFrame;
+PartOfStackFrame stack_frame;
+
+
+char *get_str(swaddr_t eip){
+    int i;
+    for(i = 0; i < nr_symtab_entry; i++){
+        if((symtab[i].st_info & 0xf) == STT_FUNC){
+            uint32_t addr = symtab[i].st_value ;
+            uint32_t val  = eip - addr;
+            if(val > 0 && val < symtab[i].st_size){
+                uint32_t name_addr = symtab[i].st_name;
+                char *e = (char *)(strtab + name_addr);
+                return e;
+            }
+        }
+    }
+    return NULL;
+}
+
+void print_bt(int i){
+    char *name = get_str(stack_frame.ret_addr);
+    printf("#%d   0x%08x in %s ( 0x%08x, 0x%08x, 0x%08x, 0x%08x)\n", i, stack_frame.ret_addr, name, stack_frame.args[0],  stack_frame.args[1], stack_frame.args[2], stack_frame.args[3]);
+}
+
+void init_stack(swaddr_t eip, uint32_t ebp){
+    stack_frame.prev_ebp = ebp;
+    stack_frame.ret_addr = eip;
+    int i = 0;
+    for(i = 0; i < 4; i++){
+        stack_frame.args[i] = swaddr_read(ebp + 8 + 4*i, 4);
+    }
+}
+
+int reset_stack(){
+    uint32_t ebp = swaddr_read(stack_frame.prev_ebp, 4);
+    if(ebp == 0){ return 0; }
+    stack_frame.prev_ebp = ebp;
+    stack_frame.ret_addr = swaddr_read(ebp + 4, 4);
+    int i;
+    for(i = 0; i < 4; i++){
+        stack_frame.args[i] = swaddr_read(ebp + 8 + 4*i, 4);
+    }
+    return 1;
+}
+    
+
+void stack_bt(swaddr_t eip, uint32_t ebp){
+
+    /* initialize the stack_frame */
+    init_stack(eip, ebp);
+
+    /* print out the current state */
+    int i = 0;
+    print_bt(i);
+
+    /* print out all the pre stack state */
+    for(i = 1; ; i++){
+        int reset = reset_stack();
+        if( reset == 0 ){ break; }
+        print_bt(i);
+    }
+}
+
+
+
+
 

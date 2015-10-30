@@ -9,6 +9,8 @@
 
 void cpu_exec(uint32_t);
 
+void stack_bt(swaddr_t eip, uint32_t ebp);
+
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
 	static char *line_read = NULL;
@@ -102,6 +104,12 @@ int cmd_d(char *args){
     return 0;
 }
 
+int cmd_bt(char *args){
+    stack_bt(cpu.eip, cpu.ebp);
+    return 0;
+}
+
+
 static int cmd_help(char *args);    
 
 static struct {
@@ -117,7 +125,8 @@ static struct {
     { "p", "get the value of EXPR", cmd_p},
     { "x", "print out the near memory", cmd_x},
     { "w", "set watch point", cmd_w},
-    { "d", "delete the related wp", cmd_d}
+    { "d", "delete the related wp", cmd_d},
+    {"bt", "print out the info of stack_frame", cmd_bt}
 
 	/* TODO: Add more commands */
 
