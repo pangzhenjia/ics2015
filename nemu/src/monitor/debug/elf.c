@@ -90,7 +90,7 @@ uint32_t data_addr(char *argv){
         if((symtab[i].st_info & 0xf) == STT_OBJECT){
             uint32_t name_val = symtab[i].st_name;
             printf("str is %s\n", strtab+name_val);
-            if(strcmp(argv, strtab+name_val)){
+            if(strcmp(argv, strtab+name_val) == 0){
                 return symtab[i].st_value;
             }
         }
