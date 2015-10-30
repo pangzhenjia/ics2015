@@ -83,3 +83,17 @@ void load_elf_tables(int argc, char *argv[]) {
 	fclose(fp);
 }
 
+uint32_t data_addr(char *argv){
+    int i;
+    for (i = 0; i < nr_symtab_entry; i++){
+        if(symtab[i].st_info == STT_OBJECT){
+            uint32_t name_val = symtab[i].st_name;
+            if(strcmp(argv, strtab+name_val)){
+                return symtab[i].st_value;
+            }
+        }
+    }
+    printf("Can not find the the value %s\n", argv);
+    return 0;
+}
+

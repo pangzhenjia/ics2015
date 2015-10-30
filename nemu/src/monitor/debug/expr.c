@@ -1,5 +1,7 @@
 #include "nemu.h"   
 
+uint32_t data_addr(char *);
+
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
@@ -7,7 +9,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ = 5000, NQ = 5001, AND = 5002, OR = 5003, NO=5004,  X = 1016, Num = 1111,  
+	NOTYPE = 256, EQ = 5000, NQ = 5001, AND = 5002, OR = 5003, NO=5004,  X = 1016, Num = 1111, SYM = 2222
 
 	/* TODO: Add more token types */
 
@@ -32,6 +34,7 @@ static struct rule {
     {"\\/", '/'},                   // divide
     {"\\b0[xX][a-fA-F0-9]+\\b", X},       // 0x...
     {"\\b[0-9]+\\b", Num},          // number
+    {"[a-zA-Z_0-9]+", SYM},         // symbol
 	{"\\=\\=", EQ},					     // equal
     {"\\!\\=", NQ},                     // not equal
     {"\\&\\&", AND},                    // and
@@ -103,6 +106,8 @@ static bool make_token(char *e) {
                     case X  : tokens[nr_token].type =X;   strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++;  break;
 				    case '$': tokens[nr_token].type ='$'; strncpy(tokens[nr_token].str, substr_start, substr_len); nr_token++; 
                             break;
+                    case SYM: tokens[nr_token].type = SYM; strncpy(tokens[nr_token].str, substr_start, substr_len);
+nr_token++; break;
                     case EQ : tokens[nr_token].type =EQ; nr_token++; break;
                     case NQ : tokens[nr_token].type =NQ; nr_token++; break;
                     case AND: tokens[nr_token].type =AND; nr_token++; break;
@@ -167,6 +172,9 @@ uint32_t eval(uint32_t p, uint32_t q) {
         }
         else if (tokens[p].type == '$'){
             return get_reg(p);
+        }
+        else if(tokens[p].type == SYM ){
+            return data_addr(tokens[p].str);
         }
         else {
             printf ("wrong expression!\n");
