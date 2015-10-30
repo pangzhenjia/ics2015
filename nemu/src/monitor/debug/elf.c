@@ -125,6 +125,7 @@ char *get_str(swaddr_t eip){
 void print_bt(int i){
     char *name = get_str(stack_frame.ret_addr);
     printf("name is %s\n", name);
+    if(name == NULL){ return; }
     if(strcmp(name, "main") != 0){
         printf("#%d  0x%08x in %s (0x%08x, 0x%08x, 0x%08x, 0x%08x)\n", i, stack_frame.ret_addr, name, stack_frame.args[0],  stack_frame.args[1], stack_frame.args[2], stack_frame.args[3]);
     }
