@@ -129,7 +129,7 @@ void print_bt(int i){
         printf("#%d  0x%08x in %s (0x%08x, 0x%08x, 0x%08x, 0x%08x)\n", i, stack_frame.ret_addr, name, stack_frame.args[0],  stack_frame.args[1], stack_frame.args[2], stack_frame.args[3]);
     }
     else{
-        printf("#%d   0x%08x in %s ( )\n", i, stack_frame.ret_addr, name);
+        printf("#%d  0x%08x in %s ( )\n", i, stack_frame.ret_addr, name);
     }
 }
 
