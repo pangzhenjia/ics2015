@@ -86,7 +86,7 @@ void load_elf_tables(int argc, char *argv[]) {
 uint32_t data_addr(char *argv){
     int i;
     for (i = 0; i < nr_symtab_entry; i++){
-        if(symtab[i].st_info == STT_OBJECT){
+        if(symtab[i].st_info == STT_FUNC){
             uint32_t name_val = symtab[i].st_name;
             printf("str is %s\n", strtab+name_val);
             if(strcmp(argv, strtab+name_val)){
