@@ -135,7 +135,7 @@ void print_bt(int i){
 void init_stack(swaddr_t eip, uint32_t ebp){
     stack_frame.prev_ebp = ebp;
     stack_frame.ret_addr = eip;
-    printf("ebp is 0x%08x\n", ebp);
+    printf("eip is 0x%08x\n", eip);
     int i = 0;
     for(i = 0; i < 4; i++){
         stack_frame.args[i] = swaddr_read(ebp + 8 + 4*i, 4);
