@@ -64,19 +64,17 @@ void cpu_exec(volatile uint32_t n) {
 		 * instruction decode, and the actual execution. */
 		int instr_len = exec(cpu.eip);
         
-        printf("eip is 0x%x\n", cpu.eip);
+        printf("eip is %d\n",cpu.eip);
 
 		cpu.eip += instr_len;
 
 #ifdef DEBUG
-        if(instr_len < 10){
-		    print_bin_instr(eip_temp, instr_len);
-		    strcat(asm_buf, assembly);
-		    Log_write("%s\n", asm_buf);
-		    if(n_temp < MAX_INSTR_TO_PRINT) {
-			    printf("%s\n", asm_buf);
-		    }
-        }
+		print_bin_instr(eip_temp, instr_len);
+		strcat(asm_buf, assembly);
+		Log_write("%s\n", asm_buf);
+		if(n_temp < MAX_INSTR_TO_PRINT) {
+			printf("%s\n", asm_buf);
+		}
 #endif
 
 		/* TODO: check watchpoints here. */
