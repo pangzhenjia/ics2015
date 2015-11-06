@@ -14,7 +14,7 @@ make_helper(concat(call_rm_, SUFFIX)){
     int len = concat(decode_rm_, SUFFIX)(eip + 1);
     MEM_W(reg_l(R_ESP), eip + len + 1);
     DATA_TYPE val = (DATA_TYPE)op_src -> val;
-    cpu.eip += val;
+    cpu.eip = val;
     return 0;
 }
 
