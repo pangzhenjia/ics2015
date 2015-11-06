@@ -82,10 +82,10 @@ static void load_entry() {
 
 void restart() {
 	/* Perform some initialization to restart a program */
-#ifdef USE_RAMDISK
+//#ifdef USE_RAMDISK
 	/* Read the file with name `argv[1]' into ramdisk. */
 	init_ramdisk();
-#endif
+//#endif
 
 	/* Read the entry code into memory. */
 	load_entry();
