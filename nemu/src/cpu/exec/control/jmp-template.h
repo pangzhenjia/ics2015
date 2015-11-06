@@ -6,7 +6,8 @@ make_helper(concat(jmp_si_, SUFFIX)){
     int len = concat(decode_i_, SUFFIX)(eip + 1);
     DATA_TYPE_S val0 = op_src->val;
     int val = val0;
-    return len + val + 1;
+    cpu.eip += val;
+    return len + 1;
 }
 
 #if DATA_BYTE == 2 || DATA_BYTE == 4
