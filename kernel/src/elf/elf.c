@@ -11,6 +11,8 @@ void ide_read(uint8_t *, uint32_t, uint32_t);
 void ramdisk_read(uint8_t *, uint32_t, uint32_t);
 #endif
 
+void ramdisk_write(uint8_t *, uint32_t, uint32_t);
+
 #define STACK_SIZE (1 << 20)
 
 void create_video_mapping();
@@ -45,15 +47,17 @@ uint32_t loader() {
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-            memcpy((void *)ph[i].p_vaddr, (void *)ph[i].p_offset, ph[i].p_filesz);
+            uint8_t new_buf[ ph[i].p_filesz ];
+            ramdisk_read(new_buf, ph[i].p_offset, ph[i].p_filesz);
+            ramdisk_write(new_buf, ph[i].p_vaddr, ph[i].p_filesz);
 			if(ph[i].p_flags == PF_W){
                 int size = ph[i].p_memsz - ph[i].p_filesz;
-                char bss[size];
+                uint8_t bss[size];
                 int j;
                 for(j=0; j<size; j++){
                     bss[j] = 0;
                 }
-                memcpy((void *)(ph[i].p_vaddr + ph[i].p_filesz), bss, size);
+                ramdisk_write(bss, (ph[i].p_vaddr + ph[i].p_filesz), size);
             }
 			 
 			/* TODO: zero the memory region 
