@@ -333,6 +333,9 @@ uint32_t get_reg(uint32_t p){
     else if(strncmp(tokens[p].str, "$edi", 4) == 0){
         return cpu.edi;
     }
+    else if(strncmp(tokens[p].str, "$eip", 4) == 0){
+        return cpu.eip;
+    }
     else{
         printf("wrong register!\n");
         assert(0);
