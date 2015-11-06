@@ -40,10 +40,10 @@ uint32_t loader() {
 
 	/* Load each program segment */
     //ph = (Elf32_Phdr *)elf + elf->e_phoff;
-    uint32_t ph_size = elf->e_phentsize * elf->e_phnum;
+    /*uint32_t ph_size = elf->e_phentsize * elf->e_phnum;
     ph = (Elf32_Phdr *) malloc(ph_size);
     ramdisk_read((uint8_t *)ph, elf->e_phoff, ph_size);
-
+*/
     int i;
 	for(i=0; i< elf->e_phnum; i++) {
 		/* Scan the program header table, load each segment into memory */
