@@ -6,7 +6,6 @@ make_helper(concat(jmp_si_, SUFFIX)){
     int len = concat(decode_i_, SUFFIX)(eip + 1);
     DATA_TYPE_S val0 = op_src->val;
     int val = val0;
-    printf("val is %d\n", val);
     return len + val + 1;
 }
 

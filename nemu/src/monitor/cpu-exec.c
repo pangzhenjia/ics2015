@@ -69,12 +69,14 @@ void cpu_exec(volatile uint32_t n) {
 		cpu.eip += instr_len;
 
 #ifdef DEBUG
-		print_bin_instr(eip_temp, instr_len);
-		strcat(asm_buf, assembly);
-		Log_write("%s\n", asm_buf);
-		if(n_temp < MAX_INSTR_TO_PRINT) {
-			printf("%s\n", asm_buf);
-		}
+        if(instr_len < 10){
+		    print_bin_instr(eip_temp, instr_len);
+		    strcat(asm_buf, assembly);
+		    Log_write("%s\n", asm_buf);
+		    if(n_temp < MAX_INSTR_TO_PRINT) {
+			    printf("%s\n", asm_buf);
+		    }
+        }
 #endif
 
 		/* TODO: check watchpoints here. */
