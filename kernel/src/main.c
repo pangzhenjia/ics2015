@@ -31,9 +31,9 @@ void init() {
 #endif
 
 	/* Jump to init_cond() to continue initialization. */
-	asm volatile("jmp *%0" : : "r"(init_cond));
+	//asm volatile("jmp *%0" : : "r"(init_cond));
 
-	//panic("should not reach here");
+	panic("should not reach here");
 }
 
 /* Initialization phase 2 */
@@ -104,6 +104,6 @@ void init_cond() {
 	/* Here we go! */
 	((void(*)(void))eip)();
 
-    //panic("should not reach here");
+    panic("should not reach here");
 }
 
