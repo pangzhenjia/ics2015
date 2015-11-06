@@ -31,7 +31,7 @@ uint32_t loader() {
 	ramdisk_read(buf, ELF_OFFSET_IN_DISK, 4096);
 #endif
 
-	elf = (void*)buf;
+	elf = (Elf32_Ehdr*)buf;
 
 	/* TODO: fix the magic number with the correct one */
 	const uint32_t elf_magic = 0x464c457f;
