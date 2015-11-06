@@ -46,14 +46,14 @@ void cpu_exec(volatile uint32_t n) {
 	nemu_state = RUNNING;
 
 #ifdef DEBUG
-	volatile uint32_t n_temp = n;
+	//volatile uint32_t n_temp = n;
 #endif
 
 	setjmp(jbuf);
 
 	for(; n > 0; n --) {
 #ifdef DEBUG
-		swaddr_t eip_temp = cpu.eip;
+		//swaddr_t eip_temp = cpu.eip;
 		if((n & 0xffff) == 0) {
 			/* Output some dots while executing the program. */
 			fputc('.', stderr);
@@ -67,17 +67,16 @@ void cpu_exec(volatile uint32_t n) {
         printf("eip is 0x%x\n", cpu.eip);
 
 		cpu.eip += instr_len;
-
+/*
 #ifdef DEBUG
 		print_bin_instr(eip_temp, instr_len);
-        printf("yes!\n");
 		strcat(asm_buf, assembly);
 		Log_write("%s\n", asm_buf);
 		if(n_temp < MAX_INSTR_TO_PRINT) {
 			printf("%s\n", asm_buf);
 		}
 #endif
-
+*/
 		/* TODO: check watchpoints here. */
 
         int change = watch_wp();  // examine every watch point;
