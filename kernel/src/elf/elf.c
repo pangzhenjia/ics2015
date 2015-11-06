@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <elf.h>
+#include <stdio.h>
 
 #define ELF_OFFSET_IN_DISK 0
 
