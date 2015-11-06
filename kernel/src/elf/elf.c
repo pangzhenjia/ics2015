@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <elf.h>
-#include <stdio.h>
 
 #define ELF_OFFSET_IN_DISK 0
 
@@ -44,6 +43,7 @@ uint32_t loader() {
     uint32_t ph_size = elf->e_phentsize * elf->e_phnum;
     ph = (Elf32_Phdr *) malloc(ph_size);
     ramdisk_read((uint8_t *)ph, elf->e_phoff, ph_size);
+
     int i;
 	for(i=0; i< elf->e_phnum; i++) {
 		/* Scan the program header table, load each segment into memory */
@@ -54,17 +54,17 @@ uint32_t loader() {
 			 */
             uint8_t new_buf[ ph[i].p_filesz ];
             ramdisk_read(new_buf, ph[i].p_offset, ph[i].p_filesz);
-            ramdisk_write(new_buf, ph[i].p_vaddr, ph[i].p_filesz);
-			if(ph[i].p_flags == PF_W){
+            //ramdisk_write(new_buf, ph[i].p_vaddr, ph[i].p_filesz);
+			/*if(ph[i].p_flags == PF_W){
                 int size = ph[i].p_memsz - ph[i].p_filesz;
                 uint8_t bss[size];
                 int j;
                 for(j=0; j<size; j++){
                     bss[j] = 0;
                 }
-                ramdisk_write(bss, (ph[i].p_vaddr + ph[i].p_filesz), size);
+               ramdisk_write(bss, (ph[i].p_vaddr + ph[i].p_filesz), size);
             }
-			 
+			 */
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
