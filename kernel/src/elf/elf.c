@@ -1,6 +1,7 @@
 #include "common.h"
 #include "memory.h"
 #include <string.h>
+#include <stdlib.h>
 #include <elf.h>
 
 #define ELF_OFFSET_IN_DISK 0
@@ -33,12 +34,15 @@ uint32_t loader() {
 	elf = (void*)buf;
 
 	/* TODO: fix the magic number with the correct one */
-	//const uint32_t elf_magic = 0x7f454c46;
-	//uint32_t *p_magic = (void *)buf;
-	//nemu_assert(*p_magic == elf_magic);
+	const uint32_t elf_magic = 0x7f454c46;
+	uint32_t *p_magic = (void *)buf;
+	nemu_assert(*p_magic == elf_magic);
 
 	/* Load each program segment */
-    ph = (Elf32_Phdr *)elf + elf->e_phoff;
+    //ph = (Elf32_Phdr *)elf + elf->e_phoff;
+    uint32_t ph_size = elf->e_phentsize * elf->e_phnum;
+    ph = (Elf32_Phdr *) malloc(ph_size);
+    ramdisk_read((uint8_t *)ph, elf->e_phoff, ph_size);
     int i;
 	for(i=0; i< elf->e_phnum; i++) {
 		/* Scan the program header table, load each segment into memory */
