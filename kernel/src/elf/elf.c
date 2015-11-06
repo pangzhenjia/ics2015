@@ -20,7 +20,7 @@ void create_video_mapping();
 uint32_t get_ucr3();
 
 uint32_t loader() {
-	Elf32_Ehdr *elf;
+	Elf32_Ehdr *elf = NULL;
 	Elf32_Phdr *ph = NULL;
 
 	uint8_t buf[4096];
