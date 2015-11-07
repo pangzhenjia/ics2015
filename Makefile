@@ -54,7 +54,7 @@ clean: clean-cpp
 
 USERPROG := obj/testcase/integral
 #USERPROG := obj/testcase/quadratic-eq
-USERPROG := obj/testcase/hello-str
+USERPROG := obj/testcase/string
 
 
 ENTRY := $(kernel_BIN)
