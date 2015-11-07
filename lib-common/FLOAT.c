@@ -69,12 +69,12 @@ FLOAT f2F(float a) {
             else{
                 unsigned fraction_1 = fraction >> 7;
                 fraction_1 = fraction_1 >> (-new_exponent);
-                return (sign ^ (one_1 |fraction_1) + (sign&1));
+                return ((sign ^ (one_1 |fraction_1)) + (sign&1));
             }
         }
         else if(new_exponent < 7){
             unsigned fraction_2 = fraction >> ( 7 -new_exponent);
-            return (sign ^ (one_1 | fraction_2) + (sign&1));
+            return ((sign ^ (one_1 | fraction_2)) + (sign&1));
         }
         else if(new_exponent > 6){
             unsigned fraction_3 = fraction << (new_exponent -7);
