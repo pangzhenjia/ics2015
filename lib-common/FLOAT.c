@@ -27,23 +27,29 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
+    /* get positive a, b */
     int a_abs, b_abs;
     if(a<0) { a_abs = -a; }
     else{ a_abs = a; }
     if(b<0) { b_abs = -b; }
     else{ b_abs = b; }
-    int i, j;
+
+    /* init some val */
     int val = 0;
     int res = a_abs;
     int div_val = 0;
+
+    /* do recur div */
+    int i;
     for(i = 0; i < 16; i++){
-        j = i;
         div_val = res/b_abs;
         val += (div_val << (16 - i));
         res = res - b_abs * div_val;
         res = res << 1;
         if ( res == 0) { break; }
     }
+    
+    /* get sign */
     if((a>>16) * (b>>16) < 0){ val = -val; }
 	return val;
 }
