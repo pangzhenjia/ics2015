@@ -36,6 +36,6 @@ extern FILE* log_fp;
 	Assert(0, format, ## __VA_ARGS__)
 
 
-volatile static int dummy;
+//volatile static int dummy;
 
 #endif
