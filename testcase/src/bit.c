@@ -14,7 +14,6 @@ void setbit(void *buf, int offset, bool bit){
 	int byte = offset >> 3;
 	offset &= 7;
 	uint8_t mask = 1 << offset;
-    set_bp();	
 	uint8_t * volatile p = buf + byte;
 	*p = (bit == 0 ? (*p & ~mask) : (*p | mask));
 }
