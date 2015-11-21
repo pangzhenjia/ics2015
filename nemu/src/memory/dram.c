@@ -12,6 +12,7 @@
 #define ROW_WIDTH 10
 #define BANK_WIDTH 3
 #define RANK_WIDTH (27 - COL_WIDTH - ROW_WIDTH - BANK_WIDTH)
+// dram: 128MB
 
 typedef union {
 	struct {
