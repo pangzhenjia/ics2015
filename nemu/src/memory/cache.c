@@ -91,7 +91,7 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
         cache_read_data(addr + NR_BLO, temp + NR_BLO);
     }
     
-    printf("cache_read!\n");
+    //printf("cache_read!\n");
 
     return unalign_rw(temp + block_off, 4);
 }
@@ -137,7 +137,7 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data) {
         cache_write_data(addr + NR_BLO, temp + NR_BLO, mask + NR_BLO);
     }
 
-    printf("cache_write!\n");
+    //printf("cache_write!\n");
 
 }
 
