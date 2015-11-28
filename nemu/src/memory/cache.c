@@ -70,7 +70,6 @@ void cache_read_data(hwaddr_t addr, void *data){
     }
 
     /* Miss, read a block data into cache */
-    printf("yes!\n");
     way = rand() % NR_WAY;
     memcpy(cache[set][way].data, dram_cache[tag][set], NR_BLO);
     cache[set][way].valid = true;
@@ -78,6 +77,9 @@ void cache_read_data(hwaddr_t addr, void *data){
 
     /* Again, read it into block buffer */
     memcpy(data, cache[set][way].data, NR_BLO);
+
+    printf("data is 0x%08x!", *((uint32_t *)(hw_mem + 0x100000)));
+
 }
 
 
