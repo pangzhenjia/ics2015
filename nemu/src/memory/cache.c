@@ -86,7 +86,7 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 
     cache_read_data(addr, temp);
 
-    printf("dram_read! addr is 0x%08x, len is %d!\n", addr, len);
+    printf("cache_read! addr is 0x%08x, len is %d!\n", addr, len);
 
     if(block_off + len > NR_BLO){
         /* data cross the block boundary */
