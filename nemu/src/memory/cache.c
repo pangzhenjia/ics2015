@@ -78,8 +78,6 @@ void cache_read_data(hwaddr_t addr, void *data){
     /* Again, read it into block buffer */
     memcpy(data, cache[set][way].data, NR_BLO);
 
-    printf("data is 0x%x\n!", *(dram_cache[tag][set]));
-
 }
 
 
@@ -88,8 +86,6 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
     uint32_t block_off = addr & (NR_BLO - 1);
 
     cache_read_data(addr, temp);
-
-    printf("cache_read! addr is 0x%08x, len is %d!\n", addr, len);
 
     if(block_off + len > NR_BLO){
         /* data cross the block boundary */
@@ -139,8 +135,6 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data) {
         /* data cross the block boundary */
         cache_write_data(addr + NR_BLO, temp + NR_BLO, mask + NR_BLO);
     }
-
-    //printf("cache_write!\n");
 
 }
 
