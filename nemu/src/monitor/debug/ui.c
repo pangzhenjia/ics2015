@@ -111,7 +111,8 @@ int cmd_bt(char *args){
 
 extern void print_cache(hwaddr_t addr);
 int cmd_cache(char *args){
-    hwaddr_t addr = atoi(args);
+    hwaddr_t addr; 
+    sscanf(args, "%x", &addr);
     printf("0x%08x\n", addr);
     print_cache(addr);
     return 0;
