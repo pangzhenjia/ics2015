@@ -107,6 +107,8 @@ uint32_t dram_read(hwaddr_t addr, size_t len) {
 		/* data cross the burst boundary */
 		ddr3_read(addr + BURST_LEN, temp + BURST_LEN);
 	}
+    
+    printf("dram_read!\n");
 
 	return unalign_rw(temp + offset, 4);
 }
