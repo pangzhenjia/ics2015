@@ -65,12 +65,12 @@ void cache_read_data(hwaddr_t addr, void *data){
         if((cache[set][way].tag == tag) && cache[set][way].valid){
             /* Hit, read a block into block buffer */
             memcpy(data, cache[set][way].data, NR_BLO);
-            printf("yes!\n");
             return;
         }
     }
 
     /* Miss, read a block data into cache */
+    printf("yes!\n");
     way = rand() % NR_WAY;
     memcpy(cache[set][way].data, dram_cache[tag][set], NR_BLO);
     cache[set][way].valid = true;
