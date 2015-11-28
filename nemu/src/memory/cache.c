@@ -36,6 +36,7 @@ typedef struct{
 } CACHE;
 
 CACHE cache[NR_SET][NR_WAY];
+uint8_t *cache_mem = (void *)cache;
 
 extern uint8_t *hw_mem;
 typedef uint8_t DRAM_CACHE[NR_SET][NR_BLO];
