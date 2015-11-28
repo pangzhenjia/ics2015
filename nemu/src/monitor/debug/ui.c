@@ -109,6 +109,13 @@ int cmd_bt(char *args){
     return 0;
 }
 
+extern void print_cache(hwaddr_t addr);
+int cmd_cache(char *args){
+    hwaddr_t addr = atoi(args);
+    print_cache(addr);
+    return 0;
+}
+
 
 static int cmd_help(char *args);    
 
@@ -126,7 +133,8 @@ static struct {
     { "x", "print out the near memory", cmd_x},
     { "w", "set watch point", cmd_w},
     { "d", "delete the related wp", cmd_d},
-    {"bt", "print out the info of stack_frame", cmd_bt}
+    {"bt", "print out the info of stack_frame", cmd_bt},
+    {"cache", "print out the info of the specific block in the cache", cmd_cache} 
 
 	/* TODO: Add more commands */
 
