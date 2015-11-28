@@ -78,7 +78,7 @@ void cache_read_data(hwaddr_t addr, void *data){
     /* Again, read it into block buffer */
     memcpy(data, cache[set][way].data, NR_BLO);
 
-    printf("data is 0x%08x\n!", *((uint32_t *)(dram_cache + 0x100001)));
+    printf("data is 0x%08x\n!", *((uint32_t *)(dram_cache + 0x100000)));
 
 }
 
