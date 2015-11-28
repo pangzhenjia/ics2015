@@ -44,7 +44,7 @@ void init_cache(){
     int i, j;
     for(i=0; i < NR_SET; i++){
         for(j=0; j < NR_WAY; j++){
-            cache[i][j].valid = 0;
+            cache[i][j].valid = false;
             cache[i][j].tag = 0;
         }
     }
@@ -56,7 +56,7 @@ void cache_read_data(hwaddr_t addr, void *data){
     DRAM_CACHE *dram_cache = (void *)hw_mem;
 
     cache_addr temp;
-    temp.addr =addr;
+    temp.addr = addr;
     uint32_t set = temp.set;
     uint32_t tag = temp.tag;
     uint32_t way;
@@ -72,7 +72,7 @@ void cache_read_data(hwaddr_t addr, void *data){
     /* Miss, read a block data into cache */
     way = rand() % NR_WAY;
     memcpy(cache[set][way].data, dram_cache[tag][set], NR_BLO);
-    cache[set][way].valid = 1;
+    cache[set][way].valid = true;
     cache[set][way].tag = tag;
 
     /* Again, read it into block buffer */
@@ -91,7 +91,7 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
         cache_read_data(addr + NR_BLO, temp + NR_BLO);
     }
     
-    //printf("cache_read!\n");
+    printf("cache_read!\n");
 
     return unalign_rw(temp + block_off, 4);
 }
