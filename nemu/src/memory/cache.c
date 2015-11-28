@@ -38,7 +38,7 @@ typedef struct{
 CACHE cache[NR_SET][NR_WAY];
 
 extern uint8_t *hw_mem;
-typedef uint8_t DRAM_CACHE[NR_TAG][NR_SET][NR_BLO];
+typedef uint8_t DRAM_CACHE[NR_SET][NR_BLO];
 
 void init_cache(){
     int i, j;
@@ -78,7 +78,7 @@ void cache_read_data(hwaddr_t addr, void *data){
     /* Again, read it into block buffer */
     memcpy(data, cache[set][way].data, NR_BLO);
 
-    printf("data is 0x%08x\n!", *((uint32_t *)data));
+    printf("data is 0x%x\n!", *(dram_cache[tag][set]));
 
 }
 
