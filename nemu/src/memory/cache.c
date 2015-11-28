@@ -61,6 +61,8 @@ void cache_read_data(hwaddr_t addr, void *data){
     uint32_t tag = temp.tag;
     uint32_t way;
 
+    printf("tag is 0x%08x!\n", tag);
+
     for(way=0; way < NR_WAY; way++){
         if((cache[set][way].tag == tag) && cache[set][way].valid){
             /* Hit, read a block into block buffer */
