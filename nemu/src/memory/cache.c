@@ -4,7 +4,7 @@
 
 /* Now we are going to make a cache!" */
 
-#define CACHE_WIDTH 16    // 64KB
+#define CACHE_WIDTH 20    // 64KB
 #define BLO_WIDTH 6       // 64B
 #define WAY_WIDTH 3       // 8 WAY
 #define SET_WIDTH (CACHE_WIDTH - BLO_WIDTH - WAY_WIDTH)
