@@ -101,6 +101,8 @@ uint32_t dram_read(hwaddr_t addr, size_t len) {
 	uint32_t offset = addr & BURST_MASK;
 	uint8_t temp[2 * BURST_LEN];
 	
+    printf("dram_read! addr is 0x%08x, len is %d!\n", addr, len);
+
 	ddr3_read(addr, temp);
 
 	if(offset + len > BURST_LEN) {
@@ -108,8 +110,6 @@ uint32_t dram_read(hwaddr_t addr, size_t len) {
 		ddr3_read(addr + BURST_LEN, temp + BURST_LEN);
 	}
     
-    printf("dram_read!\n");
-
 	return unalign_rw(temp + offset, 4);
 }
 
