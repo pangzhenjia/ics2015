@@ -156,6 +156,7 @@ void print_cache(hwaddr_t addr){
             int i;
             uint32_t val;
             for(i=0; i<NR_BLO; i++){
+                if(i%4 == 0){ printf(" "); }
                 val = cache[set][way].data[i];
                 printf("%02x", val);
             }
