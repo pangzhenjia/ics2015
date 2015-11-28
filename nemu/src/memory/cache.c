@@ -36,7 +36,6 @@ typedef struct{
 } CACHE;
 
 CACHE cache[NR_SET][NR_WAY];
-uint8_t *cache_mem = (void *)cache;
 
 extern uint8_t *hw_mem;
 typedef uint8_t DRAM_CACHE[NR_SET][NR_BLO];
@@ -140,8 +139,31 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data) {
 }
 
 
+void print_cache(hwaddr_t addr){
+    Assert(addr < HW_MEM_SIZE, "Physical address %x is outside of the physical memory!", addr);
 
+    cache_addr temp;
+    temp.addr = addr;
+    uint32_t set = temp.set;
+    uint32_t tag = temp.tag;
+    uint32_t way;
 
+    /* Hit, print the cache */
+    for(way = 0; way < NR_WAY; way++){
+        if((cache[set][way].tag == tag) && cache[set][way].valid){
+            printf("Tag: 0x%08x\n", tag);
+            printf("0x");
+            int i;
+            uint32_t val;
+            for(i=0; i<NR_BLO; i++){
+                val = cache[set][way].data[i];
+                printf("%x", val);
+            }
+            printf("\n");
+            return;
+        }
+    }
 
-
-
+    /* Miss, print out the message */
+    printf("No such addr in the cache\n");
+}
