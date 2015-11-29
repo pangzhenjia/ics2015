@@ -37,8 +37,9 @@ typedef struct{
 
 CACHE cache[NR_SET][NR_WAY];
 
-extern uint8_t *hw_mem;
-typedef uint8_t DRAM_CACHE[NR_SET][NR_BLO];
+extern void l2_cache_read(hwaddr_t addr, void *data);
+extern void l2_cache_write(hwaddr_t addr, void *data, uint8_t *mask);
+extern void init_l2_cache();
 
 void init_cache(){
     int i, j;
@@ -48,12 +49,12 @@ void init_cache(){
             cache[i][j].tag = 0;
         }
     }
+
+    init_l2_cache();
 }
 
 void cache_read_data(hwaddr_t addr, void *data){
     Assert(addr < HW_MEM_SIZE, "Physical address %x is outside of the physical memory!", addr);
-    
-    DRAM_CACHE *dram_cache = (void *)hw_mem;
 
     cache_addr temp;
     temp.addr = addr;
@@ -71,7 +72,7 @@ void cache_read_data(hwaddr_t addr, void *data){
 
     /* Miss, read a block data into cache */
     way = rand() % NR_WAY;
-    memcpy(cache[set][way].data, dram_cache[tag][set], NR_BLO);
+    l2_cache_read(addr, cache[set][way].data);
     cache[set][way].valid = true;
     cache[set][way].tag = tag;
 
@@ -99,8 +100,6 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 void cache_write_data(hwaddr_t addr, void *data, uint8_t *mask){
     Assert(addr < HW_MEM_SIZE, "Physical address %x is outside of the physical memory!", addr);
 
-    DRAM_CACHE *dram_cache = (void *)hw_mem;
-
     cache_addr temp;
     temp.addr = addr;
     uint32_t set = temp.set;
@@ -114,8 +113,8 @@ void cache_write_data(hwaddr_t addr, void *data, uint8_t *mask){
         }
     }
 
-    /* Whatever write the dram */
-    memcpy_with_mask(dram_cache[tag][set], data, NR_BLO, mask);
+    /* Whatever write the l2_cache */
+    l2_cache_write(addr, data, mask);
 }
 
 
