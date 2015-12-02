@@ -55,6 +55,21 @@ typedef struct {
         };
     };
 
+    union{
+        uint32_t cr0;
+        struct{
+            unsigned pe:1;
+            unsigned mp:1;
+            unsigned em:1;
+            unsigned ts:1;
+            unsigned et:1;
+            unsigned   :26;
+            unsigned pg:1;
+        };
+    };
+
+
+
 } CPU_state;
 
 extern CPU_state cpu;
