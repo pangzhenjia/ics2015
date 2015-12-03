@@ -65,6 +65,7 @@ typedef struct {
             unsigned base :32;
         } _gdtr;
     };
+
     union{
         uint32_t cr0;
         struct{
@@ -77,12 +78,19 @@ typedef struct {
             unsigned pg:1;
         } CR0;
     };
+    
+    union{
+        struct{
+            unsigned rpl:2;
+            unsigned ti :1;
+            unsigned index : 13;
+        } Sreg[4];
 
-    struct{
-        unsigned rpl:2;
-        unsigned ti :1;
-        unsigned index : 13;
-    } cs, ds, ss, es;
+        uint32_t CS;
+        uint32_t DS;
+        uint32_t SS;
+        uint32_t ES;
+    };
 
 } CPU_state;
 
