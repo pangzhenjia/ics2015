@@ -28,10 +28,20 @@ void init_cpu_eflags(){
     cpu.eflags = 0x00000002;
 }
 
+void init_cpu_cr0(){
+    cpu.cr0 = 0;
+}
+
+/* Initialize the register */
+void init_cpu_reg(){
+    void init_cpu_eflags();
+
+    void init_cpu_cr0();
+
+}
+
 void init_monitor(int argc, char *argv[]) {
 	/* Perform some global initialization */
-
-    init_cpu_eflags();
 
 	/* Open the log file. */
 	init_log();
@@ -99,4 +109,7 @@ void restart() {
 
     /* Initialize CACHE. */
     init_cache();
+
+    /* Initialize REG */
+    init_cpu_reg();
 }

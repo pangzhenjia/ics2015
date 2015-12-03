@@ -36,7 +36,9 @@ typedef struct {
             union{uint32_t edi; uint16_t di;};
         };
     };
+
 	swaddr_t eip;
+
     union{
         uint32_t eflags;
         struct{
@@ -55,6 +57,15 @@ typedef struct {
         };
     };
 
+    /* for segment */
+    union{
+        uint64_t gdtr:48;
+        struct {
+            unsigned limit:16;
+            unsigned base :32;
+        } _gdtr;
+    };
+
     union{
         uint32_t cr0;
         struct{
@@ -68,7 +79,13 @@ typedef struct {
         };
     };
 
-
+    union{
+        struct{
+            unsigned rpl:2;
+            unsigned ti :1;
+            unsigned index : 13;
+        }seg_reg[4];
+    };
 
 } CPU_state;
 
