@@ -29,12 +29,7 @@ void init_cpu_eflags(){
 }
 
 void init_cpu_cr0(){
-    cpu.cr0.pe = 0;
-    cpu.cr0.mp = 0;
-    cpu.cr0.em = 0;
-    cpu.cr0.ts = 0;
-    cpu.cr0.et = 0;
-    cpu.cr0.pg = 0;
+    cpu.cr0 = 0;
 }
 
 /* Initialize the register */
