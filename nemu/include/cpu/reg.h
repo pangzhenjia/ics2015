@@ -66,26 +66,21 @@ typedef struct {
         } _gdtr;
     };
 
-    union{
-        uint32_t cr0;
-        struct{
-            unsigned pe:1;
-            unsigned mp:1;
-            unsigned em:1;
-            unsigned ts:1;
-            unsigned et:1;
-            unsigned   :26;
-            unsigned pg:1;
-        };
-    };
+    struct{
+        unsigned pe:1;
+        unsigned mp:1;
+        unsigned em:1;
+        unsigned ts:1;
+        unsigned et:1;
+        unsigned   :26;
+        unsigned pg:1;
+    } cr0;
 
-    union{
-        struct{
-            unsigned rpl:2;
-            unsigned ti :1;
-            unsigned index : 13;
-        }seg_reg[4];
-    };
+    struct{
+        unsigned rpl:2;
+        unsigned ti :1;
+        unsigned index : 13;
+    } cs, ds, ss, es;
 
 } CPU_state;
 

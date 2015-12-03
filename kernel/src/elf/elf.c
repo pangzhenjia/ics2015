@@ -5,6 +5,7 @@
 #include <elf.h>
 
 #define ELF_OFFSET_IN_DISK 0
+#define ELF_START ((void *)0)
 
 #ifdef HAS_DEVICE
 void ide_read(uint8_t *, uint32_t, uint32_t);
@@ -51,7 +52,11 @@ uint32_t loader() {
 			 */
             uint8_t new_buf[ ph[i].p_filesz ];
             ramdisk_read(new_buf, ph[i].p_offset, ph[i].p_filesz);
-            ramdisk_write(new_buf, ph[i].p_vaddr, ph[i].p_filesz);
+
+            //ramdisk_write(new_buf, ph[i].p_vaddr, ph[i].p_filesz);
+
+            memcpy(ELF_START + ph[i].p_vaddr, new_buf, ph[i].p_filesz);
+
 			if(ph[i].p_flags == PF_W){
                 int size = ph[i].p_memsz - ph[i].p_filesz;
                 uint8_t bss[size];
@@ -59,7 +64,12 @@ uint32_t loader() {
                 for(j=0; j<size; j++){
                     bss[j] = 0;
                 }
-                ramdisk_write(bss, (ph[i].p_vaddr + ph[i].p_filesz), size);
+                uint32_t bss_off = ph[i].p_vaddr + ph[i].p_filesz;
+
+                //ramdisk_write(bss, (ph[i].p_vaddr + ph[i].p_filesz), size);
+
+                memcpy(ELF_START + bss_off, bss, size);
+
             }
 			 
 			/* TODO: zero the memory region 
