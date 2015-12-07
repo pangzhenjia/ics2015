@@ -10,7 +10,7 @@ static void do_execute(){
     MEM_W( reg_l(R_ESP), val);
 #else
     reg_l(R_ESP) -= 4;
-    swaddr_write(reg_l(R_ESP), 4, val);
+    swaddr_write(reg_l(R_ESP), 4, SR_SS, val);
 #endif
 
 }

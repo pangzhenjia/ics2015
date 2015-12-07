@@ -140,19 +140,19 @@ void init_stack(swaddr_t eip, uint32_t ebp){
     }
     int i = 0;
     for(i = 0; i < 4; i++){
-        stack_frame.args[i] = swaddr_read(ebp + 8 + 4*i, 4);
+        stack_frame.args[i] = swaddr_read(ebp + 8 + 4*i, 4, SR_SS);
     }
 }
 
 int reset_stack(){
-    uint32_t ebp = swaddr_read(stack_frame.prev_ebp, 4);
+    uint32_t ebp = swaddr_read(stack_frame.prev_ebp, 4, SR_SS);
     if(ebp == 0){ return 0; }
-    stack_frame.ret_addr = swaddr_read(stack_frame.prev_ebp + 4, 4);
+    stack_frame.ret_addr = swaddr_read(stack_frame.prev_ebp + 4, 4, SR_SS);
     stack_frame.prev_ebp = ebp;
-    if(swaddr_read(ebp, 4) == 0){ return 1; }
+    if(swaddr_read(ebp, 4, SR_SS) == 0){ return 1; }
     int i;
     for(i = 0; i < 4; i++){
-        stack_frame.args[i] = swaddr_read(ebp + 8 + 4*i, 4);
+        stack_frame.args[i] = swaddr_read(ebp + 8 + 4*i, 4, SR_SS);
     }
     return 1;
 }

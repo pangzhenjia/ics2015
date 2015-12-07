@@ -203,7 +203,7 @@ uint32_t eval(uint32_t p, uint32_t q) {
                     return -eval(p+1,q);
                 }
                 else if(tokens[p].type == '*'){
-                    return swaddr_read(eval(p+1, q), 4);
+                    return swaddr_read(eval(p+1, q), 4, SR_DS);
                 }
                 else{
                     return !eval(p+1,q);

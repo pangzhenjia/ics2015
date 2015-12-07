@@ -86,7 +86,7 @@ static int cmd_x(char *args){
     uint32_t value = cmd_p(expr), result = 0;
     int i = 0;
     for( ; i<num; i++){
-        result = swaddr_read(value,4);
+        result = swaddr_read(value,4, SR_DS);
         printf("0x%08x\n", result);
         value += 4;
     }
