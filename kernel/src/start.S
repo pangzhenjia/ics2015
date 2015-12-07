@@ -28,7 +28,7 @@
 	#ifdef IA32_PAGE
 	#	define KOFFSET 0xc0000000
 	#	define va_to_pa(x) (x - KOFFSET)
-e#else
+    #else
 	#	define va_to_pa(x) (x)
 	#endif
 
