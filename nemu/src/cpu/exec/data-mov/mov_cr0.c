@@ -2,7 +2,7 @@
 
 int mov_r2cr(swaddr_t eip){
     int len = decode_rm_l(eip + 1);
-    printf("yes!\n");
+    printf("len is %d!\n", len);
     cpu.cr0 = op_src -> val;
     return len+1;
 }

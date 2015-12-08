@@ -1,7 +1,6 @@
 #include "cpu/exec/helper.h"
 
 int lgdt_rm2r_l(swaddr_t eip){
-    printf("yes!\n");
     cpu._gdtr.limit = instr_fetch(eip, 2);
     cpu._gdtr.base  = instr_fetch(eip+2, 4);
     return 6;
