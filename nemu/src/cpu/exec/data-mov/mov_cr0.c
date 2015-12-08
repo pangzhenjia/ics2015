@@ -2,6 +2,7 @@
 
 int mov_r2cr(swaddr_t eip){
     int len = decode_rm_l(eip + 1);
+    printf("eax is 0x%x, cr0 is 0x%x\n", cpu.eax, cpu.cr0);
     printf("len is %d!\n", len);
     cpu.cr0 = op_src -> val;
     return len+1;
@@ -13,7 +14,6 @@ int mov_r2cr(swaddr_t eip){
 int mov_cr2r(swaddr_t eip){
     int len = decode_rm_l(eip + 1);
     OPERAND_W(op_src, cpu.cr0);
-    printf("eax is 0x%x, cr0 is 0x%x\n", cpu.eax, cpu.cr0);
     return len+1;
 }
 
