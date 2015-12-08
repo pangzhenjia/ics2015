@@ -1,8 +1,8 @@
 #include "cpu/exec/helper.h"
 
 int mov_r2cr(swaddr_t eip){
-    printf("yes!\n");
     int len = decode_rm_l(eip + 1);
+    printf("yes!\n");
     cpu.cr0 = op_src -> val;
     return len+1;
 }
