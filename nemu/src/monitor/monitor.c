@@ -24,19 +24,16 @@ static void welcome() {
 			exec_file);
 }
 
-void init_cpu_eflags(){
-    cpu.eflags = 0x00000002;
-}
-
-void init_cpu_cr0(){
-    cpu.cr0 = 0;
-}
 
 /* Initialize the register */
 void init_cpu_reg(){
-    void init_cpu_eflags();
+    cpu.eflags = 0x00000002;
 
-    void init_cpu_cr0();
+    cpu.cr0 = 0;
+
+    cpu.Sreg[SR_CS].base = 0;
+    cpu.Sreg[SR_CS].limit = 0xffffffff;
+
 
 }
 
