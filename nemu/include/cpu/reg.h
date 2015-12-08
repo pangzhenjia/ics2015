@@ -84,23 +84,22 @@ typedef struct {
         } CR0;
     };
     
-    union{
-        struct{
-            union{
-                uint16_t val;
-                struct{
-                unsigned rpl:2;
-                unsigned ti :1;
-                unsigned index : 13;
-                };
-            };
-        } Sreg[4];
+    struct{
+        union{
+            uint16_t val;
 
-        uint16_t ES;
-        uint16_t CS;
-        uint16_t SS;
-        uint16_t DS;
-    };
+            struct{
+            unsigned rpl:2;
+            unsigned ti :1;
+            unsigned index : 13;
+            };
+        };
+        struct{
+            uint32_t base;
+            uint32_t limit;
+        };
+
+    } Sreg[4];
     
     struct{
         uint32_t base;

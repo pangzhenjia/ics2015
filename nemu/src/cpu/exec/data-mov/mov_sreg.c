@@ -1,6 +1,6 @@
 #include "cpu/exec/helper.h"
 
-uint32_t decode_gdt(uint32_t index, size_t len);
+uint64_t decode_gdt(uint32_t index);
 
 int mov_rm2sr(swaddr_t eip){
     /* decode rm */
@@ -12,8 +12,9 @@ int mov_rm2sr(swaddr_t eip){
     cpu.Sreg[sr_index].val = op_src -> val;
 
     /* decode sreg */
-    uint32_t seg_base = decode_gdt(cpu.Sreg[sr_index].index, 4);
-    cpu.sr_cache[sr_index].base = seg_base;
+    uint64_t base_limit = decode_gdt(cpu.Sreg[sr_index].index);
+    cpu.Sreg[sr_index].base = base_limit >> 32;
+    cpu.Sreg[sr_index].limit = (base_limit << 32) >> 32;
 
     return len+1;
 }
