@@ -54,7 +54,7 @@ void init_cache(){
 }
 
 void cache_read_data(hwaddr_t addr, void *data){
-    Assert(addr < HW_MEM_SIZE, "Physical address %x is outside of the physical memory!", addr);
+    Assert(addr < HW_MEM_SIZE, "Physical address 0x%x is outside of the physical memory!", addr);
 
     cache_addr temp;
     temp.addr = addr;
@@ -98,7 +98,7 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 
 
 void cache_write_data(hwaddr_t addr, void *data, uint8_t *mask){
-    Assert(addr < HW_MEM_SIZE, "Physical address %x is outside of the physical memory!", addr);
+    Assert(addr < HW_MEM_SIZE, "Physical address 0x%x is outside of the physical memory!", addr);
 
     cache_addr temp;
     temp.addr = addr;
@@ -139,7 +139,7 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data) {
 
 
 void print_cache(hwaddr_t addr){
-    Assert(addr < HW_MEM_SIZE, "Physical address %x is outside of the physical memory!", addr);
+    Assert(addr < HW_MEM_SIZE, "Physical address 0x%x is outside of the physical memory!", addr);
 
     cache_addr temp;
     temp.addr = addr;
