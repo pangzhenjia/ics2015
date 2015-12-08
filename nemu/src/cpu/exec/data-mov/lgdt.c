@@ -2,9 +2,8 @@
 
 int lgdt_rm2r_l(swaddr_t eip){
     printf("yes!\n");
-    uint32_t addr = instr_fetch(eip+1, 4);
+    uint32_t addr = instr_fetch(eip, 4);
     printf("addr is 0x%x\n", addr);
-    addr >>= 8;
     cpu._gdtr.limit = hwaddr_read(addr, 2);
     cpu._gdtr.base  = hwaddr_read(addr+2, 4);
     return 4;
