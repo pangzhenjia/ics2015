@@ -35,10 +35,7 @@ uint32_t seg_translate(swaddr_t addr, size_t len, uint8_t sreg){
 
     if(cpu.CR0.pe == 0){ return addr; }
 
-    uint32_t index = cpu.Sreg[sreg].index;
-
-    uint64_t base_limit = decode_gdt(index);
-    uint32_t seg_base = base_limit >> 32;
+    uint32_t seg_base = cpu.Sreg[sreg].base;
     printf("seg_base is 0x%x\n", seg_base);
 
     return addr + seg_base;
