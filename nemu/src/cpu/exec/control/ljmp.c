@@ -1,6 +1,7 @@
 #include "cpu/exec/helper.h"
 
 int ljmp(swaddr_t eip){
+    printf("yes!\n");
     uint16_t cs = instr_fetch(eip+1, 2);
     cpu.Sreg[SR_CS].val = cs;
 
