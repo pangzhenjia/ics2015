@@ -13,6 +13,7 @@ int mov_r2cr0(swaddr_t eip){
 int mov_cr02r(swaddr_t eip){
     int len = decode_rm_l(eip + 1);
     OPERAND_W(op_src, cpu.cr0);
+	print_asm_template2();
     return len+1;
 }
 
