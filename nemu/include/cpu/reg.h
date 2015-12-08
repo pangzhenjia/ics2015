@@ -10,7 +10,7 @@ enum { R_EAX, R_ECX, R_EDX, R_EBX, R_ESP, R_EBP, R_ESI, R_EDI };
 enum { R_AX, R_CX, R_DX, R_BX, R_SP, R_BP, R_SI, R_DI };
 enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
 
-enum { SR_CS, SR_DS, SR_SS, SR_ES };
+enum { SR_ES, SR_CS, SR_SS, SR_DS };
 
 /* TODO: Re-organize the `CPU_state' structure to match the register
  * encoding scheme in i386 instruction format. For example, if we
@@ -86,16 +86,26 @@ typedef struct {
     
     union{
         struct{
-            unsigned rpl:2;
-            unsigned ti :1;
-            unsigned index : 13;
+            union{
+                uint16_t val;
+                struct{
+                unsigned rpl:2;
+                unsigned ti :1;
+                unsigned index : 13;
+                };
+            };
         } Sreg[4];
 
-        uint32_t CS;
-        uint32_t DS;
-        uint32_t SS;
-        uint32_t ES;
+        uint16_t ES;
+        uint16_t CS;
+        uint16_t SS;
+        uint16_t DS;
     };
+    
+    struct{
+        uint32_t base;
+        uint32_t limit;
+    }sr_cache[4];
 
 } CPU_state;
 
