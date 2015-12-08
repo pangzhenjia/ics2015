@@ -39,6 +39,7 @@ uint32_t seg_translate(swaddr_t addr, size_t len, uint8_t sreg){
 
     uint64_t base_limit = decode_gdt(index);
     uint32_t seg_base = base_limit >> 32;
+    printf("seg_base is 0x%x\n", seg_base);
 
     return addr + seg_base;
 }
