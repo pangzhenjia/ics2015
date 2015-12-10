@@ -8,7 +8,7 @@ int mov_rm2sr(swaddr_t eip){
 
     /* decode sreg */
     uint8_t addr = instr_fetch(eip + 1, 1);
-    int sr_index = (addr << 2) >> 5;
+    int sr_index = (addr >> 2) & 7;
     cpu.Sreg[sr_index].val = op_src -> val;
 
     /* decode sreg */
