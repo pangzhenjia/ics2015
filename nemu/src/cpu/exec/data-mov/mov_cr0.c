@@ -2,7 +2,17 @@
 
 int mov_r2cr(swaddr_t eip){
     int len = decode_rm_l(eip + 1);
-    cpu.cr0 = op_src -> val;
+    uint8_t instr = instr_fetch(eip+1, 1);
+    instr = (instr << 2) >> 5;
+    if(instr == 0){
+        cpu.cr0 = op_src -> val;
+    }
+    else if(instr == 3){
+        cpu.cr3 = op_src -> val;
+    }
+    else {
+        Assert(0, "mov_cr fault!\n");
+    }
     return len+1;
 }
 
@@ -11,7 +21,18 @@ int mov_r2cr(swaddr_t eip){
 
 int mov_cr2r(swaddr_t eip){
     int len = decode_rm_l(eip + 1);
-    OPERAND_W(op_src, cpu.cr0);
+    uint8_t instr = instr_fetch(eip+1, 1);
+    instr = (instr << 2) >> 5;
+    if(instr == 0){
+        OPERAND_W(op_src, cpu.cr0);
+    }
+    else if(instr == 3){
+        OPERAND_W(op_src, cpu.cr3);
+    }
+    else {
+        Assert(0, "mov_cr fault!\n");
+    }
+        
     return len+1;
 }
 
