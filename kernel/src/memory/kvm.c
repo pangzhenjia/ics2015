@@ -63,6 +63,7 @@ void init_page(void) {
 	cr0.val = read_cr0();
 	cr0.paging = 1;
 	write_cr0(cr0.val);
+    panic("should not reach here");
 }
 
 /* GDT in the kernel's memory, whose virtual memory is greater than 0xC0000000. */
