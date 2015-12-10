@@ -7,12 +7,7 @@ int ljmp(swaddr_t eip){
     cpu.eip = addr;
 
     uint16_t cs = instr_fetch(eip+5, 2);
-    printf("cs is 0x%x\n", cs);
     cpu.Sreg[SR_CS].val = cs;
     
-    uint32_t limit = decode_gdt(cpu.Sreg[SR_CS].index);
-    uint32_t base  = decode_gdt(cpu.Sreg[SR_CS].index) >> 32;
-    printf("limit is 0x%x, base is 0x%x\n", limit, base);
-
     return 0;
 }
