@@ -22,8 +22,8 @@ int mov_r2cr(swaddr_t eip){
 int mov_cr2r(swaddr_t eip){
     int len = decode_rm_l(eip + 1);
     uint8_t instr = instr_fetch(eip+1, 1);
-    printf("instr is 0x%x\n", instr);
     instr = (instr << 2) >> 5;
+    printf("instr is 0x%x\n", instr);
     if(instr == 0){
         OPERAND_W(op_src, cpu.cr0);
     }
