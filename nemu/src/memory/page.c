@@ -34,11 +34,17 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     uint32_t pde_val = hwaddr_read(pde_addr, 4);
     PDE pde;
     pde.val = pde_val;
+    if(!pde.present){
+        Assert(0, "PageDirectory fault");
+    }
 
     uint32_t pte_addr = (pde.page_frame << 12) | (page << 2);
     uint32_t pte_val = hwaddr_read(pte_addr, 4);
     PTE pte; 
     pte.val = pte_val;
+    if(!pte.present){
+        Assert(0, "PageTable fault");
+    }
 
     uint32_t hw_addr = (pte.page_frame << 12) | offset;
     return hw_addr;
