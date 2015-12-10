@@ -13,8 +13,6 @@ void ide_read(uint8_t *, uint32_t, uint32_t);
 void ramdisk_read(uint8_t *, uint32_t, uint32_t);
 #endif
 
-void ramdisk_write(uint8_t *, uint32_t, uint32_t);
-
 #define STACK_SIZE (1 << 20)
 
 void create_video_mapping();
@@ -47,15 +45,21 @@ uint32_t loader() {
 		/* Scan the program header table, load each segment into memory */
 		if(ph[i].p_type == PT_LOAD) {
 
-			/* TODO: read the content of the segment from the ELF file 
-			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
-			 */
+            /* read file in new_buf */
             uint8_t new_buf[ ph[i].p_filesz ];
             ramdisk_read(new_buf, ph[i].p_offset, ph[i].p_filesz);
+            
+            uint32_t hw_addr;
 
-            //ramdisk_write(new_buf, ph[i].p_vaddr, ph[i].p_filesz);
+#ifdef IA32_PAGE
+            /* get memory hw_addr */
+            hw_addr = mm_malloc(ph[i].p_vaddr, ph[i].p_memsz);
+#else
+            hw_addr = ph[i].p_vaddr;
+#endif
 
-            memcpy(ELF_START + ph[i].p_vaddr, new_buf, ph[i].p_filesz);
+            memcpy(ELF_START + hw_addr, new_buf, ph[i].p_filesz);
+            memset(ELF_START + hw_addr + ph[i].p_filesz, 0, ph[i].p_memsz - ph[i].p_filesz);
 
 			if(ph[i].p_flags == PF_W){
                 int size = ph[i].p_memsz - ph[i].p_filesz;
@@ -65,8 +69,6 @@ uint32_t loader() {
                     bss[j] = 0;
                 }
                 uint32_t bss_off = ph[i].p_vaddr + ph[i].p_filesz;
-
-                //ramdisk_write(bss, (ph[i].p_vaddr + ph[i].p_filesz), size);
 
                 memcpy(ELF_START + bss_off, bss, size);
 
