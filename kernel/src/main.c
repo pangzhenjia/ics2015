@@ -24,6 +24,7 @@ void init() {
 	/* We must set up kernel virtual memory first because our kernel thinks it 
 	 * is located at 0xc0100000, which is set by the linking options in Makefile.
 	 * Before setting up correct paging, no global variable can be used. */
+    panic("should not reach here");
 	init_page();
 
 	/* After paging is enabled, transform %esp to virtual address. */
@@ -38,7 +39,6 @@ void init() {
 
 /* Initialization phase 2 */
 void init_cond() {
-    panic("should not reach here");
 #ifdef IA32_INTR
 	/* Reset the GDT, since the old GDT in start.S cannot be used in the future. */
 	init_segment();
