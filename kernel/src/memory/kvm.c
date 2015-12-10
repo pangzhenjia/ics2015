@@ -34,7 +34,6 @@ void init_page(void) {
 	 */
 
     /* \"std;\ */
-
 	asm volatile ("\
 	 1: stosl;\
 		subl %0, %%eax;\
