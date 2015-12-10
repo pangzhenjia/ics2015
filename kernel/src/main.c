@@ -38,6 +38,7 @@ void init() {
 
 /* Initialization phase 2 */
 void init_cond() {
+    panic("should not reach here");
 #ifdef IA32_INTR
 	/* Reset the GDT, since the old GDT in start.S cannot be used in the future. */
 	init_segment();
@@ -80,7 +81,6 @@ void init_cond() {
 
 	/* Load the program. */
 	uint32_t eip = loader();
-    panic("should not reach here");
 	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
 	/* Read data in the video memory to check whether 
