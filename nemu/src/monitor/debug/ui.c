@@ -54,7 +54,7 @@ static int cmd_si(char *args){
  static int cmd_info(char *args){
      char *subcmd = strtok(NULL, " ");
      if (strcmp(subcmd, "r") == 0){
-         printf("\teax:0x%8x\n\tebx:0x%8x\n\tecx:0x%8x\n\tedx:0x%8x\n\tebp:0x%8x\n\tesp:0x%8x\n\tedi:0x%8x\n\tesi:0x%8x\n\t", cpu.eax, cpu.ebx, cpu.ecx, cpu.edx, cpu.ebp, cpu.esp, cpu.edi, cpu.esi );
+         printf("eax\t:0x%08x\nebx\t:0x%08x\necx\t:0x%08x\nedx\t:0x%08x\nebp\t:0x%08x\nesp\t:0x%08x\nedi\t:0x%08x\nesi\t:0x%08x\n", cpu.eax, cpu.ebx, cpu.ecx, cpu.edx, cpu.ebp, cpu.esp, cpu.edi, cpu.esi );
      }
      else if(strcmp(subcmd, "w") == 0){
          info_wp();
