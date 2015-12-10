@@ -61,22 +61,6 @@ uint32_t loader() {
             memcpy(ELF_START + hw_addr, new_buf, ph[i].p_filesz);
             memset(ELF_START + hw_addr + ph[i].p_filesz, 0, ph[i].p_memsz - ph[i].p_filesz);
 
-			if(ph[i].p_flags == PF_W){
-                int size = ph[i].p_memsz - ph[i].p_filesz;
-                uint8_t bss[size];
-                int j;
-                for(j=0; j<size; j++){
-                    bss[j] = 0;
-                }
-                uint32_t bss_off = ph[i].p_vaddr + ph[i].p_filesz;
-
-                memcpy(ELF_START + bss_off, bss, size);
-
-            }
-			 
-			/* TODO: zero the memory region 
-			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
-			 */
 
 
 #ifdef IA32_PAGE
