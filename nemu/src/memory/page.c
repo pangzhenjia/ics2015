@@ -14,7 +14,7 @@ struct {
 uint32_t page_translate(lnaddr_t addr, size_t len){
     /* if data cross the page boundary */
     if ((addr % PAGE_SIZE) + len > PAGE_SIZE){
-        Assert(0, "data cross the page boundary!\n");
+        Assert(0, "eip: 0x%x\ndata cross the page boundary!\n", cpu.eip);
     }
 
     /* no page mode */
@@ -35,7 +35,7 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     PDE pde;
     pde.val = pde_val;
     if(!pde.present){
-        Assert(0, "PageDirectory fault");
+        Assert(0, "eip: 0x%x\nPageDirectory fault", cpu.eip);
     }
 
     uint32_t pte_addr = (pde.page_frame << 12) | (page << 2);
@@ -43,7 +43,7 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     PTE pte; 
     pte.val = pte_val;
     if(!pte.present){
-        Assert(0, "PageTable fault");
+        Assert(0, "eip: 0x%x\nPageTable fault", cpu.eip);
     }
 
     uint32_t hw_addr = (pte.page_frame << 12) | offset;
