@@ -11,7 +11,7 @@ int mov_r2cr(swaddr_t eip){
         cpu.cr3 = op_src -> val;
     }
     else {
-        Assert(0, "mov_r2cr %d fault!\n", instr);
+        Assert(0, "eip: 0x%x\nmov_r2cr %d fault!\n", cpu.eip, instr);
     }
     return len+1;
 }
@@ -30,7 +30,7 @@ int mov_cr2r(swaddr_t eip){
         OPERAND_W(op_src, cpu.cr3);
     }
     else {
-        Assert(0, "mov_cr2r %d fault!\n", instr);
+        Assert(0, "eip: 0x%x\nmov_cr2r %d fault!\n", cpu.eip, instr);
     }
         
     return len+1;
