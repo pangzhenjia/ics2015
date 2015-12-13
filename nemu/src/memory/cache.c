@@ -1,4 +1,5 @@
 #include "common.h"
+#include "nemu.h"
 #include "misc.h"
 #include <stdlib.h>
 
@@ -27,7 +28,7 @@ typedef union{
 #define NR_SET (1 << SET_WIDTH)
 #define NR_TAG (1 << TAG_WIDTH)
 
-#define HW_MEM_SIZE (1 << DRAM_WIDTH)
+//#define HW_MEM_SIZE (1 << DRAM_WIDTH)
 
 typedef struct{
     uint8_t data[NR_BLO];
@@ -98,7 +99,7 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 
 
 void cache_write_data(hwaddr_t addr, void *data, uint8_t *mask){
-    Assert(addr < HW_MEM_SIZE, "Physical address 0x%x is outside of the physical memory!", addr);
+    Assert(addr < HW_MEM_SIZE, "eip: 0x%x\nPhysical address 0x%x is outside of the physical memory!", cpu.eip, addr);
 
     cache_addr temp;
     temp.addr = addr;
