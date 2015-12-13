@@ -5,7 +5,6 @@ uint64_t decode_gdt(uint32_t index){
 
     Assert(index < cpu._gdtr.limit, "index 0x%x in gdtr is out of range!", index);
     uint32_t base = cpu._gdtr.base;
-    printf("eip: 0x%x, base is 0x%x\n", cpu.eip, base);
     uint32_t addr = base + index * 8;
     
     uint32_t val1 = lnaddr_read(addr, 4);
