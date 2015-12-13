@@ -3,7 +3,7 @@
 int mov_r2cr(swaddr_t eip){
     int len = decode_rm_l(eip + 1);
     uint8_t instr = instr_fetch(eip+1, 1);
-    instr = (instr >> 2) & 7;
+    instr = (instr >> 3) & 7;
     if(instr == 0){
         cpu.cr0 = op_src -> val;
     }
@@ -22,7 +22,7 @@ int mov_r2cr(swaddr_t eip){
 int mov_cr2r(swaddr_t eip){
     int len = decode_rm_l(eip + 1);
     uint8_t instr = instr_fetch(eip+1, 1);
-    instr = (instr >> 2) & 7;
+    instr = (instr >> 3) & 7;
     if(instr == 0){
         OPERAND_W(op_src, cpu.cr0);
     }
