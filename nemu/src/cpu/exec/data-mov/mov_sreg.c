@@ -8,10 +8,10 @@ int mov_rm2sr(swaddr_t eip){
 
     /* decode sreg */
     uint8_t addr = instr_fetch(eip + 1, 1);
-    int sr_index = (addr >> 2) & 7;
+    int sr_index = (addr >> 3) & 7;
     cpu.Sreg[sr_index].val = op_src -> val;
 
-    /* decode sreg */
+    /* set sreg base and limit */
     uint64_t base_limit = decode_gdt(cpu.Sreg[sr_index].index);
     cpu.Sreg[sr_index].base = base_limit >> 32;
     cpu.Sreg[sr_index].limit = (base_limit << 32) >> 32;
