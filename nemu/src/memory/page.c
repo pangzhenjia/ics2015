@@ -28,7 +28,7 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     uint32_t page   = page_addr.page;
     uint32_t offset = page_addr.offset;
     
-    uint32_t cr3_addr = (cpu.cr3 >> 12) << 12;
+    uint32_t cr3_addr = cpu.cr3 & (~0xfff);
 
     uint32_t pde_addr = cr3_addr | (dir << 2);
     uint32_t pde_val = hwaddr_read(pde_addr, 4);
