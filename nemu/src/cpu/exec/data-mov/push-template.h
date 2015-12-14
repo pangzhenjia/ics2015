@@ -8,7 +8,6 @@ static void do_execute(){
 #if DATA_BYTE == 2 || DATA_BYTE == 4
     reg_l(R_ESP) -= DATA_BYTE;
     printf("SR base is 0x%x\n", cpu.Sreg[SR_SS].base);
-    printf("ds: 0x%x\nes: 0x%x\nss: 0x%x\n", cpu.Sreg[SR_DS].val, cpu.Sreg[SR_ES].val, cpu.Sreg[SR_SS].val);
     MEM_W( reg_l(R_ESP), val);
 #else
     reg_l(R_ESP) -= 4;
