@@ -10,7 +10,7 @@ uint64_t decode_gdt(uint32_t index){
     uint32_t val1 = hwaddr_read(addr, 4);
     uint32_t base1 = val1 >> 16;
     uint32_t limit1 = val1 & 0xffff;
-    printf("base1 is 0x%x\n", base1);
+    printf("val1 is 0x%x\n", val1);
 
     uint32_t val2 = hwaddr_read(addr + 4, 4);
     uint32_t base2 = val2 & 0xff;
