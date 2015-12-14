@@ -6,13 +6,12 @@ uint64_t decode_gdt(uint32_t index){
     Assert(index < cpu._gdtr.limit, "index 0x%x in gdtr is out of range!", index);
     uint32_t base = cpu._gdtr.base;
     uint32_t addr = base + index * 8;
-    printf("addr is 0x%x\n", addr);
     
-    uint32_t val1 = lnaddr_read(addr, 4);
+    uint32_t val1 = hwaddr_read(addr, 4);
     uint32_t base1 = val1 >> 16;
     uint32_t limit1 = val1 & 0xffff;
 
-    uint32_t val2 = lnaddr_read(addr + 4, 4);
+    uint32_t val2 = hwaddr_read(addr + 4, 4);
     uint32_t base2 = val2 & 0xff;
     base2 = base2 << 16;
     uint32_t base3 = val2 & 0xff000000;
