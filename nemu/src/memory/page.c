@@ -24,6 +24,7 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
 
     if(cpu.CR0.pg == 1){
         printf("eip: 0x%x\nNow, I'm using page!\n", cpu.eip);
+        assert(0);
     }
 
     /* page translate */
