@@ -45,6 +45,7 @@
 #include "string/stos.h"
 #include "string/cmps.h"
 #include "string/cld.h"
+#include "string/std.h"
 
 #include "misc/misc.h"
 
