@@ -1,8 +1,12 @@
 #include "cpu/exec/helper.h"
 
 int lgdt_rm2r_l(swaddr_t eip){
-    cpu._gdtr.limit = instr_fetch(eip+1, 1);
-    cpu._gdtr.base  = instr_fetch(eip+2, 4);
+    uint32_t addr  = instr_fetch(eip+2, 4);
+    uint16_t limit = hwaddr_read(addr, 2);
+    uint32_t base  = hwaddr_read(addr + 2, 4);
+
+    cpu._gdtr.limit = limit / 8;
+    cpu._gdtr.base = base;
     return 6;
 }
 
