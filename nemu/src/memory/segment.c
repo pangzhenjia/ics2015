@@ -3,7 +3,7 @@
 
 uint64_t decode_gdt(uint32_t index){
 
-    Assert(index < cpu._gdtr.limit, "index 0x%x in gdtr is out of range!", index);
+    Assert(index <= cpu._gdtr.limit, "index 0x%x in gdtr is out of range!", index);
     uint32_t base = cpu._gdtr.base;
     uint32_t addr = base + index * 8;
     
