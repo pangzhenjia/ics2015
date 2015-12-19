@@ -51,12 +51,12 @@ uint32_t loader() {
             
             uint32_t hw_addr;
 
-//#ifdef IA32_PAGE
+#ifdef IA32_PAGE
             /* get memory hw_addr */
             hw_addr = mm_malloc(ph[i].p_vaddr, ph[i].p_memsz);
-//#else
-//            hw_addr = ph[i].p_vaddr;
-//#endif
+#else
+            hw_addr = ph[i].p_vaddr;
+#endif
 
             memcpy(ELF_START + hw_addr, new_buf, ph[i].p_filesz);
             memset(ELF_START + hw_addr + ph[i].p_filesz, 0, ph[i].p_memsz - ph[i].p_filesz);
