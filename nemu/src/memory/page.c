@@ -52,7 +52,7 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
         Assert(0, "eip: 0x%x\nPageTable fault", cpu.eip);
     }
 
-    uint32_t hw_addr = (pte.page_frame << 12) | offset;
+    uint32_t hw_addr = (pte.page_frame << 12) + offset;
 
     
     return hw_addr;
