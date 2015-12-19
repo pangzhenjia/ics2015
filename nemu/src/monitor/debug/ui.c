@@ -118,6 +118,14 @@ int cmd_cache(char *args){
     return 0;
 }
 
+extern uint32_t page_translate(lnaddr_t addr);
+int cmd_page(char *args){
+    lnaddr_t addr;
+    sscanf(args, "%x", &addr);
+    uint32_t t_addr = page_translate(addr);
+    printf("t_addr:\t 0x%x \n", t_addr);
+    return 0;
+}
 
 static int cmd_help(char *args);    
 
@@ -136,7 +144,8 @@ static struct {
     { "w", "set watch point", cmd_w},
     { "d", "delete the related wp", cmd_d},
     {"bt", "print out the info of stack_frame", cmd_bt},
-    {"cache", "print out the info of the specific block in the cache", cmd_cache} 
+    {"cache", "print out the info of the specific block in the cache", cmd_cache},
+    { "page", "print out the hwaddr by page_translate", cmd_page}
 
 	/* TODO: Add more commands */
 
