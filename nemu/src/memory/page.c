@@ -43,7 +43,7 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     PTE pte; 
     pte.val = pte_val;
 
-        printf("cr3_addr: 0x%x\n", cr3_addr);
+        printf("pde_addr: 0x%x\n", pde_addr);
         printf("pte_val: 0x%x\n", pte_addr);
     if((cpu.eip - 0x8048000) < 0x1000){
         printf("eip: 0x%x\n", cpu.eip);
