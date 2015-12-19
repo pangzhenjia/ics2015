@@ -32,6 +32,7 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     uint32_t dir    = page_addr.dir;
     uint32_t page   = page_addr.page;
     uint32_t offset = page_addr.offset;
+    printf("dir: 0x%x\npage: 0x%x\noffset: 0x%x\n", dir, page, offset);
    
     uint32_t cr3_addr = cpu.cr3 & (~0xfff);
 
