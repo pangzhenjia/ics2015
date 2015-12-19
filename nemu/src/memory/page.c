@@ -22,10 +22,10 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
         return addr;
     }
 
-    if(cpu.CR0.pg == 1){
-        printf("eip: 0x%x\nNow, I'm using page!\n", cpu.eip);
-        if(cpu.eip > 0x10057c){ assert(0); }
-    }
+//    if(cpu.CR0.pg == 1){
+//        printf("eip: 0x%x\nNow, I'm using page!\n", cpu.eip);
+//        if(cpu.eip > 0x10057c){ assert(0); }
+//    }
 
     /* page translate */
     page_addr.addr = addr;
