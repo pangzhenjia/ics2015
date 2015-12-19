@@ -42,17 +42,19 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     uint32_t pte_val = hwaddr_read(pte_addr, 4);
     PTE pte; 
     pte.val = pte_val;
+
+    if((cpu.eip - 0x8048000) < 0x1000){
+        printf("eip: 0x%x\n", cpu.eip);
+        printf("addr: 0x%x\n", addr);
+        printf("cr3_addr: 0x%x\n", cr3_addr);
+    }
+
     if(!pte.present){
         Assert(0, "eip: 0x%x\nPageTable fault", cpu.eip);
     }
 
     uint32_t hw_addr = (pte.page_frame << 12) | offset;
 
-    if(((cpu.eip - 0x8048000) < 0x1000) && (addr != hw_addr)){
-        printf("eip: 0x%x\n", cpu.eip);
-        printf("addr: 0x%x\n", addr);
-        printf("hw_addr: 0x%x\n", hw_addr);
-    }
     
     return hw_addr;
 }
