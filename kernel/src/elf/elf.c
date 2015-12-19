@@ -47,7 +47,7 @@ uint32_t loader() {
 
             /* read file in new_buf */
             uint8_t new_buf[ ph[i].p_filesz ];
-            ramdisk_read(new_buf, ph[i].p_offset, ph[i].p_filesz);
+            ramdisk_read(new_buf, ELF_OFFSET_IN_DISK + ph[i].p_offset, ph[i].p_filesz);
             
             uint32_t hw_addr;
 
