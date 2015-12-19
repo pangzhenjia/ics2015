@@ -38,7 +38,7 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
         Assert(0, "eip: 0x%x\nPageDirectory fault", cpu.eip);
     }
 
-    uint32_t pte_addr = (pde.page_frame << 12) | (page << 2);
+    uint32_t pte_addr = pde.val + page*4;
     uint32_t pte_val = hwaddr_read(pte_addr, 4);
     PTE pte; 
     pte.val = pte_val;
