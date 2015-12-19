@@ -33,14 +33,9 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     uint32_t page   = page_addr.page;
     uint32_t offset = page_addr.offset;
    
-    printf("addr: 0x%x\n", addr);
-
     uint32_t cr3_addr = cpu.cr3 & (~0xfff);
-    printf("cr3: 0x%x\n", cr3_addr);
 
     uint32_t pde_addr = cr3_addr | (dir << 2);
-    printf("pde_addr: 0x%x\n", pde_addr); 
-
     uint32_t pde_val = hwaddr_read(pde_addr, 4);
     PDE pde;
     pde.val = pde_val;
@@ -57,5 +52,9 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     }
 
     uint32_t hw_addr = (pte.page_frame << 12) | offset;
+
+    printf("addr: 0x%x\n", addr);
+    printf("hw_addr: 0x%x\n", hw_addr);
+
     return hw_addr;
 }
