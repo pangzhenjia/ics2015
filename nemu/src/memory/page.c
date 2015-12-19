@@ -47,6 +47,7 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
         printf("eip: 0x%x\n", cpu.eip);
         printf("addr: 0x%x\n", addr);
         printf("cr3_addr: 0x%x\n", cr3_addr);
+        printf("pde_addr: 0x%x\n", pde_addr);
     }
 
     if(!pte.present){
