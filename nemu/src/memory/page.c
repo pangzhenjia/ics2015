@@ -33,10 +33,10 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     uint32_t page   = page_addr.page;
     uint32_t offset = page_addr.offset;
    
-    printf("cr3: 0x%x\n", cpu.cr3);
     printf("addr: 0x%x\n", addr);
 
     uint32_t cr3_addr = cpu.CR3.page_directory_base;
+    printf("cr3: 0x%x\n", cr3_addr);
 
     uint32_t pde_addr = cr3_addr | (dir << 2);
     printf("pde_addr: 0x%x\n", pde_addr); 
