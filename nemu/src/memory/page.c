@@ -50,7 +50,7 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
 
     if((cpu.eip > 0x804800) && (addr != hw_addr)){
         printf("addr: 0x%x\n", addr);
-        printf("hw_addr: 0x%x\n", addr);
+        printf("hw_addr: 0x%x\n", hw_addr);
     }
     
     return hw_addr;
