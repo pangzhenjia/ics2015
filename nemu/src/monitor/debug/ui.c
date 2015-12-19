@@ -123,7 +123,7 @@ int cmd_page(char *args){
     lnaddr_t addr;
     sscanf(args, "%x", &addr);
     uint32_t t_addr = page_translate(addr, 4);
-    printf("t_addr:\t 0x%x \n", t_addr);
+    printf("addr:\t 0x%x \n", t_addr);
     return 0;
 }
 
