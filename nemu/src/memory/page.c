@@ -2,9 +2,9 @@
 #include "nemu.h"
 #include "x86-inc/mmu.h"
 
-struct {
+union {
     uint32_t addr;
-    union{
+    struct {
         uint32_t offset: 12;
         uint32_t page  : 10;
         uint32_t dir   : 10;
