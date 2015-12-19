@@ -122,8 +122,8 @@ extern uint32_t page_translate(lnaddr_t addr, size_t len);
 int cmd_page(char *args){
     lnaddr_t addr;
     sscanf(args, "%x", &addr);
-    uint32_t t_addr = page_translate(addr, 4);
-    printf("addr:\t 0x%x \n", t_addr);
+    uint32_t hwaddr = page_translate(addr, 4);
+    printf("hwaddr:\t 0x%x \n", hwaddr);
     return 0;
 }
 

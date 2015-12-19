@@ -168,3 +168,17 @@ void print_cache(hwaddr_t addr){
     /* Miss, print out the message */
     printf("No such addr in the cache\n");
 }
+
+
+#undef CACHE_WIDTH 
+#undef BLO_WIDTH 
+#undef WAY_WIDTH 
+#undef SET_WIDTH 
+
+#undef DRAM_WIDTH 
+#undef TAG_WIDTH 
+
+#undef NR_BLO 
+#undef NR_WAY 
+#undef NR_SET 
+#undef NR_TAG 
