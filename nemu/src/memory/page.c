@@ -52,9 +52,10 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     }
 
     uint32_t hw_addr = (pte.page_frame << 12) | offset;
+    printf("offset: 0x%x\n", offset);
 
     printf("addr: 0x%x\n", addr);
     printf("hw_addr: 0x%x\n", hw_addr);
-
+    
     return hw_addr;
 }
