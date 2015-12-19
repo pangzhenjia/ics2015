@@ -39,6 +39,8 @@ uint32_t page_translate(lnaddr_t addr, size_t len){
     uint32_t cr3_addr = cpu.CR3.page_directory_base;
 
     uint32_t pde_addr = cr3_addr | (dir << 2);
+    printf("pde_addr: 0x%x\n", pde_addr); 
+
     uint32_t pde_val = hwaddr_read(pde_addr, 4);
     PDE pde;
     pde.val = pde_val;
