@@ -16,6 +16,7 @@ static void do_execute(){
 #if instr_num == 1 || instr_num == 2 || instr_num == 3 || instr_num == 4
     OPERAND_W(op_dest, val);
 #endif
+    print_asm_template1();
 
 
 }
