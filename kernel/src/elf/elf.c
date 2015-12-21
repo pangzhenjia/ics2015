@@ -47,7 +47,7 @@ uint32_t loader() {
 
             uint32_t hw_addr = mm_malloc(ph[i].p_vaddr, ph[i].p_memsz);
 
-            ramdisk_read((void *)hw_addr, ELF_OFFSET_IN_DISK + ph[i].p_offset, ph[i].p_filesz);
+            memcpy((void *)hw_addr, buf + ph[i].p_offset, ph[i].p_filesz);
             memset((void *)hw_addr + ph[i].p_filesz, 0, ph[i].p_memsz - ph[i].p_filesz);
 
 
