@@ -46,8 +46,8 @@ uint32_t loader() {
 		if(ph[i].p_type == PT_LOAD) {
 
             /* read file in new_buf */
-            uint8_t new_buf[ ph[i].p_filesz ];
-            ramdisk_read(new_buf, ELF_OFFSET_IN_DISK + ph[i].p_offset, ph[i].p_filesz);
+            //uint8_t new_buf[ ph[i].p_filesz ];
+            //ramdisk_read(new_buf, ELF_OFFSET_IN_DISK + ph[i].p_offset, ph[i].p_filesz);
             
             uint32_t hw_addr;
 
@@ -58,7 +58,7 @@ uint32_t loader() {
             hw_addr = ph[i].p_vaddr;
 #endif
 
-            memcpy(ELF_START + hw_addr, new_buf, ph[i].p_filesz);
+            ramdisk_read((void *)hw_addr, ELF_OFFSET_IN_DISK + ph[i].p_offset, ph[i].p_filesz);
             memset(ELF_START + hw_addr + ph[i].p_filesz, 0, ph[i].p_memsz - ph[i].p_filesz);
 
 
