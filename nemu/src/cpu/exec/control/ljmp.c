@@ -8,6 +8,10 @@ int ljmp(swaddr_t eip){
 
     uint16_t cs = instr_fetch(eip+5, 2);
     cpu.Sreg[SR_CS].val = cs;
-    
+
+#define instr ljmp
+    print_asm_template1();
+#undef instr
+
     return 0;
 }

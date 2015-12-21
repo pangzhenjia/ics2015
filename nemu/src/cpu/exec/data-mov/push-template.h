@@ -13,6 +13,7 @@ static void do_execute(){
     swaddr_write(reg_l(R_ESP), 4, SR_SS, val);
 #endif
 
+    print_asm_template1();
 }
 
 make_instr_helper(i)

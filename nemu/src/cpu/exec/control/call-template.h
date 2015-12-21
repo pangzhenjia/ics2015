@@ -6,6 +6,11 @@ make_helper(concat(call_i_, SUFFIX)){
     MEM_W(reg_l(R_ESP), eip + len + 1);
     int val = op_src -> val;
     cpu.eip += val;
+
+#define instr call
+    print_asm_template1();
+#undef instr
+
     return len + 1;
 }
 
@@ -15,6 +20,11 @@ make_helper(concat(call_rm_, SUFFIX)){
     MEM_W(reg_l(R_ESP), eip + len + 1);
     DATA_TYPE val = (DATA_TYPE)op_src -> val;
     cpu.eip = val;
+
+#define instr call
+    print_asm_template1();
+#undef instr
+
     return 0;
 }
 

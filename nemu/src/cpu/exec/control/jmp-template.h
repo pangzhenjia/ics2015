@@ -7,6 +7,9 @@ make_helper(concat(jmp_si_, SUFFIX)){
     DATA_TYPE_S val0 = op_src->val;
     int val = val0;
     cpu.eip += val;
+
+    print_asm_template1();
+
     return len + 1;
 }
 
@@ -16,6 +19,9 @@ make_helper(concat(jmp_rm_, SUFFIX)){
     concat(decode_rm_, SUFFIX)(eip + 1);
     DATA_TYPE val = (DATA_TYPE)op_src->val;
     cpu.eip = val;
+ 
+    print_asm_template1();
+
     return 0;
 }
 

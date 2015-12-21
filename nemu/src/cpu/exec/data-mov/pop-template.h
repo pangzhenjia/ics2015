@@ -6,6 +6,9 @@ static void do_execute(){
     int val = MEM_R(reg_l(R_ESP));
     OPERAND_W(op_src, val);
     reg_l(R_ESP) += DATA_BYTE;
+
+    print_asm_template1();
+
 }
 
 make_instr_helper(r)
