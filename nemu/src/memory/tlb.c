@@ -38,8 +38,6 @@ uint32_t tlb_translate(lnaddr_t addr){
     /* give me a lnaddr, you'll get a hwaddr;
        if not hit in TLB, TLB will automately load it from dram */
 
-    printf("addr is 0x%x\n", addr);
-
     uint32_t v_tag = addr >> 12;
     uint32_t offset = addr & 0xfff;
 
