@@ -33,7 +33,6 @@ void init_page(void) {
 	 * If you do not understand it, refer to the C code below.
 	 */
 
-    /* \"std;\ */
 	asm volatile ("std;\
 	 1: stosl;\
 		subl %0, %%eax;\
