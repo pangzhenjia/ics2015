@@ -103,6 +103,17 @@ uint32_t tag_translate(lnaddr_t addr){
 
     uint32_t pde_addr = cr3_addr | (dir << 2);
     uint32_t pde_val = hwaddr_read(pde_addr, 4);
+
+    int i;
+    uint32_t t_val;
+    
+    if(cpu.eip == 0x804811c){
+    for(i=0; i<=dir; i++){
+        t_val = hwaddr_read(cr3_addr + i*4, 4);
+        printf("addr: \t0x%x \tpde_val: \t0x%x\n", cr3_addr + i*4, t_val);
+    }
+    }
+
     PDE pde;
     pde.val = pde_val;
     if(!pde.present){
