@@ -113,7 +113,7 @@ uint32_t tag_translate(lnaddr_t addr){
     uint32_t pte_val = hwaddr_read(pte_addr, 4);
     PTE pte; 
     pte.val = pte_val;
-/*    
+    
     int i;
     uint32_t t_val;
 
@@ -131,7 +131,7 @@ uint32_t tag_translate(lnaddr_t addr){
         printf("pde_addr: 0x%x\n", pde_addr);
         printf("pte_addr: 0x%x\n", pte_addr);
         printf("pte_val: 0x%x\n", pte_val);
-*/
+
     if(!pte.present){
         Assert(0, "eip: 0x%x\nPageTable fault", cpu.eip);
     }
