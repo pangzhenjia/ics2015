@@ -80,10 +80,10 @@ int cmd_p(char *args){
 }
 
 static int cmd_x(char *args){
-    char *numchar = strtok(NULL, " ");
-    int num = atoi(numchar);
-    char *expr = strtok(NULL, " ");
-    uint32_t addr = atoi(expr), result = 0;
+    int num;
+    uint32_t addr;
+    uint32_t result;
+    sscanf(args, "%d %x", &num, &addr);
     int i = 0;
     for( ; i<num; i++){
         result = hwaddr_read(addr, 4);
