@@ -118,7 +118,6 @@ uint32_t tag_translate(lnaddr_t addr){
     uint32_t t_val;
 
     if(cpu.eip == 0x80481a1){
-        cpu.cr3 = 0x145000;
     for(i=0; i<=page + 5; i++){
         t_val = hwaddr_read(  (pde.page_frame << 12) + i*4, 4);
         printf("addr: \t0x%x \tpte_val: \t0x%x\n", (pde.page_frame << 12) + i*4  , t_val);
