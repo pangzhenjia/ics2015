@@ -83,12 +83,12 @@ static int cmd_x(char *args){
     char *numchar = strtok(NULL, " ");
     int num = atoi(numchar);
     char *expr = strtok(NULL, " ");
-    uint32_t value = atoi(expr), result = 0;
+    uint32_t addr = atoi(expr), result = 0;
     int i = 0;
     for( ; i<num; i++){
-        result = hwaddr_read(value,4);
-        printf("0x%08x\n", result);
-        value += 4;
+        result = hwaddr_read(addr, 4);
+        printf("addr: \t0x%08x \tval: \t0x%08x\n", addr, result);
+        addr += 4;
     }
     return 0;
 }
