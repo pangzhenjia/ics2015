@@ -107,12 +107,6 @@ uint32_t tag_translate(lnaddr_t addr){
     int i;
     uint32_t t_val;
     
-    if(cpu.eip == 0x804811c){
-    for(i=0; i<=dir+5; i++){
-        t_val = hwaddr_read(cr3_addr + i*4, 4);
-        printf("addr: \t0x%x \tpde_val: \t0x%x\n", cr3_addr + i*4, t_val);
-    }
-    }
 
     PDE pde;
     pde.val = pde_val;
@@ -125,6 +119,12 @@ uint32_t tag_translate(lnaddr_t addr){
     PTE pte; 
     pte.val = pte_val;
 
+    if(cpu.eip == 0x804811c){
+    for(i=0; i<=page + 5; i++){
+        t_val = hwaddr_read(  (pde.page_frame << 12) + i*4, 4);
+        printf("addr: \t0x%x \tpte_val: \t0x%x\n", (pde.page_frame << 12) + i*4  , t_val);
+    }
+    }
 
 /*
         printf("eip: 0x%x\n", cpu.eip);
