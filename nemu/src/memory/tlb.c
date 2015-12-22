@@ -126,13 +126,13 @@ uint32_t tag_translate(lnaddr_t addr){
     }
     }
 
-/*
+
         printf("eip: 0x%x\n", cpu.eip);
         printf("addr: 0x%x\n", addr);
         printf("cr3 : 0x%x\n", cpu.cr3);
         printf("pde_addr: 0x%x\n", pde_addr);
         printf("pte_addr: 0x%x\n", pte_addr);
-*/
+
     if(!pte.present){
         Assert(0, "eip: 0x%x\nPageTable fault", cpu.eip);
     }
