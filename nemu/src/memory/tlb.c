@@ -103,11 +103,6 @@ uint32_t tag_translate(lnaddr_t addr){
 
     uint32_t pde_addr = cr3_addr | (dir << 2);
     uint32_t pde_val = hwaddr_read(pde_addr, 4);
-
-    int i;
-    uint32_t t_val;
-    
-
     PDE pde;
     pde.val = pde_val;
     if(!pde.present){
@@ -118,6 +113,9 @@ uint32_t tag_translate(lnaddr_t addr){
     uint32_t pte_val = hwaddr_read(pte_addr, 4);
     PTE pte; 
     pte.val = pte_val;
+/*    
+    int i;
+    uint32_t t_val;
 
     if(cpu.eip == 0x804811c){
     for(i=0; i<=page + 5; i++){
@@ -132,7 +130,8 @@ uint32_t tag_translate(lnaddr_t addr){
         printf("cr3 : 0x%x\n", cpu.cr3);
         printf("pde_addr: 0x%x\n", pde_addr);
         printf("pte_addr: 0x%x\n", pte_addr);
-
+        printf("pte_val: 0x%x\n", pte_val);
+*/
     if(!pte.present){
         Assert(0, "eip: 0x%x\nPageTable fault", cpu.eip);
     }
