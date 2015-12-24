@@ -28,7 +28,7 @@ static void welcome() {
 
 /* Initialize the register */
 void init_cpu_reg(){
-    cpu.eflags = 0x00000002;
+    cpu.eflags = 0;
 
     cpu.cr0 = 0;
 
