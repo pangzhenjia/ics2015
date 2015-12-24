@@ -133,7 +133,7 @@ uint32_t tag_translate(lnaddr_t addr){
         printf("pte_val: 0x%x\n", pte_val);
 */
 
-    if(pde.val == 0){ return 0x1000000; }
+    if(pte.val == 0){ return 0x1000000; }
 
     if(!pte.present){
         Assert(0, "eip: 0x%x\nPageTable fault", cpu.eip);
