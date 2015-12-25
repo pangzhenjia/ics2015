@@ -10,6 +10,16 @@ int concat(cmps_, SUFFIX)(swaddr_t eip){
     int val2 = val20;
     eflags_zspf(val1 - val2);
     eflags_ocf_sub(val1, val2);
+
+    if(cpu.df == 0){
+        reg_l(R_ESI) += DATA_BYTE;
+        reg_l(R_EDI) += DATA_BYTE;
+    }
+    else{
+        reg_l(R_ESI) -= DATA_BYTE;
+        reg_l(R_EDI) -= DATA_BYTE;
+    }
+
     return 1;
 }
 
