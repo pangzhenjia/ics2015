@@ -78,6 +78,7 @@ void init_cond() {
 	video_mapping_write_test();
 #endif
 
+    panic();
 	/* Load the program. */
 	uint32_t eip = loader();
 	
