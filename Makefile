@@ -54,7 +54,7 @@ clean: clean-cpp
 
 //USERPROG := obj/testcase/integral
 //USERPROG := obj/testcase/quadratic-eq
-USERPROG := obj/testcase/pascal
+USERPROG := obj/testcase/hello-inline-asm
 
 
 ENTRY := $(kernel_BIN)
