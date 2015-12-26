@@ -121,6 +121,7 @@ uint32_t tag_translate(lnaddr_t addr){
         printf("pde_addr: 0x%x\n", pde_addr);
         printf("pte_addr: 0x%x\n", pte_addr);
         printf("pte_val: 0x%x\n", pte_val);
+        printf("\n");
 
 
     if(pte.val == 0){ return 0x1000000; }
