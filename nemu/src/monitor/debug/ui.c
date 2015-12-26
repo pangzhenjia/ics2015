@@ -91,7 +91,7 @@ static int cmd_x(char *args){
     sscanf(args, "%d %x", &num, &addr);
     int i = 0;
     for( ; i<num; i++){
-        result = hwaddr_read(addr, 4);
+        result = lnaddr_read(addr, 4);
         printf("addr: \t0x%08x \tval: \t0x%08x\n", addr, result);
         addr += 4;
     }
