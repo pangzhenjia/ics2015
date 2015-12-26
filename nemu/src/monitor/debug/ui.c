@@ -56,7 +56,10 @@ static int cmd_si(char *args){
      if (strcmp(subcmd, "r") == 0){
          printf("eax\t:0x%08x\nebx\t:0x%08x\necx\t:0x%08x\nedx\t:0x%08x\nebp\t:0x%08x\nesp\t:0x%08x\nedi\t:0x%08x\nesi\t:0x%08x\n", cpu.eax, cpu.ebx, cpu.ecx, cpu.edx, cpu.ebp, cpu.esp, cpu.edi, cpu.esi );
 
+/*
          printf("es\t:0x%08x\ncs\t:0x%08x\nss\t:0x%08x\nds\t:0x%08x\n", cpu.Sreg[0].val, cpu.Sreg[1].val, cpu.Sreg[2].val, cpu.Sreg[3].val);
+*/
+
      }
      else if(strcmp(subcmd, "w") == 0){
          info_wp();
