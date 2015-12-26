@@ -55,7 +55,7 @@ void init_cache(){
 }
 
 void cache_read_data(hwaddr_t addr, void *data){
-    Assert(addr < HW_MEM_SIZE, "eip: 0x%08x\nPhysical address 0x%x is outside of the physical memory!", cpu.eip, addr);
+    Assert(addr < HW_MEM_SIZE, "eip: 0x%08x\nPhysical address 0x%08x is outside of the physical memory!", cpu.eip, addr);
 
     cache_addr temp;
     temp.addr = addr;
