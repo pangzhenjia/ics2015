@@ -53,7 +53,7 @@ uint32_t loader() {
 #endif
 
             memcpy((void *)hw_addr, buf + ph[i].p_offset, ph[i].p_filesz);
-            //memset((void *)hw_addr + ph[i].p_filesz, 0, ph[i].p_memsz - ph[i].p_filesz);
+            memset((void *)hw_addr + ph[i].p_filesz, 0, ph[i].p_memsz - ph[i].p_filesz);
 
 
 #ifdef IA32_PAGE
