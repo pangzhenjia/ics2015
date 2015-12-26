@@ -10,6 +10,7 @@
 #include "data-mov/cwd_cdq.h"
 #include "data-mov/cmov.h"
 #include "data-mov/lgdt.h"
+#include "data-mov/igdt.h"
 #include "data-mov/mov_cr0.h"
 #include "data-mov/mov_sreg.h"
 

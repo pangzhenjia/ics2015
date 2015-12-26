@@ -62,6 +62,14 @@ typedef struct {
         };
     };
 
+    union{
+        uint64_t idtr:48;
+        struct {
+            unsigned limit:16;
+            unsigned base :32;
+        } _idtr;
+    };
+    
     /* for segment */
     union{
         uint64_t gdtr:48;
