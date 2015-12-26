@@ -7,8 +7,8 @@ int lgdt_rm2r_l(swaddr_t eip){
     int len = load_addr(eip+1, &m, op_src);
 
     uint32_t addr  = op_src -> addr;
-    uint16_t limit = hwaddr_read(addr, 2);
-    uint32_t base  = hwaddr_read(addr + 2, 4);
+    uint16_t limit = lnaddr_read(addr, 2);
+    uint32_t base  = lnaddr_read(addr + 2, 4);
 
     cpu._gdtr.limit = limit / 8;
     cpu._gdtr.base = base;
