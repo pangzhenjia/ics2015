@@ -2,6 +2,8 @@
 #include "cpu/helper.h"
 
 void eflags_zspf(int result){
+    cpu.eflags = 0;
+
     //ZF
     cpu.zf = !result;
     //SF
@@ -15,6 +17,7 @@ void eflags_zspf(int result){
 }
 
 void eflags_ocf_sub(int be_sub, int sub){
+    cpu.eflags = 0;
     //for OF
     int result = be_sub - sub;
     int sign1 = !!( be_sub >> 31);
