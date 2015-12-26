@@ -2,8 +2,6 @@
 #include "cpu/helper.h"
 
 void eflags_zspf(int result){
-    cpu.eflags = 0;
-
     //ZF
     cpu.zf = !result;
     //SF
