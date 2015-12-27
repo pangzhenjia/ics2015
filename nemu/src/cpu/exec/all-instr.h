@@ -4,6 +4,7 @@
 #include "data-mov/xchg.h"
 #include "data-mov/push.h"
 #include "data-mov/pusha.h"
+#include "data-mov/popa.h"
 #include "data-mov/pop.h"
 #include "data-mov/leave.h"
 #include "data-mov/movsx.h"
