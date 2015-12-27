@@ -52,9 +52,7 @@ clean: clean-cpp
 
 ##### some convinient rules #####
 
-//USERPROG := obj/testcase/integral
-//USERPROG := obj/testcase/quadratic-eq
-USERPROG := obj/testcase/hello
+USERPROG := obj/testcase/integral
 
 
 ENTRY := $(kernel_BIN)
