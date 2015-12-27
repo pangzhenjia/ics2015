@@ -36,14 +36,21 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 
     /* init some val */
     int val = 0;
+    int temp;
     int res = a_abs;
     int div_val = 0;
 
     /* do recur div */
-    int i;
+    int i, j;
     for(i = 0; i < 16; i++){
         div_val = res/b_abs;
-        val += (div_val << (16 - i));
+        temp = div_val << 16;
+
+        for(j=0; j<i; j++){
+            temp /= 10;
+        }
+
+        val += temp;
         res = res - b_abs * div_val;
         res = res * 10;
         if ( res == 0) { break; }
