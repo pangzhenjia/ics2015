@@ -45,7 +45,7 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
         div_val = res/b_abs;
         val += (div_val << (16 - i));
         res = res - b_abs * div_val;
-        res = res << 1;
+        res = res * 10;
         if ( res == 0) { break; }
     }
     
