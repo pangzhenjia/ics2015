@@ -24,11 +24,26 @@ make_helper(inv) {
 	assert(0);
 }
 
+
+static void sys_write(){
+    uint32_t lnaddr = cpu.ecx + cpu.Sreg[SR_SS].base;
+    //uint32_t hwaddr = page_translate(lnaddr, 4);
+    char *buf = (void *)lnaddr;
+    int len = cpu.edx;
+
+    int i;
+    for(i=0; i<len; i++){
+        printf("%s", buf);
+        buf++;
+    }
+}
+
+
 make_helper(nemu_trap) {
 	print_asm("nemu trap (eax = %d)", cpu.eax);
 
 	switch(cpu.eax) {
-		case 2:
+		case 2: sys_write(); break;
 		   	break;
 
 		default:
