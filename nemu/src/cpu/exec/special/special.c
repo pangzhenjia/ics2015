@@ -26,15 +26,15 @@ make_helper(inv) {
 
 
 static void sys_write(){
-    uint32_t lnaddr = cpu.ecx + cpu.Sreg[SR_SS].base;
-    //uint32_t hwaddr = page_translate(lnaddr, 4);
-    char *buf = (void *)lnaddr;
+    uint32_t addr = cpu.ecx;
+    char buf;
     int len = cpu.edx;
 
     int i;
     for(i=0; i<len; i++){
-        printf("%s", buf);
-        buf++;
+        buf = swaddr_read(addr, 1, SR_SS);
+        printf("%c", buf);
+        addr++;
     }
 }
 
