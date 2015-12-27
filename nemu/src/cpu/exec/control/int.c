@@ -5,7 +5,7 @@ void raise_intr(uint8_t );
 
 int int80(swaddr_t eip){
 
-    /* push elfags */
+    /* push eflags */
    cpu.esp -= 4;
    swaddr_write(cpu.esp, 4, SR_SS, cpu.eflags);
 
@@ -22,6 +22,6 @@ int int80(swaddr_t eip){
     int NO = instr_fetch(eip+1, 1);
     raise_intr(NO);
 
-    return 2;
+    return 0;
 }
 

@@ -41,6 +41,7 @@
 #include "control/ret.h"
 #include "control/ljmp.h"
 #include "control/int.h"
+#include "control/iret.h"
 
 #include "string/rep.h"
 #include "string/movs.h"
