@@ -121,11 +121,6 @@ typedef struct {
 
     } Sreg[4];
     
-    struct{
-        uint32_t base;
-        uint32_t limit;
-    }sr_cache[4];
-
 } CPU_state;
 
 extern CPU_state cpu;
