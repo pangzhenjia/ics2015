@@ -11,13 +11,14 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 
     /* split a = a_n + a_p; b = b_n + b_p */
     unsigned a_n = a_abs >> 16;
+    unsigned a_p = a_abs & 0xffff;
     unsigned b_n = b_abs >> 16;
-    unsigned b_p = b & 0xffff;
+    unsigned b_p = b_abs & 0xffff;
 
     /* multiple by part */
     unsigned val1 = a_abs * b_n;
     unsigned val2 = a_n * b_p;
-    unsigned val3 = (a * b);
+    unsigned val3 = (a_p * b_p);
     val3 >>= 16;
 
     /* get val and get sign */
