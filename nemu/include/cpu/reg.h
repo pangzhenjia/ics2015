@@ -121,6 +121,7 @@ typedef struct {
 
     } Sreg[4];
     
+    bool INTR;
 } CPU_state;
 
 extern CPU_state cpu;
