@@ -31,10 +31,10 @@ typedef struct {
 
         //uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
         struct{
-            union{uint32_t eax; uint16_t ax;  uint8_t al, ah;};
-            union{uint32_t ecx; uint16_t cx;  uint8_t cl, ch;};
-            union{uint32_t edx; uint16_t dx;  uint8_t dl, dh;};
-            union{uint32_t ebx; uint16_t bx;  uint8_t bl, bh;};
+            union{uint32_t eax; uint16_t ax;  struct{ uint8_t al; uint8_t ah;}; };
+            union{uint32_t ecx; uint16_t cx;  struct{ uint8_t cl; uint8_t ch;}; };
+            union{uint32_t edx; uint16_t dx;  struct{ uint8_t dl; uint8_t dh;}; };
+            union{uint32_t ebx; uint16_t bx;  struct{ uint8_t bl; uint8_t bh;}; };
             union{uint32_t esp; uint16_t sp;};
             union{uint32_t ebp; uint16_t bp;};
             union{uint32_t esi; uint16_t si;};
