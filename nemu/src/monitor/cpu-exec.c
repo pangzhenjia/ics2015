@@ -1,9 +1,11 @@
 #include "monitor/monitor.h"
 #include "monitor/watchpoint.h"
 #include "cpu/helper.h"
+#include "device/i8259.h"
 #include <setjmp.h>
 
 int watch_wp();
+void raise_intr(uint8_t NO);
 
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
@@ -83,6 +85,16 @@ void cpu_exec(volatile uint32_t n) {
             nemu_state = STOP;
             printf("STOP: eip = 0x%08x \n", cpu.eip);
         }
+
+
+        /* check intr */
+#ifdef HAS_DEVICE
+        if(cpu.INTR & cpu.If) {
+            uint32_t intr_no = i8259_query_intr();
+            i8259_ack_intr();
+            raise_intr(intr_no);
+        }
+#endif
 
 		if(nemu_state != RUNNING) { return; }
 	}
