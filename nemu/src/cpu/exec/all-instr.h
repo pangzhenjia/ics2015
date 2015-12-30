@@ -45,6 +45,7 @@
 #include "control/int.h"
 #include "control/iret.h"
 #include "control/cli.h"
+#include "control/sti.h"
 
 #include "string/rep.h"
 #include "string/movs.h"
