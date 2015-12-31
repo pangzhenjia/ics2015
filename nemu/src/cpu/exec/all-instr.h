@@ -60,3 +60,4 @@
 #include "special/float.h"
 #include "special/in.h"
 #include "special/out.h"
+#include "special/hlt.h"
