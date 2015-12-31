@@ -1,4 +1,5 @@
 #include "common.h"
+#include "x86.h"
 #include "memory.h"
 #include <string.h>
 
@@ -14,6 +15,8 @@ void create_video_mapping() {
 	 * [0xa0000, 0xa0000 + SCR_SIZE) for user program. You may define
 	 * some page tables to create this mapping.
 	 */
+    
+    /* 0xa0000 means using the first page_dir */
 	panic("please implement me");
 }
 
