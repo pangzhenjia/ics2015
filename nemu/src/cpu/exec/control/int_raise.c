@@ -6,6 +6,23 @@ uint64_t decode_gdt(uint32_t index);
 
 void raise_intr(uint8_t NO){
 
+    /* push eflags */
+    cpu.esp -= 4;
+    swaddr_write(cpu.esp, 4, SR_SS, cpu.eflags);
+
+    cpu.If = 0;
+    cpu.tf = 0;
+
+    /* push CS */
+    cpu.esp -= 4;
+    swaddr_write(cpu.esp, 4, SR_SS, cpu.Sreg[SR_CS].val);
+
+    /* push eip */
+    cpu.esp -= 4;
+    swaddr_write(cpu.esp, 4, SR_SS, cpu.eip + 2);
+
+    print_asm("int 0x%x", NO);
+
     /* decode int */
     Assert(NO <= cpu._idtr.limit, "NO %d in idtr is out of range!\n", NO);
     uint32_t base = cpu._idtr.base;
