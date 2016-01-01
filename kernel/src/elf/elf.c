@@ -52,7 +52,7 @@ uint32_t loader() {
             hw_addr = ph[i].p_vaddr;
 #endif
 
-            memcpy((void *)hw_addr, ELF_START + ph[i].p_offset, ph[i].p_filesz);
+            ide_read((void *)hw_addr, ph[i].p_offset, ph[i].p_filesz);
             memset((void *)hw_addr + ph[i].p_filesz, 0, ph[i].p_memsz - ph[i].p_filesz);
 
 
