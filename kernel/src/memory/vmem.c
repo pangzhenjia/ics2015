@@ -18,8 +18,8 @@ void create_video_mapping() {
 	 * some page tables to create this mapping.
 	 */
  
-    PDE *pdir = get_updir();
-    PTE *ptable = (PTE *)vptable;
+    PDE *pdir = va_to_pa(get_updir());
+    PTE *ptable = va_to_pa((PTE *)vptable);
     uint32_t addr = VMEM_ADDR;
 
     uint32_t nr_pt = (addr + SCR_SIZE) / PAGE_SIZE + 1;
