@@ -52,8 +52,7 @@ clean: clean-cpp
 
 ##### some convinient rules #####
 
-USERPROG := obj/testcase/matrix-mul
-//USERPROG := obj/testcase/pascal
+USERPROG := obj/testcase/quick-sort
 
 
 ENTRY := $(kernel_BIN)
