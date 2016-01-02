@@ -28,6 +28,11 @@ void create_video_mapping() {
     uint32_t pdir_idx = addr >> 22;
     uint32_t pt_idx = (addr << 10) >> 22;
 
+    if(pdir[pdir_idx].val != 0){
+        PDE *pde = (PDE *)(pdir[pdir_idx].val & 0xfffff);
+        memcpy(ptable, pde, nr_pt * sizeof(PTE));
+    }
+
     pdir[pdir_idx].val = make_pde(ptable);
 
     int i;
