@@ -22,6 +22,8 @@ typedef struct{
     uint32_t valid: 1;
 } TLB;
 
+uint32_t w_cr3;
+
 TLB tlb[NR_TLB];
 
 void init_tlb(){
@@ -29,6 +31,7 @@ void init_tlb(){
     for(i=0; i< NR_TLB; i++){
         tlb[i].valid = 0;
     }
+    w_cr3 = 0;
 }
 
 uint32_t tlb_find_num();
@@ -40,6 +43,11 @@ uint32_t tlb_translate(lnaddr_t addr){
 
     uint32_t v_tag = addr >> 12;
     uint32_t offset = addr & 0xfff;
+
+    if(cpu.cr3 != w_cr3){ 
+        init_tlb(); 
+        w_cr3 = cpu.cr3;
+    }
 
     /* TLB hit */
     int i;
