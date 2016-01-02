@@ -5,6 +5,8 @@ void raise_intr(uint8_t no);
 
 int hlt(swaddr_t eip){
     cpu.If = 1;
+    
+    cpu.eip += 1;
     /* wait for the intr */
     while(1){
         if(cpu.INTR & cpu.If) {
@@ -15,5 +17,5 @@ int hlt(swaddr_t eip){
         }
     }
 
-    return 1;
+    return 0;
 }
