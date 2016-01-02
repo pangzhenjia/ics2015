@@ -64,6 +64,9 @@ static int cmd_si(char *args){
      else if(strcmp(subcmd, "w") == 0){
          info_wp();
      }
+     else if(strcmp(subcmd, "p") == 0){
+         printf("cr3\t:0x%x\n", cpu.cr3);
+     }
      return 0;
  }
 
