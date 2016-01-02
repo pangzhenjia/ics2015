@@ -4,8 +4,8 @@
 void raise_intr(uint8_t no);
 
 int hlt(swaddr_t eip){
+    cpu.If = 1;
     /* wait for the intr */
-    /*
     while(1){
         if(cpu.INTR & cpu.If) {
             uint32_t intr_no = i8259_query_intr();
@@ -14,7 +14,6 @@ int hlt(swaddr_t eip){
             return 1;
         }
     }
-    */
 
     return 1;
 }
