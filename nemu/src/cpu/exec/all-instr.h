@@ -61,3 +61,4 @@
 #include "special/in.h"
 #include "special/out.h"
 #include "special/hlt.h"
+#include "special/bt.h"
