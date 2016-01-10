@@ -37,7 +37,7 @@ void
 main_loop(void) {
 	int now = 0, target;
 	int num_draw = 0;
-	bool redraw;
+	bool redraw = true;
 
 	while (true) {
 		wait_intr();
