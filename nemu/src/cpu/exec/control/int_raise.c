@@ -23,8 +23,6 @@ void raise_intr(uint8_t NO){
 
     print_asm("int 0x%x", NO);
 
-    printf("raise 0x%x\n", NO);
-
     /* decode int */
     Assert(NO <= cpu._idtr.limit, "NO %d in idtr is out of range!\n", NO);
     uint32_t base = cpu._idtr.base;
