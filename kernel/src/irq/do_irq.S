@@ -17,8 +17,6 @@
 
 .globl vecsys; vecsys:  pushl $0;  pushl $0x80; jmp asm_do_irq
 
-.globl irq60;   irq60:  push  $0;  pushl $0x60; jmp asm_do_irq
-
 .globl irq0;     irq0:  pushl $0;  pushl $1000; jmp asm_do_irq
 .globl irq1;     irq1:  pushl $0;  pushl $1001; jmp asm_do_irq
 .globl irq14;   irq14:  pushl $0;  pushl $1014; jmp asm_do_irq
