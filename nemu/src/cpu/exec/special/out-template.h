@@ -1,6 +1,5 @@
 #include "cpu/exec/template-start.h"
-
-void pio_write(ioaddr_t addr, size_t len, uint32_t data);
+#include "device/port-io.h"
 
 int concat(out_a2imm_, SUFFIX)(swaddr_t eip){
     uint8_t ioaddr = instr_fetch(eip+1, 1);
@@ -14,7 +13,7 @@ int concat(out_a2imm_, SUFFIX)(swaddr_t eip){
 
 
 int concat(out_a2d_, SUFFIX)(swaddr_t eip){
-    uint16_t ioaddr = cpu.dx;
+    uint16_t ioaddr = cpu.edx;
     DATA_TYPE val = REG(R_EAX);
     pio_write(ioaddr, DATA_BYTE, val);
 

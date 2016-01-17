@@ -1,6 +1,6 @@
 #include "cpu/exec/template-start.h"
+#include "device/port-io.h"
 
-uint32_t pio_read(ioaddr_t addr, size_t len);
 
 int concat(in_imm2a_, SUFFIX)(swaddr_t eip){
     uint8_t ioaddr = instr_fetch(eip+1, 1);

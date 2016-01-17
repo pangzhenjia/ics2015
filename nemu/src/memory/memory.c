@@ -1,4 +1,5 @@
 #include "common.h"
+#include "device/mmio.h"
 
 /* We don't use them now */
 //uint32_t dram_read(hwaddr_t, size_t);
@@ -10,9 +11,6 @@ void cache_write(hwaddr_t, size_t, uint32_t);
 uint32_t seg_translate(swaddr_t addr, size_t len, uint8_t sreg);
 uint32_t page_translate(lnaddr_t addr, size_t len);
 
-int is_mmio(hwaddr_t addr);
-uint32_t mmio_read(hwaddr_t addr, size_t len, int map_NO);
-void mmio_write(hwaddr_t addr, size_t len, uint32_t data, int map_NO);
 
 /* Memory accessing interfaces */
 
