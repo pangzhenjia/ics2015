@@ -3,8 +3,8 @@
 #define instr bt
 
 static void do_execute(){
-    DATA_TYPE val = op_src -> val;
-    DATA_TYPE offset = op_dest -> val;
+    DATA_TYPE val = op_dest -> val;
+    DATA_TYPE offset = op_src -> val;
 
     Assert(offset < 32, "offset is %d\n", offset);
 
