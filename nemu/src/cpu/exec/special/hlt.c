@@ -4,7 +4,6 @@
 void raise_intr(uint8_t no);
 
 int hlt(swaddr_t eip){
-   /* 
     cpu.If = 1;
     
     cpu.eip += 1;
@@ -16,7 +15,5 @@ int hlt(swaddr_t eip){
             return 0;
         }
     }
-    */
-    return 1;
     
 }
