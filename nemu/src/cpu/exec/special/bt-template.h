@@ -8,8 +8,7 @@ static void do_execute(){
 
     Assert(offset < 32, "offset is %d\n", offset);
 
-    val = (val >> offset) & 1;
-    cpu.cf = val;
+    cpu.cf = (val >> offset) & 1;
 
     print_asm("btl %d 0x%x\n", offset, val);
 }
