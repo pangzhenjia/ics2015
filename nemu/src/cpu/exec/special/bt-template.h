@@ -11,7 +11,7 @@ static void do_execute(){
     val = (val >> offset) & 1;
     cpu.cf = val;
 
-    print_asm_template2();
+    print_asm("btl %d 0x%x\n", offset, val);
 }
 
 make_instr_helper(r2rm)
