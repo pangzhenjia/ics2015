@@ -51,6 +51,8 @@ void vec13();
 void vec14();
 void vecsys();
 
+void irq60();
+
 void irq_empty();
 
 void init_idt() {
@@ -76,6 +78,8 @@ void init_idt() {
 
 	/* the system call 0x80 */
 	set_trap(idt + 0x80, SEG_KERNEL_CODE << 3, (uint32_t)vecsys, DPL_USER);
+
+	set_intr(idt + 0x60, SEG_KERNEL_CODE << 3, (uint32_t)irq60, DPL_KERNEL);
 
 	set_intr(idt+32 + 0, SEG_KERNEL_CODE << 3, (uint32_t)irq0, DPL_KERNEL);
 	set_intr(idt+32 + 14, SEG_KERNEL_CODE << 3, (uint32_t)irq14, DPL_KERNEL);
