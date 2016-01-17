@@ -29,11 +29,11 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 #ifdef HAS_DEVICE
     int val = is_mmio(addr);
     if(val != -1){
-        return mmio_write(addr, len, data, val);
+        mmio_write(addr, len, data, val);
     }
 #endif
-
-	cache_write(addr, len, data);
+    else
+	    cache_write(addr, len, data);
 }
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
