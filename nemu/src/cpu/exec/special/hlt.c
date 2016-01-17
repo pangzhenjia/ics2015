@@ -17,6 +17,6 @@ int hlt(swaddr_t eip){
         }
     }
     */
-    return 0;
+    return 1;
     
 }
